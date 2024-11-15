@@ -25,7 +25,7 @@
                 <li><a href="#">Milktea</a></li>
                 <li><a href="#">FreshFruitTea</a></li>
                 <li><a href="#">Ice</a></li>
-                <li><a href="#">Đăng nhập</a></li>
+                <li><a href="#" id="loginLink">Đăng nhập</a></li>
                 <li id="lg-bag"><a href="cart.html"><i class="fa-solid fa-basket-shopping"></i></a></li>
                 <a href="#" id="close"><i class="fa-solid fa-xmark"></i></a>
             </ul>
@@ -592,21 +592,21 @@
             <div class="modal__body">
                
                 <!-- register form -->
-                <div class="auth-form">
+                <div class="auth-form register" style="display: none;">
                     <div class="auth-form__container">
                         <div class="auth-form__header">
                             <h3 class="auth-form__heading">Đăng ký</h3>
-                            <span class="auth-form__switch-btn">Đăng nhập</span>
+                            <span class="auth-form__switch-btn auth-form__switch-btn1">Đăng nhập</span>
                         </div>
-                        <div class="auth-form_-form">
+                        <div class="auth-form__form">
                             <div class="auth-form__group">
-                                <input type="text" class="auth-form__input" placeholder="Email của bạn">
+                                <input type="text" class="auth-form__input name" placeholder="Tên của bạn">
                             </div>
                             <div class="auth-form__group">
-                                <input type="text" class="auth-form__input" placeholder="Mật khẩu của bạn">
+                                <input type="text" class="auth-form__input pass" placeholder="Mật khẩu của bạn">
                             </div>
                             <div class="auth-form__group">
-                                <input type="text" class="auth-form__input" placeholder="Nhập lại Mật Khẩu">
+                                <input type="text" class="auth-form__input pass2" placeholder="Nhập lại Mật Khẩu">
                             </div>
                         </div>
                         
@@ -620,7 +620,7 @@
                         </div>
                         <div class="auth-form_controls">
                             <button class="btn auth-form_controls-back btn--nomal">Trở lại</button>
-                            <button class="btn btn--primary">Đăng kí</button>
+                            <button class="btn btn--primary btn btn--primary1">Đăng kí</button>
                         </div>
                     </div>
                     
@@ -637,19 +637,19 @@
                 </div> 
     
                 <!-- login form -->
-                <!-- <div class="auth-form">
+                <div class="auth-form login" style="display: none;">
                     <div class="auth-form__container">
                         <div class="auth-form__header">
                             <h3 class="auth-form__heading">Đăng nhập</h3>
-                            <span class="auth-form__switch-btn">Đăng kí</span>
+                            <span class="auth-form__switch-btn auth-form__switch-btn2">Đăng kí</span>
                         </div>
     
                         <div class="auth-form__form">
                             <div class="auth-form__group">
-                                <input type="text" class="auth-form__input" placeholder="Email của bạn">
+                                <input type="text" class="auth-form__input name" placeholder="Tên của bạn">
                             </div>
                             <div class="auth-form__group">
-                                <input type="text" class="auth-form__input" placeholder="Mật khẩu của bạn">
+                                <input type="text" class="auth-form__input pass" placeholder="Mật khẩu của bạn">
                             </div>
                         </div>
                         
@@ -662,7 +662,7 @@
                         </div>
                         <div class="auth-form_controls">
                             <button class="btn auth-form_controls-back btn--nomal">Trở lại</button>
-                            <button class="btn btn--primary">Đăng nhập</button>
+                            <button class="btn btn--primary btn btn--primary2">Đăng nhập</button>
                         </div>
                     </div>
                     
@@ -676,9 +676,9 @@
                             <span class="auth-form__social-title">  Kết nối với google </span>
                         </a>
                     </div>
-                </div>  -->
-            <!-- </div>
-        </div> -->
+                </div> 
+            </div>
+        </div>
        </section>
     <script src="script.js"></script>
 </body>

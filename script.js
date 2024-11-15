@@ -156,3 +156,76 @@ document.addEventListener('click', (event) => {
         searchSuggestions.style.display = 'none';
     }
 });
+
+//  js cho form đăng nhập đăng kí
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    // Hiển thị form đăng nhập
+    document.getElementById('loginLink').addEventListener('click', () => {
+        document.querySelector('.modal').style.display = 'flex';
+        document.querySelector('.login').style.display = 'block';
+        document.querySelector('.register').style.display = 'none';
+    });
+
+    // Ẩn modal
+    document.querySelectorAll('.auth-form_controls-back').forEach(button => {
+        button.addEventListener('click', () => {
+            document.querySelector('.modal').style.display = 'none';
+        });
+    });
+
+    // Chuyển đổi giữa form đăng nhập và đăng ký
+    document.querySelector('.auth-form__switch-btn1').addEventListener('click', () => {
+        document.querySelector('.register').style.display = 'none';
+        document.querySelector('.login').style.display = 'block';
+    });
+
+    document.querySelector('.auth-form__switch-btn2').addEventListener('click', () => {
+        document.querySelector('.register').style.display = 'block';
+        document.querySelector('.login').style.display = 'none';
+    });
+
+    // Ẩn modal khi nhấn ra ngoài form
+    document.querySelector('.modal__overlay').addEventListener('click', () => {
+        document.querySelector('.modal').style.display = 'none';
+    });
+
+    // Xử lý đăng nhập
+    document.querySelector('.btn--primary2').addEventListener('click', () => {
+        let email = document.querySelector('.login .name').value;
+        let password = document.querySelector('.login .pass').value;
+
+        if (!email || !password) {
+            alert("Vui lòng nhập đầy đủ thông tin");
+            return;
+        }
+
+        let accounts = JSON.parse(localStorage.getItem('accounts')) || [];
+        let account = accounts.find(acc => acc.email === email && acc.password === password);
+
+        if (account) {
+            document.getElementById('loginLink').innerText = account.email;
+            document.querySelector('.modal').style.display = 'none';
+        } else {
+            alert("Đăng nhập thất bại");
+        }
+    });
+
+    // Xử lý đăng ký
+    document.querySelector('.btn--primary1').addEventListener('click', () => {
+        let email = document.querySelector('.register .name').value;
+        let password = document.querySelector('.register .pass').value;
+        let confirmPassword = document.querySelector('.register .pass2').value;
+
+        if (!email || !password || !confirmPassword) {
+            alert("Vui lòng nhập đầy đủ thông tin");
+            return;
+        }
+
+        let accounts = JSON.parse(localStorage.getItem('accounts')) || [];
+        accounts.push({ email: email, password: password });
+        localStorage.setItem('accounts', JSON.stringify(accounts));
+
+        alert("Đăng ký thành công");
+    });
+});

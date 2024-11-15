@@ -764,7 +764,7 @@ footer .copyright {
     right: 0;
     bottom: 0;
     left: 0;
-    display: flex;
+    display: none;
     /* animation: fadeIn linear 0.1s; */
 }
 
@@ -785,6 +785,7 @@ footer .copyright {
 }
 
 .auth-form {
+    display: none;
     width: 500px;
     border-radius: 5px;
     background-color: var(--white-color);
