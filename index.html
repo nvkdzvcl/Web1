@@ -11,14 +11,26 @@
     <section id="header">
         <a href=""><img src="./image/30 Drinks.jpg" class="logo" alt=""></a>
 
+        <div id="search-bar">
+            <input type="text" id="search-input" placeholder="Tìm kiếm sản phẩm...">
+            <button id="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <div id="search-suggestions" class="suggestions">
+        </div>
+        
+
         <div>
             <ul id="navbar">
-                <li><a class="active" href="index.html">Trang chủ</a></li>
-                <li><a href="login.html">Đăng nhập</a></li>
+                <li><a class="active" href="index.html">Tất cả</a></li>
+                <li><a href="#">Milktea</a></li>
+                <li><a href="#">FreshFruitTea</a></li>
+                <li><a href="#">Ice</a></li>
+                <li><a href="#">Đăng nhập</a></li>
                 <li id="lg-bag"><a href="cart.html"><i class="fa-solid fa-basket-shopping"></i></a></li>
                 <a href="#" id="close"><i class="fa-solid fa-xmark"></i></a>
             </ul>
         </div>
+
 
         <div id="mobile">
             <a href="cart.html"><i class="fa-solid fa-basket-shopping"></i></a>
@@ -37,7 +49,7 @@
     <section id="product1" class="section-p1">
         <h2>Sản phẩm nổi bật</h2>
         <div class="pro-container">
-            <div class="pro">
+            <div class="pro" data-category="MilkTea">
                 <img src="image/products/Milktea/Tra-Sua-BoBa-Cheese.png" alt="">
                 <div class="des">
                     <span>MilkTea</span>
@@ -53,7 +65,7 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro">
+            <div class="pro" data-category="FreshFruitTea">
                 <img src="image/products/FreshFruitTea/Tra-Dao-Tien-Que-Hoa.png" alt="">
                 <div class="des">
                     <span>FreshFruitTea</span>
@@ -69,7 +81,7 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro">
+            <div class="pro" data-category="FreshFruitTea">
                 <img src="image/products/FreshFruitTea/Tra-Xanh-Nhai-Dao-Tien.png" alt="">
                 <div class="des">
                     <span>FreshFruitTea</span>
@@ -85,7 +97,7 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro">
+            <div class="pro" data-category="FreshFruitTea">
                 <img src="image/products/FreshFruitTea/Tra-Dau-Tam-Pha-Le-Tuyet.jpg" alt="">
                 <div class="des">
                     <span>FreshFruitTea</span>
@@ -101,7 +113,7 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro">
+            <div class="pro" data-category="FreshFruitTea">
                 <img src="image/products/FreshFruitTea/Tra-Dua-Thach-Konjac.jpg" alt="">
                 <div class="des">
                     <span>FreshFruitTea</span>
@@ -117,7 +129,7 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro">
+            <div class="pro" data-category="Ice">
                 <img src="image/products/Ice/Kem-Tra-Sua-Tran-Chau-Hoang-Kim.png" alt="">
                 <div class="des">
                     <span>Ice</span>
@@ -133,7 +145,7 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro">
+            <div class="pro" data-category="Ice">
                 <img src="image/products/Ice/Kem-Vani-Tra-Sua-Tran-Chau-Hoang-Kim.png" alt="">
                 <div class="des">
                     <span>Ice</span>
@@ -149,7 +161,7 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro">
+            <div class="pro" data-category="Ice">
                 <img src="image/products/ice/Kem-Ly-Vani-Dau.jpg" alt="">
                 <div class="des">
                     <span>Ice</span>
@@ -165,11 +177,11 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro">
+            <div class="pro" data-category="Milktea">
                 <img src="image/products/Milktea/Tra-Sua-Ba-Anh-Em.jpg" alt="">
                 <div class="des">
-                    <span>Ice</span>
-                    <h5>Kem Ly Vani Dâu</h5>
+                    <span>MilkTea</span>
+                    <h5>Tra Sua Ba Anh Em</h5>
                     <div class="star">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -181,7 +193,7 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro">
+            <div class="pro" data-category="Milktea">
                 <img src="image/products/Milktea/Tra-Sua-Dau-Tay.jpg" alt="">
                 <div class="des">
                     <span>MilkTea</span>
@@ -197,7 +209,7 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro">
+            <div class="pro" data-category="Milktea">
                 <img src="image/products/Milktea/Tra-Sua-O-Long.jpg" alt="">
                 <div class="des">
                     <span>MilkTea</span>
@@ -213,7 +225,7 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro">
+            <div class="pro" data-category="Milktea">
                 <img src="image/products/Milktea/Tra-Sua-Okinawa.png" alt="">
                 <div class="des">
                     <span>MilkTea</span>
@@ -229,7 +241,7 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro">
+            <div class="pro" data-category="Milktea">
                 <img src="image/products/Milktea/Tra-Sua-Pho-Mai-Tuoi.png" alt="">
                 <div class="des">
                     <span>MilkTea</span>
@@ -245,7 +257,7 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro">
+            <div class="pro" data-category="Milktea">
                 <img src="image/products/Milktea/Tra-Sua-Socola.jpg" alt="">
                 <div class="des">
                     <span>MilkTea</span>
@@ -261,7 +273,7 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro">
+            <div class="pro" data-category="Milktea">
                 <img src="image/products/Milktea/Tra-Sua-Tran-Chau-Duong-Den.jpg" alt="">
                 <div class="des">
                     <span>MilkTea</span>
@@ -277,7 +289,7 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro">
+            <div class="pro" data-category="Milktea">
                 <img src="image/products/Milktea/Tra-Sua-Tran-Chau-Hoang-Gia.jpg" alt="">
                 <div class="des">
                     <span>MilkTea</span>
@@ -293,7 +305,7 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro">
+            <div class="pro" data-category="Milktea">
                 <img src="image/products/Milktea/Tra-Sua-Tran-Chau-Soi.jpg" alt="">
                 <div class="des">
                     <span>MilkTea</span>
@@ -309,7 +321,7 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro">
+            <div class="pro" data-category="Milktea">
                 <img src="image/products/Milktea/Tra-Sua.jpg" alt="">
                 <div class="des">
                     <span>MilkTea</span>
@@ -325,7 +337,7 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro">
+            <div class="pro" data-category="Milktea">
                 <img src="image/products/Milktea/Tra-Xanh-Sua-Vi-Nhai.jpg" alt="">
                 <div class="des">
                     <span>MilkTea</span>
@@ -341,7 +353,7 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro">
+            <div class="pro" data-category="Milktea">
                 <img src="image/products/Milktea/Nguoi-Ban-Xanh-Sua-Nhai-Khong-Lo.jpg" alt="">
                 <div class="des">
                     <span>MilkTea</span>
@@ -357,7 +369,7 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro">
+            <div class="pro" data-category="Milktea">
                 <img src="image/products/Milktea/O-Long-Sua-Tuoi-Tran-Chau-Ngu-Coc.jpg" alt="">
                 <div class="des">
                     <span>MilkTea</span>
@@ -373,7 +385,7 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro">
+            <div class="pro" data-category="Milktea">
                 <img src="image/products/Milktea/Sua-Tuoi-Tran-Chau-Duong-Ho-Khong-Lo.jpg" alt="">
                 <div class="des">
                     <span>MilkTea</span>
@@ -389,7 +401,7 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro">
+            <div class="pro" data-category="Milktea">
                 <img src="image/products/Milktea/Tiger-Sugar.jpg" alt="">
                 <div class="des">
                     <span>MilkTea</span>
@@ -405,7 +417,7 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro">
+            <div class="pro" data-category="FreshFruitTea">
                 <img src="image/products/FreshFruitTea/O-Long-Man-Moc-Chau-Thach-Que-Hoa.jpg" alt="">
                 <div class="des">
                     <span>FreshFruitTea</span>
@@ -421,7 +433,7 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro">
+            <div class="pro" data-category="FreshFruitTea">
                 <img src="image/products/FreshFruitTea/O-Long-Tuyet-Le-Khong-Lo.jpg" alt="">
                 <div class="des">
                     <span>FreshFruitTea</span>
@@ -437,7 +449,7 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro">
+            <div class="pro" data-category="FreshFruitTea">
                 <img src="image/products/FreshFruitTea/Tra-Chanh-Mat-Ong-Gia-Tay-Khong-Lo.jpg" alt="">
                 <div class="des">
                     <span>FreshFruitTea</span>
@@ -453,7 +465,7 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro">
+            <div class="pro" data-category="FreshFruitTea">
                 <img src="image/products/FreshFruitTea/Tra-Chanh-Mat-Ong-Gia-Tay.jpg" alt="">
                 <div class="des">
                     <span>FreshFruitTea</span>
@@ -469,7 +481,7 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro">
+            <div class="pro" data-category="Ice">
                 <img src="image/products/ice/Ca-Phe-Kem-Tran-Chan-Hoang-Kim.jpg" alt="">
                 <div class="des">
                     <span>Ice</span>
@@ -485,7 +497,7 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro">
+            <div class="pro" data-category="Ice">
                 <img src="image/products/ice/Kem-Tran-Chau-Hoang-Kim.jpg" alt="">
                 <div class="des">
                     <span>Ice</span>
@@ -502,6 +514,14 @@
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
         </div>
+    </section>
+
+    <section id="pagination" class="section-p1">
+        <a href="#">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#"><i class="fa-solid fa-arrow-right"></i></a>
     </section>
 
     <section id="banner" class="section-m1">
@@ -536,12 +556,11 @@
                     <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
+            
         </div>
-
         <div class="col">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.6686769186927!2d106.67966991068418!3d10.759997859452183!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f1c81c64183%3A0xd3109d7a7a8f753c!2zMjczIMSQLiBBbiBExrDGoW5nIFbGsMahbmcsIFBoxrDhu51uZyAzLCBRdeG6rW4gNSwgSOG7kyBDaMOtIE1pbmgsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1731404358046!5m2!1svi!2s" width="450" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
-        
         <div class="col">
             <h4>About</h4>
             <a href="#">About Us</a>
