@@ -157,6 +157,8 @@ document.addEventListener('click', (event) => {
     }
 });
 
+
+
 //  js cho form đăng nhập đăng kí
 
 document.addEventListener('DOMContentLoaded', (event) => {

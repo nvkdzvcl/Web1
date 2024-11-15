@@ -393,9 +393,11 @@ footer .copyright {
 #page-header p {
     color: #fff;
 }
-
 #pagination {
     text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
 
 #pagination a {
@@ -856,7 +858,7 @@ footer .copyright {
 }
 
 .auth-form_controls{
-    margin-top: 80px;
+    margin-top: 60px;
     display: flex;
     justify-content: flex-end;
 
@@ -867,7 +869,7 @@ footer .copyright {
     padding: 16px 36px;
     display: flex;
     justify-content: space-between; 
-    margin-top: 24px;
+    margin-top: 20px;
 }
 
 .auth-form_controls-back{
@@ -912,6 +914,7 @@ footer .copyright {
 .auth-form__help{
     display: flex;
     justify-content: flex-end;
+    align-items: center;
 }
 .auth-form__help-separate{
     display: block;
