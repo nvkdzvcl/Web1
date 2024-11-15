@@ -67,7 +67,7 @@ body {
     background: #F3F1E2;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
     z-index: 999;
-    position: sticky;
+    position: static;
     top: 0;
     left: 0;
 }
@@ -744,4 +744,213 @@ footer .copyright {
         width: 100%;
         padding: 20px;
     }
+}
+
+
+
+/* css form login sign in */
+:root{
+    --white-color: #fff;
+    --black-color: #000;
+    --text-color: #333;
+    --primary-color:#EE4D2D;
+    --border-color:#dbdbdb;
+}
+
+
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    /* animation: fadeIn linear 0.1s; */
+}
+
+.modal__overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal__body {
+    margin: auto;
+    background-color: var(--white-color);
+    position: relative;
+    z-index: 1;
+    border-radius: 5px;
+    /* animation: growth linear 0.1s; */
+}
+
+.auth-form {
+    width: 500px;
+    border-radius: 5px;
+    background-color: var(--white-color);
+    overflow: hidden;
+}
+
+.auth-form__container{
+    padding: 20px 32px;
+    
+}
+
+.auth-form__header{
+    display: flex;
+    /* chứa đăng kí và đăng nhập
+    cho flex để lên cx dòng  */
+    /*  sau lệnh flex thì 2 tk cx dòng nhưng bị so le 
+    để ngang nhau dùng */
+    align-items: center;
+    /* 2 tk cách nhau ở giữa */
+    justify-content: space-between;
+
+}
+
+.auth-form__heading {
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--text-color);
+}
+
+.auth-form__switch-btn{
+    /* đang nhập */
+    font-size: 16px;
+    color: var(--primary-color);
+    font-weight:400 ;
+    cursor: pointer;
+}
+
+.auth-form__input {
+    width: 100%;
+    height: 40px;
+    margin-top: 16px;
+    padding: 0 12px;
+    font-size: 14px;
+    border: 1px solid var(--border-color);
+    border-radius: 2px;
+    outline: none;
+}
+
+.auth-form__input:focus{
+    border-color: #888;
+}
+
+.auth-form__aside{
+    margin-top: 18px;
+    
+}
+.auth-form__policy__text{
+    font-size: 12px;
+    line-height: 18px;
+    text-align: center;
+    padding: 0 12px;
+}
+
+.auth-form__help-link {
+    text-decoration: none;
+    font-size: 14px;
+    color: #939393;
+}
+
+.auth-form_controls{
+    margin-top: 80px;
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+.auth-form__social{
+    background-color: #f5f5f5;
+    padding: 16px 36px;
+    display: flex;
+    justify-content: space-between; 
+    margin-top: 24px;
+}
+
+.auth-form_controls-back{
+    margin-right: 8px;
+}
+
+.auth-form__text__link{
+    /* bỏ gạch chân */
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+.auth-form__social-icon{
+    font-size: 18px;
+}
+
+.auth-form__social--facebook{
+    color:var(--white-color);
+    background-color: #37599e;
+}
+
+.auth-form__social-icon
+.auth-form__social--facebook{
+    color: var(--white-color);
+}
+
+.auth-form__social-title{
+    color: var(--white-color);
+    margin: 0 32px;
+}
+.auth-form__social--google .auth-form__social-title{
+    color: var(--text-color);
+}
+
+.auth-form__social--google{
+    background-color: var(--white-color);
+    color: #666;
+}
+
+/* css form login */
+
+.auth-form__help{
+    display: flex;
+    justify-content: flex-end;
+}
+.auth-form__help-separate{
+    display: block;
+    height: 20px;
+    border-left: 1px solid var( --border-color);
+    margin: 0 16px;
+}
+.auth-form__help-forgot{
+    color: var(--primary-color);
+}
+
+/* button style */
+.btn {
+    min-width: 142px;
+    height: 34px;
+    text-decoration: none;
+    border: none;
+    border-radius: 2px;
+    font-size: 14px;
+    padding: 0 12px;
+    outline: none;
+    cursor: pointer;
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 16px;
+}
+
+.btn.btn--primary {
+    color: var(--white-color);
+    background-color: var(--primary-color);
+}
+
+.btn.btn--nomal:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.btn.btn--size-s {
+    height: 32px;
+    font-size: 12px;
+    padding: 0 8px;
 }
