@@ -1,0 +1,130 @@
+/* 1. Toàn cục - Đặt các kiểu cho tất cả phần tử */
+* {
+    margin: 0; /* Xóa khoảng cách mặc định của tất cả phần tử */
+    padding: 0; /* Xóa padding mặc định */
+    box-sizing: border-box; /* Đảm bảo kích thước của phần tử bao gồm padding và border */
+    font-family: "Poppins", sans-serif; /* Đặt font chữ cho tất cả phần tử */
+}
+
+/* 2. Body - Đặt nền và căn giữa nội dung */
+body {
+    display: flex; /* Sử dụng flexbox để căn giữa nội dung */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    min-height: 100vh; /* Chiều cao tối thiểu của body là 100% chiều cao của cửa sổ trình duyệt */
+    background: url('image/hero1.jpg'); /* Đặt nền là hình ảnh */
+    background-size: 50%; /* Tỉ lệ co giãn của ảnh nền là 50% */
+}
+
+/* 3. Wrapper - Khung bao quanh nội dung form */
+.wrapper {
+    width: 420px; /* Chiều rộng cố định cho wrapper */
+    background-color: transparent; /* Màu nền của wrapper trong suốt */
+    border: 2px solid #859F3D; /* Viền màu xanh lá cây cho wrapper */
+    backdrop-filter: blur(15px); /* Làm mờ nền phía sau wrapper */
+    box-shadow: 0 0 10px #FDFFAB; /* Tạo hiệu ứng bóng đổ cho wrapper */
+    border-radius: 30px; /* Bo tròn các góc của wrapper */
+    color: #fff; /* Màu chữ trong wrapper là trắng */
+    padding: 30px 40px; /* Khoảng cách trong wrapper */
+}
+
+/* 4. Tiêu đề h1 trong wrapper */
+.wrapper h1 {
+    font-size: 26px; /* Kích thước chữ của tiêu đề */
+    text-align: center; /* Căn giữa tiêu đề */
+}
+
+/* 5. Định dạng cho các ô input */
+.wrapper .input-box {
+    position: relative; /* Đặt vị trí của input-box là relative */
+    width: 100%; /* Chiều rộng của input-box là 100% */
+    height: 50px; /* Chiều cao của input-box */
+    margin: 30px 0; /* Khoảng cách giữa các ô input */
+}
+
+/* 6. Định dạng cho các ô input */
+.input-box input {
+    width: 100%; /* Chiều rộng của input là 100% */
+    height: 100%; /* Chiều cao của input là 100% */
+    background: transparent; /* Nền của input trong suốt */
+    border: none; /* Xóa viền mặc định */
+    outline: none; /* Xóa viền focus mặc định */
+    border: 2px solid rgba(255, 255, 255, .2); /* Viền mờ cho input */
+    border-radius: 40px; /* Bo góc cho input */
+    padding: 20px 45px 20px 20px; /* Thêm padding cho ô input */
+    color: white; /* Màu chữ trong input là trắng */
+    font-weight: 600; /* Đậm chữ trong input */
+}
+
+/* 7. Định dạng placeholder trong input */
+.input-box input::placeholder {
+    color: #fff; /* Màu chữ của placeholder là trắng */
+}
+
+/* 8. Định dạng cho icon trong input */
+.input-box i {
+    position: absolute; /* Đặt icon theo vị trí absolute */
+    right: 20px; /* Đặt icon cách phải 20px */
+    top: 50%; /* Đặt icon vào giữa theo chiều dọc */
+    transform: translateY(-50%); /* Căn chỉnh chính giữa theo chiều dọc */
+    font-size: 20px; /* Kích thước của icon */
+}
+
+/* 9. Định dạng cho phần "Remember me" và liên kết quên mật khẩu */
+.wrapper .remember-forgot {
+    display: flex; /* Sử dụng flexbox để căn giữa các phần tử trong phần này */
+    justify-content: space-between; /* Căn đều các phần tử theo chiều ngang */
+    font-size: 14.5px; /* Kích thước chữ */
+    margin: -15px 0 15px; /* Khoảng cách ngoài cho phần này */
+}
+
+/* 10. Định dạng checkbox trong phần "Remember me" */
+.remember-forgot label input {
+    accent-color: #fff; /* Màu của checkbox là trắng */
+    margin-right: 3px; /* Khoảng cách bên phải của checkbox */
+}
+
+/* 11. Định dạng cho liên kết quên mật khẩu */
+.remember-forgot a {
+    color: #fff; /* Màu chữ của liên kết là trắng */
+    text-decoration: none; /* Không gạch dưới liên kết */
+}
+
+/* 12. Hiệu ứng khi hover vào liên kết quên mật khẩu */
+.remember-forgot a:hover {
+    text-decoration: underline; /* Gạch dưới liên kết khi hover */
+}
+
+/* 13. Định dạng cho nút đăng nhập */
+.wrapper .btn {
+    width: 100%; /* Chiều rộng của nút bằng 100% */
+    height: 45px; /* Chiều cao cố định cho nút */
+    background: #fff; /* Nền của nút là trắng */
+    border: none; /* Không viền cho nút */
+    outline: none; /* Không viền khi focus */
+    border-radius: 40px; /* Bo góc cho nút */
+    box-shadow: 0 0 10px rgba(0, 0, 0, -1); /* Hiệu ứng bóng đổ */
+    cursor: pointer; /* Con trỏ thay đổi khi hover vào nút */
+    font-size: 16px; /* Kích thước chữ cho nút */
+    color: #333; /* Màu chữ của nút là xám đậm */
+    font-weight: 600; /* Đậm chữ trong nút */
+}
+
+/* 14. Định dạng cho liên kết đăng ký */
+.wrapper .register-link {
+    font-size: 14.5px; /* Kích thước chữ cho liên kết đăng ký */
+    text-align: center; /* Căn giữa nội dung liên kết */
+    margin-top: 20px; /* Khoảng cách trên cho liên kết đăng ký */
+}
+
+/* 15. Định dạng cho liên kết đăng ký */
+.register-link p a {
+    color: #fff; /* Màu chữ của liên kết là trắng */
+    text-decoration: none; /* Không gạch dưới liên kết */
+    font-weight: 600; /* Đậm chữ trong liên kết */
+}
+
+/* 16. Hiệu ứng hover cho liên kết đăng ký */
+.register-link p a:hover {
+    text-decoration: underline; /* Gạch dưới liên kết khi hover */
+}
