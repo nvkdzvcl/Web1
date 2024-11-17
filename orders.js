@@ -8,7 +8,7 @@ if(!oders) {
             customerId: 1,
             productId: 3,
             status: 'Đang chờ xử lý',
-            quantity: 1
+            quantity: 1,
             size: 'S'
         },
         {
