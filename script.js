@@ -266,4 +266,16 @@ document.addEventListener('DOMContentLoaded', (event) => {
         document.getElementById('login-item').classList.remove('logged-in');
         islogin = false;
     });
+
+    //  Giỏ hàng 
+
+    // Mở giỏ hàng
+    document.getElementById('lg-bag').addEventListener('click', () => {
+        document.getElementById('shopping-cart').style.display = 'initial';
+    });
+
+    // Đóng giỏ hàng
+    document.getElementById('cart-back').addEventListener('click', () =>{
+        document.getElementById('shopping-cart').style.display = 'none';
+    })
 });
