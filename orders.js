@@ -9,30 +9,35 @@ if(!oders) {
             productId: 3,
             status: 'Đang chờ xử lý',
             quantity: 1
+            size: 'S'
         },
         {
             customerId: 1,
             productId: 8,
             status: 'Đang chờ xử lý',
-            quantity: 2
+            quantity: 2,
+            size: 'M'
         },
         {
             customerId: 2,
             productId: 6,
             status: 'Đang chờ xử lý',
-            quantity: 1
+            quantity: 1,
+            size: 'M'
         },
         {
             customerId: 3,
             productId: 2,
             status: 'Đang chờ xử lý',
-            quantity: 1
+            quantity: 1,
+            size: 'M'
         },
         {
             customerId: 3,
             productId: 9,
             status: 'Đang chờ xử lý',
-            quantity: 3
+            quantity: 3,
+            size: 'L'
         },
 
     ]
