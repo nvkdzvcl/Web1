@@ -8,31 +8,36 @@ if(!oders) {
             customerId: 1,
             productId: 3,
             status: 'Đang chờ xử lý',
-            quantity: 1
+            quantity: 1,
+            date: '2024-11-15'
         },
         {
             customerId: 1,
             productId: 8,
             status: 'Đang chờ xử lý',
-            quantity: 2
+            quantity: 2,
+            date: '2024-11-15'
         },
         {
             customerId: 2,
             productId: 6,
             status: 'Đang chờ xử lý',
-            quantity: 1
+            quantity: 1,
+            date: '2024-11-13'
         },
         {
             customerId: 3,
             productId: 2,
             status: 'Đang chờ xử lý',
-            quantity: 1
+            quantity: 1,
+            date: '2024-11-11'
         },
         {
             customerId: 3,
             productId: 9,
             status: 'Đang chờ xử lý',
-            quantity: 3
+            quantity: 3,
+            date: '2024-11-20'
         },
 
     ]
