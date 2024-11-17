@@ -6,6 +6,12 @@
     <title>Trang quản trị</title>
     <link rel="stylesheet" href="admin.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <script src="products.js"></script>
+    <script src="orders.js"></script>
+    <script src="customer.js"></script>
+    
+
+
 </head>
 <body>
 
@@ -38,7 +44,7 @@
             </li>
             <li>
                 <i class="fa-solid fa-truck-fast"></i>
-                <a href="#">Đơn Hàng</a>
+                <a href="#" class="view-order">Đơn Hàng</a>
             </li>
             <li>
                 <i class="fa-solid fa-users"></i>
@@ -54,7 +60,69 @@
     <!-- Phần Nội dung chính -->
     <div class="content">
         <!-- Nội dung sẽ được đặt ở đây -->
-    </div>
 
+        <!-- Đơn hàng -->
+        <div class="order-content">
+            <div class="orders-title">Danh sách đơn hàng</div>
+            <div class="order-filter">
+                <div class="order-filter-btn">
+                    <i class="fa-solid fa-filter"></i>
+                    <p>Lọc</p>
+                </div>
+                <div class="order-filter-item">
+                    <div class="status-filter">
+                        <label for="status-filter-select">Tình trạng:</label>
+                        <select id="status-filter-select">
+                            <option value="all">Tất cả</option>
+                            <option value="Đang chờ xử lý">Đang chờ xử lý</option>
+                            <option value="Đang chờ vận chuyển">Đang chờ vận chuyển</option>
+                            <option value="Đã xử lý">Đã xử lý</option>
+                        </select>
+                    </div>
+                    <div class="date-filter">
+                        <label for="start-date">Từ ngày:</label>
+                        <input type="date" id="start-date">
+    
+                        <label for="end-date">Đến ngày:</label>
+                        <input type="date" id="end-date">
+                    </div>
+                </div>
+            </div>
+            <table class="order-table">
+                <thead>
+                    <tr>
+                        <th>Ảnh</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Loại</th>
+                        <th>Số lượng</th>
+                        <th>Giá</th>
+                        <th>Thành tiền</th>
+                        <th>Tình trạng</th>
+                        <th>Thời gian</th>
+                        <th>Chi tiết</th>
+                    </tr>
+                </thead>
+                <tbody class="order-list">
+                    <tr class="order-item">
+                        <td><img src="image/products/FreshFruitTea/O-Long-Man-Moc-Chau-Thach-Que-Hoa.jpg" class="order-img"></td>
+                        <td>name</td>
+                        <td>loại này loại kia</td>
+                        <td>2</td>
+                        <td>12222</td>
+                        <td>24444</td>
+                        <td>Chờ xử lý</td>
+                        <td>2024-12-12</td>
+                        <td><button class="order-detail-btn">Chi tiết</button></td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+              
+              
+              
+            <div class="pagination-order"></div>
+        </div>
+    </div>
+    <script src="admin.js"></script>
 </body>
 </html>

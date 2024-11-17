@@ -1,15 +1,15 @@
 // Kiểm tra xem dữ liệu đơn hàng đã có trong localStorage chưa
-let oders = JSON.parse(localStorage.getItem('orders'));
+let orders = JSON.parse(localStorage.getItem('orders'));
 
 // Nếu chưa có dữ liệu trong localStorage => thì gán giá trị mặc định
-if(!oders) {
+if(!orders) {
     orders = [
         {
             customerId: 1,
             productId: 3,
             status: 'Đang chờ xử lý',
             quantity: 1,
-            date: '2024-11-15'
+            date: '2024-11-12'
         },
         {
             customerId: 1,
@@ -21,7 +21,7 @@ if(!oders) {
         {
             customerId: 2,
             productId: 6,
-            status: 'Đang chờ xử lý',
+            status: 'Đã xử lý',
             quantity: 1,
             date: '2024-11-13'
         },
