@@ -958,3 +958,19 @@ footer .copyright {
     font-size: 12px;
     padding: 0 8px;
 }
+/*  nút đăng suất */
+#logoutButton {
+    display: none;
+    right: 18px;
+    top: 100%;
+    position: absolute;
+    background-color: #000;
+    color: var(--white-color);
+    padding: 5px 3px;
+    border-radius: 3px;
+}
+
+
+#login-item.logged-in:hover #logoutButton {
+     display: flex;
+}

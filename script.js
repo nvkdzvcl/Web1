@@ -162,13 +162,26 @@ document.addEventListener('click', (event) => {
 //  js cho form đăng nhập đăng kí
 
 document.addEventListener('DOMContentLoaded', (event) => {
+    let islogin = false;
+    // tự động đăng nhập
+    let accounts = JSON.parse(localStorage.getItem('accounts')) || [];
+     if (accounts.length > 0) {
+         let account = accounts[0]; 
+         document.getElementById('loginLink').innerText = account.email;
+         document.getElementById('login-item').classList.add('logged-in');
+         islogin = true;
+     }
+     
     // Hiển thị form đăng nhập
     document.getElementById('loginLink').addEventListener('click', () => {
-        document.querySelector('.modal').style.display = 'flex';
-        document.querySelector('.login').style.display = 'block';
-        document.querySelector('.register').style.display = 'none';
+        if(!islogin){
+            document.querySelector('.modal').style.display = 'flex';
+            document.querySelector('.login').style.display = 'block';
+            document.querySelector('.register').style.display = 'none';
+        }
     });
 
+    
     // Ẩn modal
     document.querySelectorAll('.auth-form_controls-back').forEach(button => {
         button.addEventListener('click', () => {
@@ -194,6 +207,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     // Xử lý đăng nhập
     document.querySelector('.btn--primary2').addEventListener('click', () => {
+        let emailinput = document.querySelector('.login .name');
+        let passwordinput = document.querySelector('.login .pass');
+
         let email = document.querySelector('.login .name').value;
         let password = document.querySelector('.login .pass').value;
 
@@ -208,6 +224,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
         if (account) {
             document.getElementById('loginLink').innerText = account.email;
             document.querySelector('.modal').style.display = 'none';
+
+            document.getElementById('login-item').classList.add('logged-in');
+
+            emailinput.value = "";
+            passwordinput.value = "";
+            islogin = true;
         } else {
             alert("Đăng nhập thất bại");
         }
@@ -215,6 +237,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     // Xử lý đăng ký
     document.querySelector('.btn--primary1').addEventListener('click', () => {
+        let emailinput = document.querySelector('.register .name');
+        let passwordinput = document.querySelector('.register .pass');
+        let confirmPasswordinput = document.querySelector('.register .pass2');
+
         let email = document.querySelector('.register .name').value;
         let password = document.querySelector('.register .pass').value;
         let confirmPassword = document.querySelector('.register .pass2').value;
@@ -227,7 +253,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
         let accounts = JSON.parse(localStorage.getItem('accounts')) || [];
         accounts.push({ email: email, password: password });
         localStorage.setItem('accounts', JSON.stringify(accounts));
-
+        emailinput.value = "";
+        passwordinput.value = "";
+        confirmPasswordinput.value = "";
         alert("Đăng ký thành công");
+    });
+
+    // Xư lý đăng suất
+    document.getElementById('logoutButton').addEventListener('click', () => { 
+        localStorage.removeItem('accounts');
+        document.getElementById('loginLink').innerText = 'Đăng nhập';
+        document.getElementById('login-item').classList.remove('logged-in');
+        islogin = false;
     });
 });
