@@ -156,3 +156,126 @@ document.addEventListener('click', (event) => {
         searchSuggestions.style.display = 'none';
     }
 });
+
+
+
+//  js cho form đăng nhập đăng kí
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    let islogin = false;
+    // tự động đăng nhập
+    let accounts = JSON.parse(localStorage.getItem('accounts')) || [];
+     if (accounts.length > 0) {
+         let account = accounts[0]; 
+         document.getElementById('loginLink').innerText = account.email;
+         document.getElementById('login-item').classList.add('logged-in');
+         islogin = true;
+     }
+     
+    // Hiển thị form đăng nhập
+    document.getElementById('loginLink').addEventListener('click', () => {
+        if(!islogin){
+            document.querySelector('.modal').style.display = 'flex';
+            document.querySelector('.login').style.display = 'block';
+            document.querySelector('.register').style.display = 'none';
+        }
+    });
+
+    
+    // Ẩn modal
+    document.querySelectorAll('.auth-form_controls-back').forEach(button => {
+        button.addEventListener('click', () => {
+            document.querySelector('.modal').style.display = 'none';
+        });
+    });
+
+    // Chuyển đổi giữa form đăng nhập và đăng ký
+    document.querySelector('.auth-form__switch-btn1').addEventListener('click', () => {
+        document.querySelector('.register').style.display = 'none';
+        document.querySelector('.login').style.display = 'block';
+    });
+
+    document.querySelector('.auth-form__switch-btn2').addEventListener('click', () => {
+        document.querySelector('.register').style.display = 'block';
+        document.querySelector('.login').style.display = 'none';
+    });
+
+    // Ẩn modal khi nhấn ra ngoài form
+    document.querySelector('.modal__overlay').addEventListener('click', () => {
+        document.querySelector('.modal').style.display = 'none';
+    });
+
+    // Xử lý đăng nhập
+    document.querySelector('.btn--primary2').addEventListener('click', () => {
+        let emailinput = document.querySelector('.login .name');
+        let passwordinput = document.querySelector('.login .pass');
+
+        let email = document.querySelector('.login .name').value;
+        let password = document.querySelector('.login .pass').value;
+
+        if (!email || !password) {
+            alert("Vui lòng nhập đầy đủ thông tin");
+            return;
+        }
+
+        let accounts = JSON.parse(localStorage.getItem('accounts')) || [];
+        let account = accounts.find(acc => acc.email === email && acc.password === password);
+
+        if (account) {
+            document.getElementById('loginLink').innerText = account.email;
+            document.querySelector('.modal').style.display = 'none';
+
+            document.getElementById('login-item').classList.add('logged-in');
+
+            emailinput.value = "";
+            passwordinput.value = "";
+            islogin = true;
+        } else {
+            alert("Đăng nhập thất bại");
+        }
+    });
+
+    // Xử lý đăng ký
+    document.querySelector('.btn--primary1').addEventListener('click', () => {
+        let emailinput = document.querySelector('.register .name');
+        let passwordinput = document.querySelector('.register .pass');
+        let confirmPasswordinput = document.querySelector('.register .pass2');
+
+        let email = document.querySelector('.register .name').value;
+        let password = document.querySelector('.register .pass').value;
+        let confirmPassword = document.querySelector('.register .pass2').value;
+
+        if (!email || !password || !confirmPassword) {
+            alert("Vui lòng nhập đầy đủ thông tin");
+            return;
+        }
+
+        let accounts = JSON.parse(localStorage.getItem('accounts')) || [];
+        accounts.push({ email: email, password: password });
+        localStorage.setItem('accounts', JSON.stringify(accounts));
+        emailinput.value = "";
+        passwordinput.value = "";
+        confirmPasswordinput.value = "";
+        alert("Đăng ký thành công");
+    });
+
+    // Xư lý đăng suất
+    document.getElementById('logoutButton').addEventListener('click', () => { 
+        localStorage.removeItem('accounts');
+        document.getElementById('loginLink').innerText = 'Đăng nhập';
+        document.getElementById('login-item').classList.remove('logged-in');
+        islogin = false;
+    });
+
+    //  Giỏ hàng 
+
+    // Mở giỏ hàng
+    document.getElementById('lg-bag').addEventListener('click', () => {
+        document.getElementById('shopping-cart').style.display = 'initial';
+    });
+
+    // Đóng giỏ hàng
+    document.getElementById('cart-back').addEventListener('click', () =>{
+        document.getElementById('shopping-cart').style.display = 'none';
+    })
+});
