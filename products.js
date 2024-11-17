@@ -9,7 +9,6 @@ if (!products) {
             name: 'name',
             price: 35000,
             type: 'FreshFruitTea',
-            size: ['S', 'M', 'L'],
             image: 'image\products\FreshFruitTea\O-Long-Man-Moc-Chau-Thach-Que-Hoa.jpg'
         },
         {
@@ -17,7 +16,6 @@ if (!products) {
             name: 'name',
             price: 35000,
             type: 'FreshFruitTea',
-            size: ['S', 'M', 'L'],
             image: 'image\products\FreshFruitTea\O-Long-Tuyet-Le-Khong-Lo.jpg'
         },
         {
@@ -25,7 +23,6 @@ if (!products) {
             name: 'name',
             price: 35000,
             type: 'FreshFruitTea',
-            size: ['S', 'M', 'L'],
             image: 'image\products\FreshFruitTea\Tra-Chanh-Mat-Ong-Gia-Tay-Khong-Lo.jpg'
         },
         {
@@ -33,7 +30,6 @@ if (!products) {
             name: 'name',
             price: 35000,
             type: 'FreshFruitTea',
-            size: ['S', 'M', 'L'],
             image: 'image\products\FreshFruitTea\Tra-Chanh-Mat-Ong-Gia-Tay.jpg'
         },
         {
@@ -41,7 +37,6 @@ if (!products) {
             name: 'name',
             price: 35000,
             type: 'FreshFruitTea',
-            size: ['S', 'M', 'L'],
             image: 'image\products\FreshFruitTea\Tra-Dao-Tien-Que-Hoa.png'
         },
         {
@@ -49,7 +44,6 @@ if (!products) {
             name: 'name',
             price: 35000,
             type: 'FreshFruitTea',
-            size: ['S', 'M', 'L'],
             image: 'image\products\FreshFruitTea\Tra-Dau-Tam-Pha-Le-Tuyet.jpg'
         },
         {
@@ -57,7 +51,6 @@ if (!products) {
             name: 'name',
             price: 35000,
             type: 'FreshFruitTea',
-            size: ['S', 'M', 'L'],
             image: 'image\products\FreshFruitTea\Tra-Dua-Thach-Konjac.jpg'
         },
         {
@@ -65,7 +58,6 @@ if (!products) {
             name: 'name',
             price: 35000,
             type: 'FreshFruitTea',
-            size: ['S', 'M', 'L'],
             image: 'image\products\FreshFruitTea\Tra-Xanh-Nhai-Dao-Tien.png'
         },
         {
@@ -73,7 +65,6 @@ if (!products) {
             name: 'name',
             price: 35000,
             type: 'Ice',
-            size: ['S', 'M', 'L'],
             image: 'image\products\Ice\Ca-Phe-Kem-Tran-Chan-Hoang-Kim.jpg'
         },
         {
@@ -81,7 +72,6 @@ if (!products) {
             name: 'name',
             price: 35000,
             type: 'Ice',
-            size: ['S', 'M', 'L'],
             image: 'image\products\Ice\Kem-Ly-Vani-Dau.jpg'
         },
         {
@@ -89,7 +79,6 @@ if (!products) {
             name: 'name',
             price: 35000,
             type: 'Ice',
-            size: ['S', 'M', 'L'],
             image: 'image\products\Ice\Kem-Tra-Sua-Tran-Chau-Hoang-Kim.png'
         },
         {
@@ -97,7 +86,6 @@ if (!products) {
             name: 'name',
             price: 35000,
             type: 'Ice',
-            size: ['S', 'M', 'L'],
             image: 'image\products\Ice\Kem-Tran-Chau-Hoang-Kim.jpg'
         },
         {
@@ -105,7 +93,6 @@ if (!products) {
             name: 'name',
             price: 35000,
             type: 'Ice',
-            size: ['S', 'M', 'L'],
             image: 'image\products\Ice\Kem-Vani-Tra-Sua-Tran-Chau-Hoang-Kim.png'
         }
     
