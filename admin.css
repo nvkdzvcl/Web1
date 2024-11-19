@@ -1,4 +1,4 @@
-* {
+]* {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -8,23 +8,23 @@
 body {
     display: flex;
     flex-direction: column;
-    height: 100vh; /* Chiều cao đầy đủ của viewport */
+    height: 100vh;
     background-color: black;
 }
 
 #header {
     display: flex;
     align-items: center;
-    justify-content: flex-end; /* Căn nội dung của header về phía bên phải */
+    justify-content: flex-end;
     padding: 20px 40px;
     background-color: #C2FFC7;
-    height: 60px; /* Chiều cao cố định cho header */
+    height: 60px;
 }
 
 #navbar {
     display: flex;
     align-items: center;
-    justify-content: flex-end; /* Căn các item trong navbar về phía bên phải */
+    justify-content: flex-end;
 }
 
 #navbar li {
@@ -42,14 +42,14 @@ body {
 }
 
 #navbar li a:hover {
-    color: #4CAF50; /* Thay đổi màu khi hover */
+    color: #4CAF50;
 }
 
 /* Phần Menu bên trái */
 .leftmenu {
     background-color: #DEF9C4;
-    width: 70px; /* Chiều rộng ban đầu nhỏ */
-    height: calc(200vh - 60px); /* Chiều cao bằng chiều cao của toàn bộ trang trừ header */
+    width: 70px;
+    height: calc(200vh - 60px);
     position: fixed;
     top: 0;
     left: 0;
@@ -59,10 +59,10 @@ body {
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     z-index: 999;
-    transition: width 0.3s ease; /* Hiệu ứng chuyển tiếp khi thay đổi chiều rộng */
+    transition: width 0.3s ease;
 }
 
-/* Phần Mục Lục với logo (không có icon) */
+/* Phần Mục Lục với logo */
 .leftmenu .mucluc {
     font-size: 16px;
     font-weight: bold;
@@ -71,104 +71,95 @@ body {
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
-    margin-bottom: 20px; /* Khoảng cách giữa Mục Lục và các mục menu */
+    margin-bottom: 20px;
 }
 
-/* Căn chỉnh logo và text Mục Lục theo chiều ngang */
 .leftmenu .mucluc img {
-    width: 30px; /* Kích thước của logo */
-    margin-right: 10px; /* Khoảng cách giữa logo và text */
+    width: 30px;
+    margin-right: 10px;
 }
 
-/* Ẩn text Mục Lục mặc định */
 .leftmenu .mucluc .text {
-    display: none; /* Ẩn text Mục Lục mặc định */
-    margin-left: 10px; /* Khoảng cách giữa logo và text */
+    display: none;
+    margin-left: 10px;
 }
 
-/* Danh sách menu ban đầu ẩn */
+/* Danh sách menu */
 .leftmenu ul {
     list-style-type: none;
     padding: 0;
-    display: block; /* Hiển thị các mục menu mặc định */
+    display: block;
 }
 
-/* Layout cho các mục menu bên trái */
+/* Căn chỉnh các mục menu */
 .leftmenu ul li {
     margin: 10px 0;
     position: relative;
     display: flex;
-    align-items: center;
+    align-items: center; /* Căn giữa icon và text */
+    justify-content: flex-start;
     transition: padding-left 0.3s ease;
 }
 
-/* Kiểu dáng cho các mục menu bên trái */
+/* Hiển thị icon và text trong menu */
 .leftmenu ul li a {
     text-decoration: none;
     color: #50B498;
-    font-size: 16px;
+    font-size: 17px;
     transition: color 0.3s ease;
-    display: block; /* Đảm bảo các liên kết chiếm toàn bộ chiều rộng để dễ dàng thao tác hover */
-    z-index: 999;
+    display: block;
     margin-left: 10px;
-    display: none; /* Ban đầu ẩn các liên kết */
+    display: none;
+    line-height: 22px;
 }
 
-/* Kiểu dáng cho biểu tượng (icon) trong các mục menu */
 .leftmenu ul li i {
-    font-size: 18px; /* Kích thước của biểu tượng */
-    color: #50B498;  /* Màu sắc của biểu tượng */
+    font-size: 18px;
+    color: #50B498;
+    display: inline-block;
 }
-
-/* Hiệu ứng hover cho các liên kết */
-.leftmenu ul li a:hover {
-    color: black /* Thay đổi màu chữ khi hover */
-}
-
-/* Hiệu ứng gạch dưới khi hover */
-.leftmenu ul li a:hover::after {
-    content: ""; /* Tạo một pseudo-element rỗng */
-    width: 30%; /* Chiều rộng của gạch dưới */
-    height: 2px; /* Chiều cao của gạch dưới */
-    background: black; /* Màu của gạch dưới */
-    position: absolute; /* Đặt vị trí của gạch dưới */
-    bottom: -4px; /* Đặt gạch dưới ngay dưới text */
-    left: 10%; /* Căn giữa gạch dưới theo chiều ngang */
-}
-
-/* Mở rộng menu bên trái khi hover */
-.leftmenu:hover {
-    width: 250px; /* Mở rộng chiều rộng menu khi hover */
-}
-
-/* Hiển thị text "Mục Lục" khi hover */
-.leftmenu:hover .mucluc .text {
-    display: block; /* Hiển thị text khi hover */
+.leftmenu ul li:hover{
+    border: solid 2px black ;
+    border-left: 10px;
 }
 
 /* Hiển thị các mục menu khi hover */
-.leftmenu:hover ul li a {
-    display: block; /* Hiển thị các mục menu khi hover */
+.leftmenu:hover {
+    width: 250px;
 }
+
+.leftmenu:hover .mucluc .text {
+    display: block;
+}
+
+.leftmenu:hover ul li a {
+    display: block;
+}
+
+/* Hiệu ứng hover cho icon */
+.leftmenu ul li:hover i {
+    color: black;
+    
+}
+
+/* Hiệu ứng gạch dưới khi hover */
+
 
 /* Phần Nội dung chính */
 .content {
-    margin-left: 70px; /* Điều chỉnh không gian cho menu bên trái */
+    margin-left: 70px;
     padding: 20px;
     background-color: #9EDF9C;
-    flex-grow: 1; /* Làm cho nội dung chiếm hết không gian còn lại */
-    height: calc(100vh - 60px); /* Đảm bảo nội dung chiếm đầy chiều cao trang trừ header */
-    overflow-y: auto; /* Cho phép cuộn khi nội dung vượt quá kích thước */
+    flex-grow: 1;
+    height: calc(100vh - 60px);
+    overflow-y: auto;
 }
 
 /* Đơn hàng */
 .order-content {
-    margin: 20px 180px 20px 180px;
+    margin: 20px 180px;
     background-color: white;
     padding: 30px;
-    flex-direction: column;
-    align-items: center;
-    display: none;
 }
 
 .orders-title {
@@ -181,32 +172,21 @@ body {
     width: 100%;
     margin-bottom: 12px;
     display: flex;
-    
 }
 
 .order-filter-btn {
     display: flex;
     margin-right: 60px;
     cursor: pointer;
-
 }
 
 .order-filter-btn i {
     margin-right: 6px;
 }
 
-.order-filter-item {
-    display: flex;
-}
-
-.status-filter {
-    margin-right: 12px;
-}
-
 .order-table {
     width: 100%;
     border-collapse: collapse;
-    overflow-wrap: break-word;
 }
 
 .order-table th, 
@@ -216,18 +196,13 @@ body {
     text-align: left;
 }
 
-.order-table td:first-child{
+.order-table td:first-child {
     width: 100px;
     text-align: center;
 }
 
 .order-table tbody tr {
     font-size: 14px;
-}
-
-.order-table tbody td:nth-child(2){
-    max-width: 220px;
-    
 }
 
 .order-img {
@@ -242,4 +217,3 @@ body {
 .pagination-order {
     margin-top: 30px;
 }
-
