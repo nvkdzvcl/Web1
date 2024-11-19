@@ -31,8 +31,8 @@ function checkLogin(emailInput,passwordInput){
     return false; 
 }
 
-document.getElementById("login-button").addEventListener("click", () => {
-   
+document.getElementById("login-button").addEventListener("click", (e) => {
+    e.preventDefault(); 
     const email = form.elements.mail.value; 
     const password = form.elements.pass.value; 
     if(email === "" || password === ""){
@@ -52,7 +52,7 @@ document.getElementById("login-button").addEventListener("click", () => {
 });
 
 
-document.getElementById("sign-up-button").addEventListener("click", function(e) {
+document.getElementById("sign-up-button").addEventListener("click", (e) => {
     e.preventDefault();
 
     const email = document.getElementById("input-1").value;
@@ -78,4 +78,3 @@ document.getElementById("sign-up-button").addEventListener("click", function(e) 
     }
    
 });
-

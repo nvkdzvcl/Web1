@@ -279,3 +279,5 @@ document.addEventListener('DOMContentLoaded', (event) => {
         document.getElementById('shopping-cart').style.display = 'none';
     })
 });
+                       
+
