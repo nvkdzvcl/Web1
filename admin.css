@@ -1,200 +1,205 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'League Spartan', sans-serif;
+    box-sizing: border-box; /* Thiết lập để mọi phần tử có cùng cách tính kích thước */
+    margin: 0; /* Loại bỏ khoảng cách mặc định của mọi phần tử */
+    padding: 0; /* Loại bỏ khoảng cách bên trong mọi phần tử */
+    font-family: 'League Spartan', sans-serif; /* Chỉ định font chữ mặc định cho toàn bộ trang */
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    background-color: black;
+    display: flex; /* Sử dụng flexbox để sắp xếp nội dung theo hướng cột */
+    flex-direction: column; /* Đặt hướng của các phần tử con theo cột */
+    height: 100vh; /* Chiều cao của body sẽ chiếm 100% chiều cao cửa sổ trình duyệt */
+    background-color: black; /* Đặt nền màu đen cho toàn bộ trang */
 }
 
 #header {
-    display: flex;
-    justify-content: flex-end;
-    padding: 20px 40px;
-    background-color: #F3F1E2;
-    height: 60px;
+    display: flex; /* Sử dụng flexbox cho phần header */
+    justify-content: flex-end; /* Đưa nội dung header sang phía bên phải */
+    padding: 20px 40px; /* Khoảng cách bên trong của header */
+    background-color: #F3F1E2; /* Màu nền sáng cho header */
+    height: 60px; /* Chiều cao của header */
 }
 
 #navbar {
-    display: flex;
+    display: flex; /* Sử dụng flexbox cho phần navbar */
 }
 
 #navbar li {
-    list-style: none;
-    padding: 0 20px;
+    list-style: none; /* Loại bỏ dấu chấm đầu dòng mặc định */
+    padding: 0 20px; /* Khoảng cách trái phải cho mỗi mục trong navbar */
 }
 
 #navbar li a {
-    text-decoration: none;
-    color: #1a1a1a;
-    font-weight: 600;
-    transition: color 0.3s;
+    text-decoration: none; /* Loại bỏ gạch chân của liên kết */
+    color: #1a1a1a; /* Màu chữ tối cho các liên kết */
+    font-weight: 600; /* Độ đậm của chữ */
+    transition: color 0.3s; /* Hiệu ứng chuyển màu khi hover */
 }
 
 #navbar li a:hover {
-    color: #4CAF50;
+    color: #4CAF50; /* Màu chữ khi hover vào liên kết */
 }
 
 /* Left menu */
 .leftmenu {
-    background-color: #FFF2D7;
-    width: 70px;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    padding: 20px;
-    color: black;
-    border: 5px solid #603F26;
-    border-top-right-radius: 30px ;
-    border-bottom-right-radius: 30px ;
-    z-index: 999;
-    transition: width 0.3s;
+    background-color: #FFF2D7; /* Màu nền sáng cho menu bên trái */
+    width: 70px; /* Chiều rộng ban đầu của menu */
+    height: 100vh; /* Chiều cao menu bằng với chiều cao cửa sổ */
+    position: fixed; /* Định vị menu cố định ở bên trái */
+    top: 0; /* Gắn menu lên trên cùng */
+    left: 0; /* Gắn menu vào bên trái */
+    padding: 20px; /* Khoảng cách bên trong menu */
+    color: black; /* Màu chữ đen cho menu */
+    border: 5px solid #603F26; /* Viền menu có màu nâu */
+    border-top-right-radius: 30px; /* Bo góc trên bên phải */
+    border-bottom-right-radius: 30px; /* Bo góc dưới bên phải */
+    z-index: 999; /* Đảm bảo menu nằm trên các phần tử khác */
+    transition: width 0.3s; /* Hiệu ứng thay đổi chiều rộng khi hover */
 }
 
 .leftmenu .mucluc {
-    font-size: 16px;
-    font-weight: bold;
-    color: #6C4E31;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
+    font-size: 16px; /* Kích thước chữ cho mục lục */
+    font-weight: bold; /* Độ đậm chữ cho mục lục */
+    color: #6C4E31; /* Màu chữ nâu cho mục lục */
+    display: flex; /* Sử dụng flexbox để căn giữa các phần tử con */
+    justify-content: center; /* Căn giữa nội dung */
+    margin-bottom: 20px; /* Khoảng cách dưới mục lục */
 }
 
 .leftmenu .mucluc img {
-    width: 40px;
-    margin-right: 5px;
+    width: 40px; /* Kích thước ảnh logo */
+    margin-right: 5px; /* Khoảng cách phải của ảnh logo */
 }
 
 .leftmenu .mucluc .text {
-    display: none;
+    display: none; /* Ẩn văn bản của mục lục ban đầu */
 }
 
 .leftmenu ul {
-    list-style-type: none;
-    padding: 0;
+    list-style-type: none; /* Loại bỏ dấu chấm đầu dòng của danh sách */
+    padding: 0; /* Loại bỏ khoảng cách bên trong của danh sách */
 }
 
 .leftmenu ul li {
-    display: flex;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-    padding: 10px;
+    display: flex; /* Sử dụng flexbox cho từng phần tử trong danh sách */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4); /* Viền dưới mờ cho mỗi mục */
+    padding: 10px; /* Khoảng cách trong mỗi mục */
 }
 
 .leftmenu ul li:hover {
-    background: #DAB88B;
+    background: #DAB88B; /* Màu nền thay đổi khi hover vào mục */
 }
 
 .leftmenu ul li i {
-    width: 50px;
-    height: 50px;
-    padding-left: 20px;
-    margin-left: -30px;
+    width: 50px; /* Kích thước của icon */
+    height: 50px; /* Chiều cao của icon */
+    padding-left: 20px; /* Khoảng cách trái của icon */
+    margin-left: -30px; /* Di chuyển icon sang bên trái */
 }
 
-
+/* Khi hover vào menu bên trái, thay đổi chiều rộng */
 .leftmenu:hover {
-    width: 250px;
+    width: 250px; /* Mở rộng chiều rộng menu khi hover */
 }
 
-
+/* Hiển thị văn bản của mục lục khi hover vào menu */
 .leftmenu:hover .mucluc .text {
-    display: block;
+    display: block; /* Hiển thị văn bản mục lục khi hover vào menu */
 }
 
+/* Ẩn các liên kết ban đầu */
 .leftmenu ul li a {
-    font-weight: 600;
-    text-decoration: none;
-    color: black;
-    font-size: 14px;
-    display: inline-block;
-    width: calc(100% - 50px);
-    height: 50px;
-    padding-left: 20px;
-    opacity: 0;
-}
-.leftmenu:hover ul li a{
-	opacity: 1;
-	transition-delay: 0.2s;
+    font-weight: 600; /* Độ đậm của chữ trong các liên kết */
+    text-decoration: none; /* Loại bỏ gạch chân của liên kết */
+    color: black; /* Màu chữ của liên kết */
+    font-size: 14px; /* Kích thước chữ của liên kết */
+    display: inline-block; /* Làm liên kết có thể chiếm không gian */
+    width: calc(100% - 50px); /* Chiều rộng liên kết */
+    height: 50px; /* Chiều cao liên kết */
+    padding-left: 20px; /* Khoảng cách trái của chữ */
+    opacity: 0; /* Liên kết ban đầu ẩn đi */
 }
 
+.leftmenu:hover ul li a {
+    opacity: 1; /* Làm liên kết hiển thị khi hover vào menu */
+    transition-delay: 0.2s; /* Tạo độ trễ 0.2s trước khi liên kết hiển thị */
+}
+
+/* Nội dung chính */
 .content {
-    margin-left: 70px;
-    padding: 20px;
-    background: url('/image/hero.jpg');
-    flex-grow: 1;
-    height: calc(100vh - 60px);
-    overflow-y: auto;
+    margin-left: 70px; /* Khoảng cách trái cho nội dung chính (cho phù hợp với menu bên trái) */
+    padding: 20px; /* Khoảng cách bên trong nội dung */
+    background: url('/image/hero.jpg'); /* Hình nền cho phần nội dung */
+    flex-grow: 1; /* Làm nội dung chính chiếm phần còn lại của không gian */
+    height: calc(100vh - 60px); /* Chiều cao của phần nội dung */
+    overflow-y: auto; /* Cho phép cuộn dọc nếu nội dung vượt quá chiều cao */
 }
 
 /* Đơn hàng */
 .order-content {
-    display: flex;
-    flex-direction: column;
-    margin: 20px 180px;
-    background-color: white;
-    padding: 30px;
+    display: flex; /* Sử dụng flexbox cho nội dung đơn hàng */
+    flex-direction: column; /* Sắp xếp các phần tử theo chiều dọc */
+    margin: 20px 180px; /* Khoảng cách xung quanh đơn hàng */
+    background-color: white; /* Màu nền trắng cho phần đơn hàng */
+    padding: 30px; /* Khoảng cách bên trong phần đơn hàng */
 }
 
 .orders-title {
-    margin-bottom: 20px;
-    font-size: 20px;
-    font-weight: 700;
+    margin-bottom: 20px; /* Khoảng cách dưới tiêu đề đơn hàng */
+    font-size: 20px; /* Kích thước chữ cho tiêu đề */
+    font-weight: 700; /* Độ đậm chữ cho tiêu đề */
 }
 
 .order-filter {
-    width: 100%;
-    margin-bottom: 12px;
-    display: flex;
+    width: 100%; /* Chiều rộng của bộ lọc */
+    margin-bottom: 12px; /* Khoảng cách dưới bộ lọc */
+    display: flex; /* Sử dụng flexbox cho bộ lọc */
 }
 
 .order-filter-btn {
-    display: flex;
-    margin-right: 60px;
-    cursor: pointer;
+    display: flex; /* Sử dụng flexbox cho nút lọc */
+    margin-right: 60px; /* Khoảng cách phải của nút lọc */
+    cursor: pointer; /* Thêm con trỏ chuột khi hover vào nút */
 }
 
 .order-filter-btn i {
-    margin-right: 6px;
+    margin-right: 6px; /* Khoảng cách phải của icon trong nút lọc */
 }
 
+/* Bảng đơn hàng */
 .order-table {
-    width: 100%;
-    border-collapse: collapse;
+    width: 100%; /* Chiều rộng của bảng */
+    border-collapse: collapse; /* Gộp các viền của bảng lại */
 }
 
 .order-table th, 
 .order-table td {
-    border: 1px solid #ccc;
-    padding: 8px;
-    text-align: left;
+    border: 1px solid #ccc; /* Viền của các ô bảng */
+    padding: 8px; /* Khoảng cách trong mỗi ô */
+    text-align: left; /* Căn trái cho văn bản trong các ô */
 }
 
 .order-table td:first-child {
-    width: 100px;
-    text-align: center;
+    width: 100px; /* Đặt chiều rộng cho cột đầu tiên */
+    text-align: center; /* Căn giữa cho cột đầu tiên */
 }
 
 .order-table tbody tr {
-    font-size: 14px;
+    font-size: 14px; /* Kích thước chữ trong bảng */
 }
 
 .order-img {
-    max-width: 60px;
-    border: #666 solid 0.1px;
+    max-width: 60px; /* Kích thước tối đa của ảnh */
+    border: #666 solid 0.1px; /* Viền cho ảnh */
 }
 
 .order-detail-btn {
-    cursor: pointer;
+    cursor: pointer; /* Thêm con trỏ chuột khi hover vào nút chi tiết đơn hàng */
 }
 
+/* Phân trang cho đơn hàng */
 .pagination-order {
-    margin-top: 30px
-    display: flex;
-    justify-content: center;
+    margin-top: 30px; /* Khoảng cách trên của phân trang */
+    display: flex; /* Sử dụng flexbox để căn giữa các phần tử */
+    justify-content: center; /* Căn giữa phân trang */
 }
