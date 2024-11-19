@@ -50,9 +50,8 @@ body {
     left: 0; /* Gắn menu vào bên trái */
     padding: 20px; /* Khoảng cách bên trong menu */
     color: black; /* Màu chữ đen cho menu */
-    border: 5px solid #603F26; /* Viền menu có màu nâu */
+    border-right: 5px solid #603F26; /* Viền phải menu có màu nâu */
     border-top-right-radius: 30px; /* Bo góc trên bên phải */
-    border-bottom-right-radius: 30px; /* Bo góc dưới bên phải */
     z-index: 999; /* Đảm bảo menu nằm trên các phần tử khác */
     transition: width 0.3s; /* Hiệu ứng thay đổi chiều rộng khi hover */
 }
