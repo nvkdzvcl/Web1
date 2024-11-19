@@ -32,7 +32,7 @@ registerForm.addEventListener('submit', (e) => {
     
         const userdata = JSON.parse(localStorage.getItem('userData')) || [];
     
-        const existingAccount = userdata.find(user => user.email === email);
+        const existingAccount = userdata.find(user => user.email === email)
         if (existingAccount) {
             alert("Email đã được đăng ký");
             return;
@@ -45,5 +45,29 @@ registerForm.addEventListener('submit', (e) => {
         alert('Đăng ký thành công'); 
         registerForm.reset(); 
     
-    
 });
+
+
+const loginForm = document.getElementById('loginForm');
+loginForm.addEventListener('submit',(e)=>{
+    e.preventDefault(); 
+    const name = document.getElementById('tendangnhap').value; 
+    const pass = document.getElementById('matkhau').value; 
+    if(!name || !pass){
+        alert('vui lòng nhập đầy đủ thông tin'); 
+        return; 
+    }
+    const listOfAccounts = JSON.parse(localStorage.getItem('userData')) || []; 
+    const user = listOfAccounts.find(account => account.username === name && account.password === pass);
+    if(user){
+        alert('Đăng nhập thành công'); 
+        
+        window.location.href = "admin.html"; 
+        loginForm.reset(); 
+
+    }
+    else{ 
+        alert('Đăng nhập thất bại'); 
+    }
+    
+})
