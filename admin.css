@@ -137,8 +137,8 @@ body {
 /* Đơn hàng */
 .order-content {
     display: flex; /* Sử dụng flexbox cho nội dung đơn hàng */
-    flex-direction: column; /* Sắp xếp các phần tử theo chiều dọc */
-    margin: 20px 180px; /* Khoảng cách xung quanh đơn hàng */
+    flex-wrap: wrap;
+    margin: 20px 20px; /* Khoảng cách xung quanh đơn hàng */
     background-color: white; /* Màu nền trắng cho phần đơn hàng */
     padding: 30px; /* Khoảng cách bên trong phần đơn hàng */
 }
@@ -147,28 +147,108 @@ body {
     margin-bottom: 20px; /* Khoảng cách dưới tiêu đề đơn hàng */
     font-size: 20px; /* Kích thước chữ cho tiêu đề */
     font-weight: 700; /* Độ đậm chữ cho tiêu đề */
+    text-align: center;
+    width: 100%;
 }
 
 .order-filter {
-    width: 100%; /* Chiều rộng của bộ lọc */
-    margin-bottom: 12px; /* Khoảng cách dưới bộ lọc */
-    display: flex; /* Sử dụng flexbox cho bộ lọc */
+    width: 15%; /* Chiều rộng của bộ lọc */
+    margin-right: 15px;
 }
 
-.order-filter-btn {
+.order-filter-title {
     display: flex; /* Sử dụng flexbox cho nút lọc */
-    margin-right: 60px; /* Khoảng cách phải của nút lọc */
-    cursor: pointer; /* Thêm con trỏ chuột khi hover vào nút */
+    margin-bottom: 24px;
 }
 
-.order-filter-btn i {
+.order-filter-title i {
     margin-right: 6px; /* Khoảng cách phải của icon trong nút lọc */
+}
+
+.order-filter-item {
+    margin-left: 12px;
+}
+
+.customer-id-filter {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid rgba(0, 0, 0, .09);
+    margin: 42px 0 24px 0;
+    padding-bottom: 28px;
+    
+}
+
+#customer-id {
+    height: 24px;
+    max-width: 150px;
+    margin-top: 8px;
+    padding: 0 4px;
+}
+
+.status-filter {
+    border-bottom: 1px solid rgba(0, 0, 0, .09);
+    margin: 36px 0 24px 0;
+    padding-bottom: 28px;
+}
+
+#status-filter-select{
+    cursor: pointer;
+}
+
+.date-filter {
+    display: flex;
+    flex-direction: column;
+    margin: 36px 0 24px 0;
+}
+
+#start-date,
+#end-date {
+    max-width: 150px;
+    margin: 4px 0 18px 0;
+
+}
+.address-filter {
+    border-top: 1px solid rgba(0, 0, 0, .09);
+    padding-top: 28px;
+    margin-bottom: 28px;
+}
+
+.apply-filter-btn {
+    width: 126px;
+    height: 36px;
+    border: none;
+    border-radius: 2px;
+    display: flex;
+    margin: auto 36px;
+    justify-content: center;
+    align-items: center;
+    background-color: #3b8a3e;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+
+
+.wrap-orders {
+    width: calc(85% - 15px); /* Chiều rộng của bảng */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 392px;
+    position: relative;
 }
 
 /* Bảng đơn hàng */
 .order-table {
-    width: 100%; /* Chiều rộng của bảng */
     border-collapse: collapse; /* Gộp các viền của bảng lại */
+    table-layout: fixed;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.order-table th {
+    background-color: #3b8a3e;
+    color: white;
 }
 
 .order-table th, 
@@ -178,22 +258,16 @@ body {
     text-align: left; /* Căn trái cho văn bản trong các ô */
 }
 
-.order-table td:first-child {
-    width: 100px; /* Đặt chiều rộng cho cột đầu tiên */
-    text-align: center; /* Căn giữa cho cột đầu tiên */
-}
-
 .order-table tbody tr {
-    font-size: 14px; /* Kích thước chữ trong bảng */
+    font-size: 15px; /* Kích thước chữ trong bảng */
 }
 
-.order-img {
-    max-width: 60px; /* Kích thước tối đa của ảnh */
-    border: #666 solid 0.1px; /* Viền cho ảnh */
+.order-item {
+    cursor: pointer;
 }
 
-.order-detail-btn {
-    cursor: pointer; /* Thêm con trỏ chuột khi hover vào nút chi tiết đơn hàng */
+.order-item:hover {
+    background-color: #b8ecba;
 }
 
 /* Phân trang cho đơn hàng */
@@ -201,4 +275,18 @@ body {
     margin-top: 30px; /* Khoảng cách trên của phân trang */
     display: flex; /* Sử dụng flexbox để căn giữa các phần tử */
     justify-content: center; /* Căn giữa phân trang */
+    position: absolute;
+    bottom: -35px;
+    right: 50%;
+}
+
+.pagination-btn {
+    background-color: #3b8a3e;
+    color: white;
+    padding: 6px 8px;
+    border: none;
+    cursor: pointer;
+    margin-right: 4px;
+    display: flex;
+    flex-wrap: wrap;
 }
