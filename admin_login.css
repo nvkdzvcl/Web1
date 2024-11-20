@@ -18,6 +18,7 @@ body {
 
 /* 3. Wrapper - Khung bao quanh nội dung form */
 .wrapper {
+    position: absolute; /*giữ cho forms luôn ở giữa */
     width: 420px; /* Chiều rộng cố định cho wrapper */
     background-color: transparent; /* Màu nền của wrapper trong suốt */
     border: 2px solid #859F3D; /* Viền màu xanh lá cây cho wrapper */
