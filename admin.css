@@ -136,7 +136,7 @@ body {
 
 /* Đơn hàng */
 .order-content {
-    display: flex; /* Sử dụng flexbox cho nội dung đơn hàng */
+    display: none; 
     flex-wrap: wrap;
     margin: 20px 20px; /* Khoảng cách xung quanh đơn hàng */
     background-color: white; /* Màu nền trắng cho phần đơn hàng */
@@ -289,4 +289,105 @@ body {
     margin-right: 4px;
     display: flex;
     flex-wrap: wrap;
+}
+
+/* Thống kê */
+.statistic-content {
+    margin: 20px 20px; /* Khoảng cách xung quanh đơn hàng */
+    background-color: white; /* Màu nền trắng cho phần đơn hàng */
+    padding: 30px; /* Khoảng cách bên trong phần đơn hàng */
+    display: flex; 
+    flex-direction: column;
+
+}
+
+.statistic-title {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 650;
+}
+
+.statistic-main {
+    margin-top: 50px;
+    padding: 0 20px;
+}
+
+.statistic-item {
+    display: flex;
+    margin: 90px 0 0 200px;
+    margin-bottom: 80px;
+    position: relative;
+    /* display: none; */
+}
+
+.statistic-item p {
+    min-width: 90px;
+    margin-right: 24px;
+    border-left: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 0 10px;
+}
+
+.statistic-btn {
+    width: 126px;
+    height: 36px;
+    border: none;
+    border-radius: 2px;
+    display: flex;
+    margin: auto 36px;
+    justify-content: center;
+    align-items: center;
+    background-color: #3b8a3e;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    position: absolute;
+    top: -9px;
+    left: 75px;
+}
+
+.statistic-type {
+    display: none;
+}
+
+.statistic-product {
+    display: none;
+}
+
+.statistic-customer {
+    display: none;
+}
+
+.statistic-item-title {
+    margin-bottom: 20px; /* Khoảng cách dưới tiêu đề đơn hàng */
+    font-size: 18px; /* Kích thước chữ cho tiêu đề */
+    font-weight: 600; /* Độ đậm chữ cho tiêu đề */
+    text-align: center;
+    width: 100%;
+    border-top: 2px solid rgba(0, 0, 0, 0.2);
+    padding: 24px 0 0 0;
+    color: rgb(77, 108, 209);
+}
+
+.statistic-table {
+    border-collapse: collapse; /* Gộp các viền của bảng lại */
+    table-layout: fixed;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    margin-bottom: 88px;
+}
+
+.statistic-table th {
+    background-color: #3b8a3e;
+    color: white;
+}
+
+.statistic-table th, 
+.statistic-table td {
+    border: 1px solid #ccc; /* Viền của các ô bảng */
+    padding: 8px; /* Khoảng cách trong mỗi ô */
+    text-align: left; /* Căn trái cho văn bản trong các ô */
+}
+
+.statistic-table tbody tr {
+    font-size: 15px; /* Kích thước chữ trong bảng */
 }

@@ -144,3 +144,90 @@ orderItems.forEach(orderItem => {
         console.log('Hiện chi tiết sản phẩm ở đây!');
     });
 });
+
+// Tạo thống kê mặt hàng
+function displayStatisticType() {
+    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+    const products = JSON.parse(localStorage.getItem('products')) || [];
+
+    let statisticType = {};
+    orders.forEach(order => {
+        order.orderItems.forEach(orderItem => {
+            let product = products.find(p => p.id === orderItem.productId);
+            
+            if(product) {
+                let type = product.type;
+    
+                // Nếu loại mặt hàng chưa tồn tại trong thống kê thì khởi tạo
+                if(!statisticType[type]){
+                    statisticType[type] = {
+                        quantity: 0,
+                        totalCost: 0,
+                    }
+                }
+    
+                orderItem.sizes.forEach(size => {
+                    statisticType[type].quantity += size.quantity;
+                    let price = product.sizes.find(pSize => pSize.size === size.size)?.price || 0;
+                    statisticType[type].totalCost += size.quantity * price;
+                });
+
+            } 
+        });
+    });
+
+    // Hiển thị thông tin thống kê trong bảng
+    const statisticTableBody = document.querySelector('.statistic-table tbody');
+    statisticTableBody.innerHTML = ''; // Xóa dữ liệu cũ trước khi hiển thị
+
+    for(let type in statisticType) {
+        statisticTableBody.innerHTML += `
+            <tr>
+                <td>${type}</td>
+                <td>${statisticType[type].quantity}</td>
+                <td>${statisticType[type].totalCost}đ</td>
+            </tr>
+        `;
+    }
+}
+
+
+// Tạo thống kê theo sản phẩm
+function displayStatisticProduct() {
+    const products = JSON.parse(localStorage.getItem('products')) || [];
+    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+
+    // Chưa xong
+
+}
+
+
+// Thêm sự kiện cho nút xem thống kê của mặt hàng
+const statisticTypeButton = document.querySelector('.statistic-type-btn');
+statisticTypeButton.addEventListener('click', () => {
+    document.querySelector('.statistic-type').style.display = 'block';
+    document.querySelector('.statistic-product').style.display = 'none';
+    document.querySelector('.statistic-customer').style.display = 'none';
+    displayStatisticType();
+});
+
+// Thêm sự kiện cho nút xem thống kê của sản phẩm
+const statisticProductButton = document.querySelector('.statistic-product-btn');
+statisticProductButton.addEventListener('click', () => {
+    document.querySelector('.statistic-product').style.display = 'block';
+    document.querySelector('.statistic-type').style.display = 'none';
+    document.querySelector('.statistic-customer').style.display = 'none';
+    displayStatisticProduct();
+});
+
+// Thêm sự kiện cho nút xem thống kê của khách hàng
+const statisticCustomerButton = document.querySelector('.statistic-customer-btn');
+statisticCustomerButton.addEventListener('click', () => {
+    document.querySelector('.statistic-customer').style.display = 'block';
+    document.querySelector('.statistic-type').style.display = 'none';
+    document.querySelector('.statistic-product').style.display = 'none';
+    displayStatisticCustomer();
+});
+
+
+
