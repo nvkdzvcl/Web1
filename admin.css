@@ -298,6 +298,7 @@ body {
     padding: 30px; /* Khoảng cách bên trong phần đơn hàng */
     display: flex; 
     flex-direction: column;
+    display: none;
 
 }
 

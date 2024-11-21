@@ -165,8 +165,9 @@ function displayStatisticType() {
                         totalCost: 0,
                     }
                 }
-    
-                orderItem.sizes.forEach(size => {
+                
+                let sizes = orderItem.sizes;
+                sizes.forEach(size => {
                     statisticType[type].quantity += size.quantity;
                     let price = 0;
                     let pSize = product.sizes.find(pSize => pSize.size === size.size);
@@ -181,11 +182,11 @@ function displayStatisticType() {
     });
 
     // Hiển thị thông tin thống kê trong bảng
-    const statisticTableBody = document.querySelector('.statistic-table tbody');
-    statisticTableBody.innerHTML = ''; // Xóa dữ liệu cũ trước khi hiển thị
+    const statisticTableType = document.querySelector('.statistic-table-type tbody');
+    statisticTableType.innerHTML = ''; // Xóa dữ liệu cũ trước khi hiển thị
 
     for(let type in statisticType) {
-        statisticTableBody.innerHTML += `
+        statisticTableType.innerHTML += `
             <tr>
                 <td>${type}</td>
                 <td>${statisticType[type].quantity}</td>
@@ -202,9 +203,121 @@ function displayStatisticProduct() {
     const orders = JSON.parse(localStorage.getItem('orders')) || [];
 
     // Chưa xong
+    let statisticProduct = {};
+    orders.forEach(order => {
+        order.orderItems.forEach(orderItem => {
+            let product = products.find(p => p.id === orderItem.productId);
+            // Kiểm tra xem product có lấy được không
+            if(product){
+                if(!statisticProduct[product.id]) {
+                    statisticProduct[product.id] = {
+                        name: product.name,
+                        quantity: 0,
+                        totalCost: 0
+                    }
+                }
 
+                orderItem.sizes.forEach(size => {
+                    // Lay so luong
+                    statisticProduct[product.id].quantity += size.quantity;
+                    let price = 0;
+
+                    let pSize = product.sizes.find(pSize => pSize.size === size.size);
+                    if(pSize){
+                        price = pSize.price;
+                    }
+
+                    statisticProduct[product.id].totalCost += size.quantity * price;
+                });
+            }
+        });
+    });
+    // Hiển thị thông tin thống kê trong bảng
+    const statisticTableProduct = document.querySelector('.statistic-table-product tbody');
+    statisticTableProduct.innerHTML = '';   // Xoa thong tin cu
+
+    for(let id in statisticProduct) {
+        statisticTableProduct.innerHTML += `
+            <tr>
+                <td>${id}</td>
+                <td>${statisticProduct[id].name}</td>
+                <td>${statisticProduct[id].quantity}</td>
+                <td>${statisticProduct[id].totalCost}đ</td>
+            </tr>
+        `;
+    }
 }
 
+// Tạo thống kê theo khách hàng
+function displayStatisticCustomer(){
+    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+    const customers = JSON.parse(localStorage.getItem('customers')) || [];
+    const address = JSON.parse(localStorage.getItem('address')) || [];
+    const products = JSON.parse(localStorage.getItem('products')) || [];
+
+    let statisticCustomer = {};
+
+    orders.forEach(order => {   // Duyet qua danh sach don hang
+        let customer = customers.find(cus => cus.id === order.customerId);  // Tim khach hang cua don hang hien tai
+        if(customer) {  // Ton tai khach hang
+            let customerId = customer.id;
+            if(!statisticCustomer[customerId]){
+                let customerAddress = address.find(add => add.customerId === customerId);
+                if(customerAddress) {
+                    statisticCustomer[customerId] = {
+                        name: customerAddress.fullname,
+                        quantity: 0,
+                        totalSpent: 0
+                    }
+                } 
+                else {
+                    statisticCustomer[customerId] = {
+                        name: 'Chưa có thông tin',
+                        quantity: 0,
+                        totalSpent: 0
+                    }
+                }
+            }
+
+            order.orderItems.forEach(orderItem => {
+                let product = products.find(p => p.id === orderItem.productId);
+                if(product) {
+                    orderItem.sizes.forEach(size => {
+                        statisticCustomer[customerId].quantity += size.quantity;
+    
+                        let price = 0;
+                        let pSize = product.sizes.find(pSize => pSize.size === size.size);
+                        if(pSize) {
+                            price = pSize.price;
+                        }
+                        statisticCustomer[customerId].totalSpent += size.quantity * price;
+                    });
+                }
+            });
+            
+            
+        }
+    });
+    
+    const statisticTableCustomer = document.querySelector('.statistic-table-customer tbody');
+    statisticTableCustomer.innerHTML = '';
+
+    for(let id in statisticCustomer) {
+        statisticTableCustomer.innerHTML += `
+            <tr>
+                <td>${id}</td>
+                <td>${statisticCustomer[id].name}</td>
+                <td>${statisticCustomer[id].quantity}</td>
+                <td>${statisticCustomer[id].totalSpent}đ</td>
+            </tr>
+        `;
+    }
+}
+
+// Trang thống kê
+document.querySelector('.view-statistic').addEventListener('click', () => {
+    document.querySelector('.statistic-content').style.display = 'flex';
+});
 
 // Thêm sự kiện cho nút xem thống kê của mặt hàng
 const statisticTypeButton = document.querySelector('.statistic-type-btn');
