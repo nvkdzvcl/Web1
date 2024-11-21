@@ -168,7 +168,11 @@ function displayStatisticType() {
     
                 orderItem.sizes.forEach(size => {
                     statisticType[type].quantity += size.quantity;
-                    let price = product.sizes.find(pSize => pSize.size === size.size)?.price || 0;
+                    let price = 0;
+                    let pSize = product.sizes.find(pSize => pSize.size === size.size);
+                    if(pSize){
+                        price = pSize.price;
+                    }   
                     statisticType[type].totalCost += size.quantity * price;
                 });
 
