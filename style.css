@@ -547,13 +547,13 @@ footer .copyright {
     width: 50%;
     margin-bottom: 30px;
     border: solid 1px #e2e9e1;
-    padding: 30px;
+    padding: 20px;
 }
 
 #subtotal table {
     border-collapse: collapse;
     width: 100%;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
 }
 #subtotal table td {
     width: 50%;
@@ -1090,7 +1090,7 @@ footer .copyright {
 }
 
 #coupon{
-    width: 50%;
+    /* width: 50%; */
     margin-bottom: 30px;
 }
 
@@ -1114,7 +1114,7 @@ footer .copyright {
 }
 
 #subtotal{
-    width:  50%;
+    /* width:  50%; */
     margin-bottom: 30px;
     border: 1px solid #e2e9e1;
     padding: 30px;
@@ -1132,7 +1132,56 @@ footer .copyright {
     font-size: 13px;
 }
 
+.shipaddress {
+    width: 100%;
+    text-align: center;
+}
 
+.shipaddress h2{
+    font-size: 30px;
+    padding: 10px 0;
+}
+.shipaddress input{
+    padding: 10px 20px;
+    outline: none;
+    width: 60%;
+    margin-right: 10px;
+    border: solid 1px #e2e9e1;
+}
+
+.shipaddress button{
+    color:#fff;
+    padding: 12px 20px ;
+    background-color:#088178 ;
+}
+
+.shipaddress p{
+    font-size: 15px;
+    color: #1a1a1a;
+}
+
+.payment{
+    width: 100%;
+    text-align: center;
+}
+.payment h2{
+    font-size: 30px;
+    padding: 10px 0;
+}
+
+.payment select{
+    padding: 10px 20px;
+    outline: none;
+    width: 60%;
+    margin-right: 10px;
+    border: solid 1px #e2e9e1;
+}
+
+.payment button{
+    color:#fff;
+    padding: 12px 20px ;
+    background-color:#088178 ;
+}
 /* mô tả sản phẩm */
 
 #productModal {

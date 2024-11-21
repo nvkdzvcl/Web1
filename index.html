@@ -602,13 +602,19 @@
                         </div>
                         <div class="auth-form__form">
                             <div class="auth-form__group">
-                                <input type="text" class="auth-form__input name" placeholder="Tên của bạn">
+                                <input type="text" class="auth-form__input name" placeholder="Tên đăng nhập">
+                            </div>
+                            <div class="auth-form__group">
+                                <input type="number" class="auth-form__input number" placeholder="Số điện thoại">
                             </div>
                             <div class="auth-form__group">
                                 <input type="password" class="auth-form__input pass" placeholder="Mật khẩu của bạn">
                             </div>
                             <div class="auth-form__group">
                                 <input type="password" class="auth-form__input pass2" placeholder="Nhập lại Mật Khẩu">
+                            </div>
+                            <div class="auth-form__group">
+                                <input type="text" class="auth-form__input address" placeholder="Địa chỉ">
                             </div>
                         </div>
                         
@@ -652,7 +658,7 @@
     
                         <div class="auth-form__form">
                             <div class="auth-form__group">
-                                <input type="text" class="auth-form__input name" placeholder="Tên của bạn">
+                                <input type="text" class="auth-form__input name" placeholder="Tên đăng nhập">
                             </div>
                             <div class="auth-form__group">
                                 <input type="password" class="auth-form__input pass" placeholder="Mật khẩu của bạn">
@@ -715,9 +721,9 @@
                     </tr>
                 </tbody>
             </table>
-           </div>
+         </div>
           
-           <div id="cart-add" class="section-p1">
+        <div id="cart-add" class="section-p1">
             <div id="coupon">
                 <input type="text" id="couponCode" placeholder="Nhập mã giảm giá">
                 <button id="applyCoupon">Áp dụng</button>
@@ -734,10 +740,26 @@
                         <td>Total</td>
                         <td id="cartTotal">0 VND</td>
                     </tr>
-                </table>
-                
+                </table>  
+            </div>
+            <div class="shipaddress">
+                <h2>Địa chỉ giao hàng</h2>
+                <input type="text" id="addressInput" placeholder="Nhập địa chỉ giao hàng" />
+                <button id="setDefaultAddress">Đặt làm địa chỉ mặc định</button>
+                <p id="defaultAddressDisplay">Địa chỉ mặc định: Chưa có</p>
+            </div>
+
+            <div class="payment">
+                <h2>Phương thức thanh toán</h2>
+                <select id="paymentSelect">
+                    <option value="cash">Tiền mặt</option>
+                    <option value="bank-transfer">Chuyển khoản</option>
+                    <option value="card">Thẻ</option>
+                </select>
+                <button id="payButton">Thanh toán</button>
             </div>
             
+        </div>
     </section>
 
     

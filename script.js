@@ -265,28 +265,35 @@ document.addEventListener('DOMContentLoaded', (event) => {
         let emailinput = document.querySelector('.register .name');
         let passwordinput = document.querySelector('.register .pass');
         let confirmPasswordinput = document.querySelector('.register .pass2');
+        let addressinput = document.querySelector('.register .address');
+        let phoneinput = document.querySelector('.register .number');
+
 
         let email = document.querySelector('.register .name').value;
         let password = document.querySelector('.register .pass').value;
         let confirmPassword = document.querySelector('.register .pass2').value;
+        let address = document.querySelector('.register .address').value;
+        let phone = document.querySelector('.register .number').value;
 
-        if (!email || !password || !confirmPassword) {
+        if (!email || !password || !confirmPassword || !address || !phone) {
             alert("Vui lòng nhập đầy đủ thông tin");
             return;
         }
 
         let accounts = JSON.parse(localStorage.getItem('accounts')) || [];
-        accounts.push({ email: email, password: password });
+        accounts.push({ email: email,phone: phone, password: password,address: address });
         localStorage.setItem('accounts', JSON.stringify(accounts));
         emailinput.value = "";
         passwordinput.value = "";
         confirmPasswordinput.value = "";
+        addressinput.value = "";
+        phoneinput.value = "";
         alert("Đăng ký thành công");
     });
 
     // Xư lý đăng suất
     document.getElementById('logoutButton').addEventListener('click', () => { 
-        localStorage.removeItem('accounts');
+        // localStorage.removeItem('accounts');
         document.getElementById('loginLink').innerText = 'Đăng nhập';
         document.getElementById('login-item').classList.remove('logged-in');
         islogin = false;
@@ -303,6 +310,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById('cart-back').addEventListener('click', () =>{
         document.getElementById('shopping-cart').style.display = 'none';
     })
+
 });
 
 
@@ -499,3 +507,29 @@ function populateCart() {
 
 // Khởi tạo giỏ hàng và tổng tiền
 populateCart();
+
+//  lấy địa chỉ mặc định
+document.getElementById('lg-bag').addEventListener('click', () =>{
+    console.log("abc");
+    const accounts = JSON.parse(localStorage.getItem('accounts')) || [];
+    const loggedInEmail = document.getElementById('loginLink').innerText; // Giả sử bạn có phần tử hiển thị email đã đăng nhập
+    if (accounts.length > 0) {
+        const currentUser = accounts.find(acc => acc.email === loggedInEmail);
+
+        if (currentUser) {
+            // Lấy địa chỉ từ tài khoản
+            
+            const address = currentUser.address;
+            document.getElementById('addressInput').value = address; 
+            document.getElementById('defaultAddressDisplay').innerText = `Địa chỉ mặc định: ${address}`;
+        } else {
+            document.getElementById('defaultAddressDisplay').innerText = "Địa chỉ mặc định: Chưa có";
+        }
+    }
+});
+document.getElementById('logoutButton').addEventListener('click', () => {
+    localStorage.removeItem('accounts');
+    document.getElementById('loginLink').innerText = 'Đăng nhập';
+    document.getElementById('login-item').classList.remove('logged-in');
+    islogin = false;
+});
