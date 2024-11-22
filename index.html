@@ -705,6 +705,7 @@
                         <td>Image</td>
                         <td>Product</td>
                         <td>Price</td>
+                        <td>Size</td>
                         <td>Quantity</td>
                         <td>Subtotal</td>
                     </tr>
@@ -715,18 +716,15 @@
                         <td><img src="image\products\FreshFruitTea\O-Long-Man-Moc-Chau-Thach-Que-Hoa.jpg" alt=""></td>
                         <td>Ô Long Mận Mộc Châu Thạch Quế Hoa</td>
                         <td>35.000</td>
-                        <td><input type="number" value="1"></td>
-                        <td>35.000</td>
+                        <td>M</td>
+                        <td>2</td>
+                        <td>70.000</td>
                     </tr>
                 </tbody>
             </table>
          </div>
           
         <div id="cart-add" class="section-p1">
-            <div id="coupon">
-                <input type="text" id="couponCode" placeholder="Nhập mã giảm giá">
-                <button id="applyCoupon">Áp dụng</button>
-            </div>
         
             <div id="subtotal">
                 <h3>Cart Totals</h3>
@@ -764,11 +762,8 @@
         </div>
     </section>
 
-    
-    
-    
-    <!-- Product Details Modal -->
-    <div id="productModal" class="modal">
+     <!-- Chi tiết sản phầm -->
+     <div id="productModal" class="modal">
         <div class="modal__overlay"></div>
         <div class="modal__body">
             <div class="product-details">
@@ -778,6 +773,14 @@
                 <div class="product-info">
                     <h2 id="modalProductName"></h2>
                     <p>Price: <span id="modalProductPrice"></span> </p>
+                    <!-- Số lượng sản phẩm -->
+                    <label for="quantity">Quantity:</label>
+                    <div id="quantityWrapper">
+                        <button id="decreaseQuantity" class="quantity-btn">-</button>
+                        <input type="number" id="modalProductQuantity" value="1" min="1">
+                        <button id="increaseQuantity" class="quantity-btn">+</button>
+                    </div>
+                    <!-- Kích thước sản phẩm -->
                     <label for="size">Size:</label>
                     <select id="modalProductSize">
                         <option value="M">M - 35,000 </option>
@@ -789,6 +792,7 @@
             <button id="closeProductModal" class="btn auth-form_controls-back">Close</button>
         </div>
     </div>
+    
 
     <script src="script.js"></script>
 

@@ -1,9 +1,9 @@
 // Kiểm tra xem dữ liệu đơn hàng đã có trong localStorage chưa
-let customer = JSON.parse(localStorage.getItem('customer'));
+let customers = JSON.parse(localStorage.getItem('customers'));
 
 // Nếu chưa có dữ liệu trong localStorage => thì gán giá trị mặc định
-if(!customer) {
-    customer = [
+if(!customers) {
+    customers = [
         {
             id: 1,
             username: '111',
@@ -56,5 +56,5 @@ if(!customer) {
         },
     ]
     // Lưu dữ liệu mặc định vào localStorage
-    localStorage.setItem('customer', JSON.stringify(customer));
+    localStorage.setItem('customers', JSON.stringify(customers));
 }

@@ -520,29 +520,7 @@ footer .copyright {
     flex-wrap: wrap;
     justify-content: space-between;
 }
-#coupon {
-    width: 50%;
-    margin-bottom: 30px;
-}
 
-#coupon h3,
-#coupon h3 {
-    padding-bottom: 15px;
-}
-#coupon input {
-    padding: 10px 20px;
-    outline: none;
-    width: 60%;
-    margin-right: 10px;
-    border: solid 1px #e2e9e1;
-}
-
-#coupon button,
-#subtotal button {
-    background-color: #088178;
-    color: #fff;
-    padding: 12px 20px;
-}
 #subtotal {
     width: 50%;
     margin-bottom: 30px;
@@ -695,10 +673,6 @@ footer .copyright {
        align-items: center;
     }
 
-    #coupon {
-        width: 100%;
-    }
-
     #subtotal {
         width: 100%;
        padding: 20px;
@@ -754,9 +728,7 @@ footer .copyright {
     #cart-add {
         flex-direction: column;
     }
-    #coupon {
-        width: 100%;
-    }
+    
     #subtotal {
         width: 100%;
         padding: 20px;
@@ -1089,24 +1061,6 @@ footer .copyright {
     justify-content: space-between;
 }
 
-#coupon{
-    /* width: 50%; */
-    margin-bottom: 30px;
-}
-
-#coupon h3{
-    padding-bottom: 15px;
-}
-
-#coupon input{
-    padding: 10px 20px ;
-    outline: none;
-    width: 60%;
-    margin-right: 10px;
-    border: 1px solid #e2e9e1;
-}
-
-#coupon button,
 #subtotal button {
     background-color: #088178;
     color: #fff;
@@ -1296,4 +1250,51 @@ footer .copyright {
     margin-top: 10px;
     display: block;
     width: 100%;
+}
+
+
+/* Số lượng sản phẩm */
+/* Quantity Wrapper */
+#quantityWrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+/* Button for Decrease/Increase Quantity */
+.quantity-btn {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.quantity-btn:hover {
+    background-color: #088178;
+    color: #fff;
+}
+
+/* Quantity Input */
+#modalProductQuantity {
+    width: 60px;
+    height: 40px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    padding: 5px;
+    color: #333;
+}
+
+#modalProductQuantity:focus {
+    border-color: #088178;
 }

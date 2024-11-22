@@ -29,7 +29,7 @@ if(!orders) {
         {
             id: 2,
             customerId: 5,
-            status: 'Chưa liên hệ',
+            status: 'Đã liên hệ',
             date: '2024-11-15',
             PaymentType: 'Tiền mặt',
             orderItems: [
@@ -57,7 +57,7 @@ if(!orders) {
         {
             id: 3,
             customerId: 4,
-            status: 'Chưa liên hệ',
+            status: 'Đã giao',
             date: '2024-11-22',
             PaymentType: 'Tiền mặt',
             orderItems: [
@@ -108,7 +108,7 @@ if(!orders) {
         {
             id: 5,
             customerId: 2,
-            status: 'Chưa liên hệ',
+            status: 'Đã hủy đơn',
             date: '2024-12-12',
             PaymentType: 'Chuyển khoản',
             orderItems: [
@@ -142,7 +142,7 @@ if(!orders) {
         {
             id: 6,
             customerId: 6,
-            status: 'Chưa liên hệ',
+            status: 'Đã liên hệ',
             date: '2024-10-22',
             PaymentType: 'Chuyển khoản',
             orderItems: [
@@ -177,7 +177,7 @@ if(!orders) {
         {
             id: 7,
             customerId: 8,
-            status: 'Chưa liên hệ',
+            status: 'Đã giao',
             date: '2024-10-02',
             PaymentType: 'Chuyển khoản',
             orderItems: [
@@ -213,7 +213,7 @@ if(!orders) {
         {
             id: 8,
             customerId: 2,
-            status: 'Chưa liên hệ',
+            status: 'Đã giao',
             date: '2024-12-25',
             PaymentType: 'Chuyển khoản',
             orderItems: [
