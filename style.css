@@ -1182,6 +1182,77 @@ footer .copyright {
     padding: 12px 20px ;
     background-color:#088178 ;
 }
+
+
+/* sản phẩm đã thanh toán */
+
+#paidProductList{
+    width: 100%;
+    text-align: center;
+}
+#paidProductList h2{
+    font-size: 30px;
+    padding: 10px 0;
+}
+
+#paidProductList{
+    /* giúp bảng trượt được */
+    overflow-x: auto;
+    margin-top: 20px;
+}
+#paidProductList table{
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    white-space: nowrap;
+    
+}
+
+#paidProductList table img{
+    width: 70px;
+}
+#paidProductList table td:nth-child(1){
+    width: 100px;
+    text-align: center;
+}
+
+#paidProductList table td:nth-child(2){
+    width: 250px;
+    text-align: center;
+}
+
+#paidProductList table td:nth-child(3){
+    width: 100px;
+    text-align: center;
+}
+
+#paidProductList table td:nth-child(4),
+#paidProductList table td:nth-child(5),
+#paidProductList table td:nth-child(6){
+    width: 150px;
+    text-align: center;
+}
+
+#paidProductList table td:nth-child(5) input{
+    width: 70px;
+    padding: 10px 5px 10px 15px;
+}
+
+#paidProductList table tr td {
+    padding-top: 15px;
+    font-size: 14px;
+}
+
+
+
+
+
+
+
+
+
+
+
 /* mô tả sản phẩm */
 
 #productModal {

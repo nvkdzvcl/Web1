@@ -184,6 +184,7 @@ document.addEventListener('click', (event) => {
     }
 });
 
+
 //  js cho form đăng nhập đăng kí
 
 document.addEventListener('DOMContentLoaded', (event) => {
@@ -518,7 +519,6 @@ document.getElementById('lg-bag').addEventListener('click', () =>{
 
         if (currentUser) {
             // Lấy địa chỉ từ tài khoản
-            
             const address = currentUser.address;
             document.getElementById('addressInput').value = address; 
             document.getElementById('defaultAddressDisplay').innerText = `Địa chỉ mặc định: ${address}`;
@@ -527,9 +527,63 @@ document.getElementById('lg-bag').addEventListener('click', () =>{
         }
     }
 });
-document.getElementById('logoutButton').addEventListener('click', () => {
-    localStorage.removeItem('accounts');
-    document.getElementById('loginLink').innerText = 'Đăng nhập';
-    document.getElementById('login-item').classList.remove('logged-in');
-    islogin = false;
+
+// Thanh toán
+
+document.getElementById('payButton').addEventListener('click', () => {
+    const cartTableBody = document.querySelector('#cart tbody');
+    // const paidProductList = document.getElementById('paidProductList');
+    const paidProductList = document.querySelector('#paidProductList table');
+
+
+    // Kiểm tra xem có sản phẩm trong giỏ hàng hay không
+    if (cartTableBody.rows.length === 0) {
+        alert("Giỏ hàng trống. Vui lòng thêm sản phẩm trước khi thanh toán.");
+        return;
+    }
+
+    // Lấy danh sách sản phẩm từ giỏ hàng
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const paidProducts = [];
+
+    // Lặp qua các sản phẩm trong giỏ hàng
+    Array.from(cartTableBody.rows).forEach(row => {
+        const productName = row.cells[2].innerText; // Tên sản phẩm
+        const productPrice = row.cells[3].innerText; // Giá sản phẩm
+        const productImage = row.cells[1].querySelector('img').src; // Hình ảnh sản phẩm
+        const productQuantity = row.cells[4].innerText;
+
+        // Tạo đối tượng sản phẩm đã thanh toán
+        const paidProduct = {
+            name: productName,
+            price: productPrice,
+            image: productImage,
+            quantity: productQuantity
+        };
+
+        // Thêm sản phẩm vào danh sách đã thanh toán
+        paidProducts.push(paidProduct);
+
+        // Tạo một phần tử mới cho sản phẩm đã thanh toán
+        const paidProductItem = document.createElement('tr');
+        paidProductItem.innerHTML = ` 
+                        <td><img src="${productImage}" alt=""></td>
+                        <td>${productName}</td>
+                        <td>${productPrice}</td>
+                        <td>${productQuantity}</td>
+                        <td>Chưa sử lí</td>`;
+        
+        // Thêm sản phẩm vào danh sách đã thanh toán
+        paidProductList.appendChild(paidProductItem);
+    });
+
+    // Cập nhật localStorage: xóa giỏ hàng và lưu danh sách sản phẩm đã thanh toán
+    localStorage.setItem('cart', JSON.stringify([])); // Xóa giỏ hàng
+    localStorage.setItem('paidProducts', JSON.stringify(paidProducts)); // Lưu sản phẩm đã thanh toán
+
+    // Xóa tất cả sản phẩm trong giỏ hàng
+    cartTableBody.innerHTML = '';
+
+    // Thông báo thành công
+    alert("Thanh toán thành công!");
 });
