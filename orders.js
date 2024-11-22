@@ -21,7 +21,7 @@ if(!orders) {
                     productId: 8,
                     sizes: [
                         { size: 'M', quantity: 1 },
-                        { size: 'l', quantity: 1 }
+                        { size: 'L', quantity: 1 }
                     ]
                 },
             ]

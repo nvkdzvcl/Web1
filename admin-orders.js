@@ -340,60 +340,11 @@ function displayStatisticType() {
 }
 
 
-// Tạo thống kê theo sản phẩm
-function displayStatisticProduct() {
-    const products = JSON.parse(localStorage.getItem('products')) || [];
-    let orders = JSON.parse(localStorage.getItem('orders')) || [];
-
-    orders = filterOrdersByDate(orders);
-
-    // Chưa xong
-    let statisticProduct = {};
-    orders.forEach(order => {
-        order.orderItems.forEach(orderItem => {
-            let product = products.find(p => p.id === orderItem.productId);
-            // Kiểm tra xem product có lấy được không
-            if(product){
-                if(!statisticProduct[product.id]) {
-                    statisticProduct[product.id] = {
-                        name: product.name,
-                        quantity: 0,
-                        totalCost: 0
-                    }
-                }
-
-                orderItem.sizes.forEach(size => {
-                    // Lay so luong
-                    statisticProduct[product.id].quantity += size.quantity;
-                    let price = 0;
-
-                    let pSize = product.sizes.find(pSize => pSize.size === size.size);
-                    if(pSize){
-                        price = pSize.price;
-                    }
-
-                    statisticProduct[product.id].totalCost += size.quantity * price;
-                });
-            }
-        });
-    });
-    // Hiển thị thông tin thống kê trong bảng
-    const statisticTableProduct = document.querySelector('.statistic-table-product tbody');
-    statisticTableProduct.innerHTML = '';   // Xoa thong tin cu
-
-    for(let id in statisticProduct) {
-        statisticTableProduct.innerHTML += `
-            <tr>
-                <td>${id}</td>
-                <td>${statisticProduct[id].name}</td>
-                <td>${statisticProduct[id].quantity}</td>
-                <td>${statisticProduct[id].totalCost}đ</td>
-            </tr>
-        `;
-    }
-}
 
 // Tạo thống kê theo khách hàng
+let currentPageStatistic = 1;
+let itemStatisticPerPage = 9;
+
 function displayStatisticCustomer(){
     let orders = JSON.parse(localStorage.getItem('orders')) || [];
     const customers = JSON.parse(localStorage.getItem('customers')) || [];
@@ -402,42 +353,37 @@ function displayStatisticCustomer(){
 
     orders = filterOrdersByDate(orders);
 
-    let statisticCustomer = {};
+    let statisticCustomerArray = [];
 
     orders.forEach(order => {   // Duyet qua danh sach don hang
         let customer = customers.find(cus => cus.id === order.customerId);  // Tim khach hang cua don hang hien tai
         if(customer) {  // Ton tai khach hang
             let customerId = customer.id;
-            if(!statisticCustomer[customerId]){
-                let customerAddress = address.find(add => add.customerId === customerId);
-                if(customerAddress) {
-                    statisticCustomer[customerId] = {
-                        name: customerAddress.fullname,
-                        quantity: 0,
-                        totalSpent: 0
-                    }
-                } 
-                else {
-                    statisticCustomer[customerId] = {
-                        name: 'Chưa có thông tin',
-                        quantity: 0,
-                        totalSpent: 0
-                    }
-                }
+            let index = statisticCustomerArray.findIndex(o => o.customerId === customerId);
+
+            if(index == -1) {
+                index = statisticCustomerArray.length;
+                let add = address.find(a => a.customerId === customerId);
+                statisticCustomerArray.push({
+                    customerId: customer.id,
+                    name: add.fullname,
+                    quantity: 0,
+                    totalSpent: 0
+                });
             }
 
             order.orderItems.forEach(orderItem => {
                 let product = products.find(p => p.id === orderItem.productId);
                 if(product) {
                     orderItem.sizes.forEach(size => {
-                        statisticCustomer[customerId].quantity += size.quantity;
+                        statisticCustomerArray[index].quantity += size.quantity;
     
                         let price = 0;
                         let pSize = product.sizes.find(pSize => pSize.size === size.size);
                         if(pSize) {
                             price = pSize.price;
                         }
-                        statisticCustomer[customerId].totalSpent += size.quantity * price;
+                        statisticCustomerArray[index].totalSpent += size.quantity * price;
                     });
                 }
             });
@@ -449,19 +395,152 @@ function displayStatisticCustomer(){
     const statisticTableCustomer = document.querySelector('.statistic-table-customer tbody');
     statisticTableCustomer.innerHTML = '';
 
-    for(let id in statisticCustomer) {
+    let startIndex = (currentPageStatistic - 1) * itemStatisticPerPage;
+    let endIndex = Math.min(startIndex + itemStatisticPerPage, statisticCustomerArray.length);
+
+    for(let i = startIndex; i < endIndex; i++) {
         statisticTableCustomer.innerHTML += `
-            <tr>
-                <td>${id}</td>
-                <td>${statisticCustomer[id].name}</td>
-                <td>${statisticCustomer[id].quantity}</td>
-                <td>${statisticCustomer[id].totalSpent}đ</td>
+            <tr onclick = "showCustomerDetail(${statisticCustomerArray[i].customerId})">
+                <td>${statisticCustomerArray[i].customerId}</td>
+                <td>${statisticCustomerArray[i].name}</td>
+                <td>${statisticCustomerArray[i].quantity}</td>
+                <td>${statisticCustomerArray[i].totalSpent}đ</td>
             </tr>
         `;
     }
+    displayStatisticCustomerPagination(statisticCustomerArray.length);
+    displayHighestPayingCustomers(statisticCustomerArray);
 }
 
-// Trang thống kê
+// Hàm in ra danh sách 3 khách hàng mua hàng với tổng tiển cao nhất
+let topCustomer = 3;
+function displayHighestPayingCustomers (statisticCustomerArray) {   // Nhận vào 1 mảng có cấu trúc {customerId, name, quantity, totalSpent}
+    // Sắp xếp mảng theo thứ tự giảm dần (theo totalSpent)
+    statisticCustomerArray.sort((a, b) => b.totalSpent - a.totalSpent);
+    
+    const tableTopCustomer = document.querySelector('.statistic-table-top-customers tbody');
+    tableTopCustomer.innerHTML = '';
+
+    for(let i = 0; i < topCustomer; i++) {
+        tableTopCustomer.innerHTML += `
+            <tr onclick = "showCustomerDetail(${statisticCustomerArray[i].customerId})">
+                <td>${statisticCustomerArray[i].customerId}</td>
+                <td>${statisticCustomerArray[i].name}</td>
+                <td>${statisticCustomerArray[i].quantity}</td>
+                <td>${statisticCustomerArray[i].totalSpent}đ</td>
+            </tr>
+        `;
+    }
+
+}
+
+function displayStatisticCustomerPagination(totalCustomer) {
+    let pagination = document.querySelector('.statistic-pagination');
+    pagination.innerHTML = '';
+
+    let totalPages = Math.ceil(totalCustomer / itemStatisticPerPage);
+    
+    for (let i = 1; i <= totalPages; i++) {
+        let pageBtn = document.createElement('button');
+        pageBtn.textContent = i;
+        pageBtn.classList.add('statistic-pagination-btn');
+        pageBtn.addEventListener('click', () => {
+            currentPageStatistic = i;
+            displayStatisticCustomer();
+        });
+        pagination.appendChild(pageBtn);
+    }
+}
+
+function showCustomerDetail(customerId) {
+    let orders = JSON.parse(localStorage.getItem('orders')) || [];
+    let address = JSON.parse(localStorage.getItem('address')) || [];
+    let products = JSON.parse(localStorage.getItem('products')) || [];
+    let customers = JSON.parse(localStorage.getItem('customers')) || [];
+
+    let add = address.find(a => a.customerId === customerId);
+
+    orders = orders.filter(o => o.customerId === customerId);
+
+    let customerDetail = {
+        customerId: customerId,
+        customerName: add.fullname,
+        phone: add.phone,
+        ords: [],
+        totalSpent: 0,
+    };
+
+    orders.forEach(order => {
+        let quantity = 0;
+        let totalCost = 0;
+        order.orderItems.forEach(orderItem => {
+            let product = products.find(p => p.id === orderItem.productId);
+            orderItem.sizes.forEach(size => {
+                quantity += size.quantity;
+                let pSize = product.sizes.find(pSize => pSize.size === size.size);
+                totalCost += size.quantity * pSize.price;
+                customerDetail.totalSpent += size.quantity * pSize.price;
+            });
+        });
+
+        customerDetail.ords.push({
+            orderId: order.id,
+            quantity: quantity,
+            totalCost: totalCost
+        });
+    });
+    
+    const customerHeader = document.querySelector('.customer-header');
+    customerHeader.innerHTML = `
+        <h2>Chi tiết khách hàng</h2>
+        <p><strong>Mã khách hàng: </strong>${customerDetail.customerId}</p>
+        <p><strong>Tên khách hàng: </strong>${customerDetail.customerName}</p>
+        <p><strong>Số điện thoại: </strong>${customerDetail.phone}</p>
+        <button class="btn-close-customer-detail" onclick = "closeCustomerDetail()">+</button>
+    `;
+
+    const customerItemsBody = document.querySelector('.customer-items-tbody');
+    customerItemsBody.innerHTML = '';
+
+    for(let i = 0; i < customerDetail.ords.length; i++) {
+        customerItemsBody.innerHTML += `
+            <tr>
+                <td>${customerDetail.ords[i].orderId}</td>
+                <td>${customerDetail.ords[i].quantity}</td>
+                <td>${customerDetail.ords[i].totalCost}</td>
+            </tr>
+        `;
+    }
+
+    const customerSummary = document.querySelector('.customer-summary');
+    customerSummary.innerHTML = `
+        <p><strong>Tổng tiền:</strong> ${customerDetail.totalSpent}</p>
+    `;
+
+    document.querySelector('.customer-detail').style.display = 'block';
+}
+
+function closeCustomerDetail() {
+    document.querySelector('.customer-detail').style.display = 'none';
+}
+
+
+
+
+// Thêm sự kiện cho nút áp dụng
+document.querySelector('.btn-accept-filter').addEventListener('click', () => {
+    if(document.querySelector('.statistic-type').style.display === 'block') {
+        displayStatisticType();
+    }
+    else if(document.querySelector('.statistic-customer').style.display === 'block'){
+        displayStatisticCustomer();
+    }
+    else {
+
+    }
+});
+
+// Thêm sự kiện hiển thị trang thống kê
 document.querySelector('.view-statistic').addEventListener('click', () => {
     document.querySelector('.statistic-content').style.display = 'flex';
     document.querySelector('.order-content').style.display = 'none';
@@ -472,18 +551,8 @@ document.querySelector('.view-statistic').addEventListener('click', () => {
 const statisticTypeButton = document.querySelector('.statistic-type-btn');
 statisticTypeButton.addEventListener('click', () => {
     document.querySelector('.statistic-type').style.display = 'block';
-    document.querySelector('.statistic-product').style.display = 'none';
     document.querySelector('.statistic-customer').style.display = 'none';
     displayStatisticType();
-});
-
-// Thêm sự kiện cho nút xem thống kê của sản phẩm
-const statisticProductButton = document.querySelector('.statistic-product-btn');
-statisticProductButton.addEventListener('click', () => {
-    document.querySelector('.statistic-product').style.display = 'block';
-    document.querySelector('.statistic-type').style.display = 'none';
-    document.querySelector('.statistic-customer').style.display = 'none';
-    displayStatisticProduct();
 });
 
 // Thêm sự kiện cho nút xem thống kê của khách hàng
@@ -491,7 +560,6 @@ const statisticCustomerButton = document.querySelector('.statistic-customer-btn'
 statisticCustomerButton.addEventListener('click', () => {
     document.querySelector('.statistic-customer').style.display = 'block';
     document.querySelector('.statistic-type').style.display = 'none';
-    document.querySelector('.statistic-product').style.display = 'none';
     displayStatisticCustomer();
 });
 
