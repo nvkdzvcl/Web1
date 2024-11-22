@@ -2,6 +2,7 @@
 // Trang đơn hàng
 document.querySelector('.view-order').addEventListener('click', () => {
     document.querySelector('.order-content').style.display = 'flex';
+    document.querySelector('.statistic-content').style.display ='none';
 });
 
 
@@ -80,7 +81,7 @@ function displayOrders(currentPageOrder) {
 
 
         let order = `
-            <tr class="order-item">
+            <tr class="order-item" onclick="showOrderDetail(${orders[i].id})">
                 <td>${orders[i].id}</td>
                 <td>${orders[i].customerId}</td>
                 <td>${orders[i].date}</td>
@@ -117,6 +118,130 @@ function displayPagination(totalOrders) {
 // In danh sách sản phẩm
 displayOrders(currentPageOrder);
 
+// Hàm để hiển thị chi tiết đơn hàng khi click
+function showOrderDetail(orderId) {
+    let orders = JSON.parse(localStorage.getItem('orders')) || [];
+    const products = JSON.parse(localStorage.getItem('products')) || [];
+    const address = JSON.parse(localStorage.getItem('address')) || [];
+
+    order = orders.find(o => o.id === orderId);
+
+    let orderDetails = {
+        customerId: order.customerId,
+        date: order.date,
+        PaymentType: order.PaymentType,
+        prods: []
+    };
+
+    let totalCost = 0;
+    order.orderItems.forEach(orderItem => {
+        let product = products.find(p => p.id === orderItem.productId);
+        if(product) {
+            let sizes = [];
+            orderItem.sizes.forEach(size => {
+                let pSize = product.sizes.find(pSize => pSize.size === size.size);
+                if(pSize) {
+                    sizes.push({
+                        size: pSize.size,
+                        quantity: size.quantity,
+                        price: pSize.price
+                    });
+                }
+            });
+            
+            let prodCost = sizes.reduce((sum, size) => sum + size.price * size.quantity, 0);
+
+            orderDetails.prods.push({
+                productId: product.id,
+                name: product.name,
+                sizes: sizes,
+                prodCost: prodCost
+            });
+            totalCost += prodCost;
+        }
+        
+    });
+
+    // dia chi
+    const add = address.find(a => a.customerId === order.customerId);
+
+    // In ra chi tiet don hang
+    // Header
+    const orderHeader = document.querySelector('.order-header');
+    orderHeader.innerHTML = `
+        <h2>Chi tiết đơn hàng</h2>
+        <p><strong>Mã đơn hàng:</strong> ${orderId}</p>
+        <p><strong>Mã khách hàng:</strong> ${orderDetails.customerId}</p>
+        <p><strong>Số điện thoại:</strong> ${add.phone}</p>
+        <p><strong>Thời gian đặt:</strong> ${orderDetails.date}</p>
+        <p><strong>Hình thức thanh toán:</strong> ${orderDetails.PaymentType}</p>
+        <p><strong>Địa chỉ:</strong> ${add ? add.street + ', ' + add.ward + ', ' + add.district + ', ' + add.province : 'Không tìm thấy địa chỉ'}</p>
+    `;
+
+    // tbody
+    const orderItemsBody = document.querySelector('#order-items-tbody');
+    orderItemsBody.innerHTML = '';
+    orderDetails.prods.forEach(prod => {
+        let count = prod.sizes.length;
+        let row = `
+            <tr>
+                <td rowspan="${count}">${prod.productId}</td>
+                <td rowspan="${count}">${prod.name}</td>
+                <td>${prod.sizes[0].size}</td>
+                <td>${prod.sizes[0].quantity}</td>
+                <td>${prod.sizes[0].price}</td>
+                <td rowspan="${count}">${prod.prodCost}</td>
+            </tr>
+        `;
+        for (let i = 1; i < count; i++) {
+            row += `
+                <tr>
+                    <td>${prod.sizes[i].size}</td>
+                    <td>${prod.sizes[i].quantity}</td>
+                    <td>${prod.sizes[i].price}</td>
+                </tr>
+            `;
+        }
+        orderItemsBody.innerHTML += row;
+    });
+
+    // trang thai
+    const orderDetailStatus = document.querySelector('.order-detail-status-main');
+    orderDetailStatus.innerHTML = `
+        <label for=""><strong>Trạng thái:</strong></label>
+        <select id="order-detail-status">
+            <option value="Chưa liên hệ">Chưa liên hệ</option>
+            <option value="Đã liên hệ">Đã liên hệ</option>
+            <option value="Đã giao">Đã giao</option>
+            <option value="Đã hủy đơn">Đã hủy đơn</option>
+        </select>
+        <button class="save-status">Lưu</button>
+    `;
+    document.querySelector('#order-detail-status').value = order.status;
+
+    document.querySelector('.save-status').addEventListener('click',() => {
+        const newStatus = document.getElementById('order-detail-status').value;
+        const orderIndex = orders.findIndex(o => o.id === orderId);
+        if (orderIndex !== -1) {
+            orders[orderIndex].status = newStatus;
+            localStorage.setItem('orders', JSON.stringify(orders));
+            alert("Đã thay đổi trạng thái đơn hàng!");
+            displayOrders(currentPageOrder);
+        }
+    });
+
+    // tong tien
+    const orderSummary = document.querySelector('.order-summary');
+    orderSummary.innerHTML = '';
+    orderSummary.innerHTML += `
+        <p><strong>Tổng tiền:</strong> ${totalCost}</p>
+    `;
+
+    // hien thi chi tiet don hang
+    document.querySelector('.order-detail').style.display = 'block';
+}
+
+
 // Thêm sự kiện cho áp dụng
 const orderFilterButton = document.querySelector('.apply-filter-btn');
 
@@ -137,18 +262,36 @@ orderFilterButton.addEventListener('click', () => {
     
 });
 
-// Thêm sự kiện để hiện chi tiết đơn hàng của khách hàng
-const orderItems = document.querySelectorAll('.order-item');
-orderItems.forEach(orderItem => {
-    orderItem.addEventListener('click', () => {
-        console.log('Hiện chi tiết sản phẩm ở đây!');
-    });
-});
+// thong ke
+function filterOrdersByDate(orders){
+    const startDate = document.querySelector('#start-date-filter').value;
+    const endDate = document.querySelector('#end-date-filter').value;
 
+    if (new Date(startDate) > new Date(endDate)) {
+        alert('Ngày không hợp lệ!');
+        startDate.focus();
+        return orders;
+    }
+
+    if(startDate){
+        orders = orders.filter(order => new Date(order.date) >= new Date(startDate));
+
+    }
+    
+    if(endDate){
+        orders = orders.filter(order => new Date(order.date) <= new Date(endDate));
+    }
+
+    return orders;
+
+}
 // Tạo thống kê mặt hàng
 function displayStatisticType() {
-    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+    let orders = JSON.parse(localStorage.getItem('orders')) || [];
     const products = JSON.parse(localStorage.getItem('products')) || [];
+
+    orders = filterOrdersByDate(orders);
+    console.log(orders);
 
     let statisticType = {};
     orders.forEach(order => {
@@ -200,7 +343,9 @@ function displayStatisticType() {
 // Tạo thống kê theo sản phẩm
 function displayStatisticProduct() {
     const products = JSON.parse(localStorage.getItem('products')) || [];
-    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+    let orders = JSON.parse(localStorage.getItem('orders')) || [];
+
+    orders = filterOrdersByDate(orders);
 
     // Chưa xong
     let statisticProduct = {};
@@ -250,10 +395,12 @@ function displayStatisticProduct() {
 
 // Tạo thống kê theo khách hàng
 function displayStatisticCustomer(){
-    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+    let orders = JSON.parse(localStorage.getItem('orders')) || [];
     const customers = JSON.parse(localStorage.getItem('customers')) || [];
     const address = JSON.parse(localStorage.getItem('address')) || [];
     const products = JSON.parse(localStorage.getItem('products')) || [];
+
+    orders = filterOrdersByDate(orders);
 
     let statisticCustomer = {};
 
@@ -317,6 +464,8 @@ function displayStatisticCustomer(){
 // Trang thống kê
 document.querySelector('.view-statistic').addEventListener('click', () => {
     document.querySelector('.statistic-content').style.display = 'flex';
+    document.querySelector('.order-content').style.display = 'none';
+
 });
 
 // Thêm sự kiện cho nút xem thống kê của mặt hàng

@@ -64,6 +64,7 @@
         <!-- Nội dung sẽ được đặt ở đây -->
         <!-- Đơn hàng -->
         <div class="order-content">
+
             <div class="orders-title">Danh sách đơn hàng</div>
             <div class="order-filter">
                 <!-- Tiêu để của phần bộ lọc tìm kiếm -->
@@ -144,12 +145,56 @@
                 </table>
                 <div class="pagination-order"></div>
             </div>
+            <div class="order-detail">
+                <!-- Chi tiết đơn hàng nằm ở đây -->
+                <div class="order-header">
+                    
+                </div>
+            
+                <div class="order-items">
+                    <h3>Chi tiết sản phẩm</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Mã sản phẩm</th> <!-- Thêm cột Mã sản phẩm -->
+                                <th>Sản phẩm</th>
+                                <th>Size</th>
+                                <th>Số lượng</th>
+                                <th>Giá</th>
+                                <th>Tổng</th>
+                            </tr>
+                        </thead>
+                        <tbody id="order-items-tbody">
+                            
+                            <!-- Ví dụ một sản phẩm có nhiều size -->
+                            
+                            
+                            
+                        </tbody>
+                    </table>
+                    <div class="order-detail-status-main">
+                        
+                    </div>
+                    <div class="order-summary">
+                        
+                    </div>
+                </div>
+            </div>
         </div>
+
 
         <!-- Thống kê -->
         <div class="statistic-content">
             <div class="statistic-title">THỐNG KÊ KINH DOANH</div>
+            <div class="filter-date">
+                <label for="start-date-filter">Từ ngày:</label>
+                <input type="date" id="start-date-filter">
+                <label for="end-date-filter">Đến ngày:</label>
+                <input type="date" id="end-date-filter">
+                <button class="btn-accept-filter">Áp dụng</button>
+            </div>
             <div class="statistic-main">
+                
                 <div class="statistic-item">
                     <p>Mặt hàng</p>
                     <button class="statistic-type-btn statistic-btn">Xem thống kê</button>
@@ -202,17 +247,14 @@
                             <th>Tổng tiền đã mua</th>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Nguyễn Văn A</td>
-                                <td>14</td>
-                                <td>100000đ</td>
-                            </tr>
+                            
                         </tbody>
                     </table>
                 </div>
             </div>
-        </div>
+        </div> 
+
+        
     </div>
     <script src="admin-orders.js"></script>
 </body>

@@ -187,24 +187,25 @@ body {
 
 .status-filter {
     border-bottom: 1px solid rgba(0, 0, 0, .09);
-    margin: 36px 0 24px 0;
+    margin: 32px 0 24px 0;
     padding-bottom: 28px;
 }
 
 #status-filter-select{
     cursor: pointer;
+    margin-top: 6px;
 }
 
 .date-filter {
     display: flex;
     flex-direction: column;
-    margin: 36px 0 24px 0;
+    margin: 32px 0 24px 0;
 }
 
 #start-date,
 #end-date {
     max-width: 150px;
-    margin: 4px 0 18px 0;
+    margin: 4px 0 14px 0;
 
 }
 .address-filter {
@@ -255,7 +256,7 @@ body {
 .order-table td {
     border: 1px solid #ccc; /* Viền của các ô bảng */
     padding: 8px; /* Khoảng cách trong mỗi ô */
-    text-align: left; /* Căn trái cho văn bản trong các ô */
+    text-align: center;
 }
 
 .order-table tbody tr {
@@ -308,14 +309,34 @@ body {
     font-weight: 650;
 }
 
+.filter-date {
+    display: flex;
+    margin-top: 30px;
+    padding: 0 220px;
+    flex-wrap: wrap;
+}
+
+#start-date-filter {
+    margin-right: 12px;
+}
+
+.btn-accept-filter {
+    width: 70px;
+    border: none;
+    border-radius: 2px;
+    background-color: #3b8a3e;
+    color: white;
+    margin-left: 12px;
+    cursor: pointer;
+}
+
 .statistic-main {
-    margin-top: 50px;
     padding: 0 20px;
 }
 
 .statistic-item {
     display: flex;
-    margin: 90px 0 0 200px;
+    margin: 60px 0 0 200px;
     margin-bottom: 80px;
     position: relative;
     /* display: none; */
@@ -386,9 +407,134 @@ body {
 .statistic-table td {
     border: 1px solid #ccc; /* Viền của các ô bảng */
     padding: 8px; /* Khoảng cách trong mỗi ô */
-    text-align: left; /* Căn trái cho văn bản trong các ô */
+    text-align: center;
+    text-wrap: wrap;
 }
 
 .statistic-table tbody tr {
     font-size: 15px; /* Kích thước chữ trong bảng */
+    cursor: pointer;
+}
+
+.statistic-table tbody tr:hover {
+    background-color: #b8ecba;
+}
+
+
+
+
+
+
+
+/* Toàn bộ phần chi tiết đơn hàng */
+.order-detail {
+    width: 60%;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+    display: none;
+}
+
+/* Header đơn hàng */
+.order-header {
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.order-header h2 {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.order-header p {
+    font-size: 16px;
+    color: #555;
+    margin: 5px 0;
+}
+
+.order-header strong {
+    color: #333;
+}
+
+/* Chi tiết sản phẩm */
+.order-items {
+    margin-top: 20px;
+}
+
+.order-items h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.order-items table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.order-items th, .order-items td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.order-items th {
+    background-color: #f1f1f1;
+}
+
+.order-items td {
+    font-size: 16px;
+}
+
+/* Tóm tắt đơn hàng */
+.order-summary, 
+.order-detail-status-main{
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 2px solid #ddd;
+}
+
+.order-summary p,
+.order-detail-status-main p {
+    font-size: 18px;
+    color: #333;
+    margin: 5px 0;
+}
+
+.order-summary strong,
+.order-detail-status-main strong {
+    color: #333;
+}
+
+.save-status {
+    width: 40px;
+    height: 26px;
+    border: none;
+    border-radius: 2px;
+    margin-left: 5px;
+    background-color: #3b8a3e;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.order-items td {
+    font-size: 16px;
+    padding: 10px;
+    text-align: center;
+}
+
+.order-items td[colspan="3"] {
+    text-align: right;
+}
+
+.order-items td strong {
+    font-size: 18px;
+    color: #333;
+    text-align: right;
 }
