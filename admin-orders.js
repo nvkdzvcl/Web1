@@ -181,6 +181,7 @@ function showOrderDetail(orderId) {
         <p><strong>Thời gian đặt:</strong> ${orderDetails.date}</p>
         <p><strong>Hình thức thanh toán:</strong> ${orderDetails.PaymentType}</p>
         <p><strong>Địa chỉ:</strong> ${add ? add.street + ', ' + add.ward + ', ' + add.district + ', ' + add.province : 'Không tìm thấy địa chỉ'}</p>
+        <button class="btn-close-order-detail" onclick = "closeOrderDetail()">+</button>
     `;
 
     // tbody
@@ -244,6 +245,10 @@ function showOrderDetail(orderId) {
 
     // hien thi chi tiet don hang
     document.querySelector('.order-detail').style.display = 'block';
+}
+
+function closeOrderDetail() {
+    document.querySelector('.order-detail').style.display = 'none';
 }
 
 

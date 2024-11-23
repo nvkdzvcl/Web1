@@ -468,6 +468,7 @@ body {
     margin-bottom: 20px;
     border-bottom: 2px solid #ddd;
     padding-bottom: 10px;
+    position: relative;
 }
 
 .order-header h2 {
@@ -484,6 +485,27 @@ body {
 
 .order-header strong {
     color: #333;
+}
+
+.btn-close-order-detail {
+    height: 32px;
+    border: none;
+    background-color: #f9f9f9;
+    right: 0;
+    top: -11px;
+    font-size: 34px;
+    transform: rotate(45deg);
+    cursor: pointer;
+    position: absolute;
+}
+
+.btn-close-order-detail:hover {
+    color: #555;
+}
+
+
+.btn-close-order-detail:active {
+    color: #3b8a3e;
 }
 
 .order-items {
