@@ -420,6 +420,16 @@ body {
     margin-bottom: 36px;
 }
 
+
+.best-seller-type {
+    background-color: #6bcf6f;
+}
+
+.least-seller-type {
+    background-color: #f77e70;
+}
+
+
 .statistic-pagination {
     display: flex;
     justify-content: center; 

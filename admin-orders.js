@@ -1,3 +1,8 @@
+// Format tiền việt
+function formatCurrencyVND(amount) {
+    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
+}
+
 // Đơn hàng
 // Trang đơn hàng
 document.querySelector('.view-order').addEventListener('click', () => {
@@ -86,7 +91,7 @@ function displayOrders(currentPageOrder) {
                 <td>${orders[i].customerId}</td>
                 <td>${orders[i].date}</td>
                 <td>${orders[i].status}</td>
-                <td>${totalCost}đ</td>
+                <td>${formatCurrencyVND(totalCost)}</td>
             </tr>
         `;
 
@@ -189,8 +194,8 @@ function showOrderDetail(orderId) {
                 <td rowspan="${count}">${prod.name}</td>
                 <td>${prod.sizes[0].size}</td>
                 <td>${prod.sizes[0].quantity}</td>
-                <td>${prod.sizes[0].price}</td>
-                <td rowspan="${count}">${prod.prodCost}</td>
+                <td>${formatCurrencyVND(prod.sizes[0].price)}</td>
+                <td rowspan="${count}">${formatCurrencyVND(prod.prodCost)}</td>
             </tr>
         `;
         for (let i = 1; i < count; i++) {
@@ -198,7 +203,7 @@ function showOrderDetail(orderId) {
                 <tr>
                     <td>${prod.sizes[i].size}</td>
                     <td>${prod.sizes[i].quantity}</td>
-                    <td>${prod.sizes[i].price}</td>
+                    <td>${formatCurrencyVND(prod.sizes[i].price)}</td>
                 </tr>
             `;
         }
@@ -234,7 +239,7 @@ function showOrderDetail(orderId) {
     const orderSummary = document.querySelector('.order-summary');
     orderSummary.innerHTML = '';
     orderSummary.innerHTML += `
-        <p><strong>Tổng tiền:</strong> ${totalCost}</p>
+        <p><strong>Tổng tiền:</strong> ${formatCurrencyVND(totalCost)}</p>
     `;
 
     // hien thi chi tiet don hang
@@ -324,19 +329,48 @@ function displayStatisticType() {
         });
     });
 
+    let bestSellerType = Number.MIN_SAFE_INTEGER;
+    let leastSellerType = Number.MAX_SAFE_INTEGER;
+    // Tính số lượng nhiều nhất và ít nhất trong các mặt hàng
+    for(let type in statisticType) {
+        if(statisticType[type].quantity >= bestSellerType) {
+            bestSellerType = statisticType[type].quantity;
+        }
+        if(statisticType[type].quantity <= leastSellerType) {
+            leastSellerType = statisticType[type].quantity;
+        }
+    }
+
     // Hiển thị thông tin thống kê trong bảng
     const statisticTableType = document.querySelector('.statistic-table-type tbody');
     statisticTableType.innerHTML = ''; // Xóa dữ liệu cũ trước khi hiển thị
-
+    let totalRevenue = 0;   // Tổng doanh thu
+    
     for(let type in statisticType) {
-        statisticTableType.innerHTML += `
-            <tr>
-                <td>${type}</td>
-                <td>${statisticType[type].quantity}</td>
-                <td>${statisticType[type].totalCost}đ</td>
-            </tr>
+        totalRevenue += statisticType[type].totalCost;  // Tính tổng doanh thu
+        let row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${type}</td>
+            <td>${statisticType[type].quantity}</td>
+            <td>${formatCurrencyVND(statisticType[type].totalCost)}</td>
         `;
+
+        if(statisticType[type].quantity === bestSellerType) {
+            row.classList.add('best-seller-type');
+        }
+        if(statisticType[type].quantity === leastSellerType) {
+            row.classList.add('least-seller-type');
+        }
+
+        statisticTableType.appendChild(row);
     }
+    const tableTfootRevenue = document.querySelector('.statistic-table-type tfoot');
+    tableTfootRevenue.innerHTML = `
+        <tr>
+            <td colspan="2"><strong>Tổng thu:</strong></td>
+            <td class="total-revenue">${formatCurrencyVND(totalRevenue)}</td>
+        </tr>
+    `;
 }
 
 
@@ -404,7 +438,7 @@ function displayStatisticCustomer(){
                 <td>${statisticCustomerArray[i].customerId}</td>
                 <td>${statisticCustomerArray[i].name}</td>
                 <td>${statisticCustomerArray[i].quantity}</td>
-                <td>${statisticCustomerArray[i].totalSpent}đ</td>
+                <td>${formatCurrencyVND(statisticCustomerArray[i].totalSpent)}</td>
             </tr>
         `;
     }
@@ -427,7 +461,7 @@ function displayHighestPayingCustomers (statisticCustomerArray) {   // Nhận v�
                 <td>${statisticCustomerArray[i].customerId}</td>
                 <td>${statisticCustomerArray[i].name}</td>
                 <td>${statisticCustomerArray[i].quantity}</td>
-                <td>${statisticCustomerArray[i].totalSpent}đ</td>
+                <td>${formatCurrencyVND(statisticCustomerArray[i].totalSpent)}</td>
             </tr>
         `;
     }
@@ -507,14 +541,14 @@ function showCustomerDetail(customerId) {
             <tr>
                 <td>${customerDetail.ords[i].orderId}</td>
                 <td>${customerDetail.ords[i].quantity}</td>
-                <td>${customerDetail.ords[i].totalCost}</td>
+                <td>${formatCurrencyVND(customerDetail.ords[i].totalCost)}</td>
             </tr>
         `;
     }
 
     const customerSummary = document.querySelector('.customer-summary');
     customerSummary.innerHTML = `
-        <p><strong>Tổng tiền:</strong> ${customerDetail.totalSpent}</p>
+        <p><strong>Tổng tiền:</strong> ${formatCurrencyVND(customerDetail.totalSpent)}</p>
     `;
 
     document.querySelector('.customer-detail').style.display = 'block';
