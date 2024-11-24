@@ -7,52 +7,62 @@ if(!customers) {
         {
             id: 1,
             username: '111',
-            password: '111'
+            password: '111',
+            status: 'true'
         },
         {
             id: 2,
             username: '222',
-            password: '222'
+            password: '222',
+            status: 'true'
         },
         {
             id: 3,
             username: 'caovn',
-            password: '333'
+            password: '333',
+            status: 'true'
         },
         {
             id: 4,
-            username: 'homnayangi',
-            password: 'com'
+            username: 'hainguyen',
+            password: 'hainguyen',
+            status: 'true'
         },
         {
             id: 5,
-            username: 'homquatroimua',
-            password: 'nang'
+            username: 'ngohongvi',
+            password: 'vingo',
+            status: 'true'
         },
         {
             id: 6,
-            username: 'muaroi',
-            password: 'mua'
+            username: 'jack',
+            password: '9797',
+            status: 'true'
         },
         {
             id: 7,
             username: 'diepvien007',
-            password: 'diepvien007'
+            password: 'diepvien007',
+            status: 'true'
         },
         {
             id: 8,
             username: 'thongtindaotao',
-            password: 'mssv'
+            password: 'mssv',
+            status: 'true'
         },
         {
             id: 9,
-            username: 'xehu',
-            password: 'quatangcuocsong'
+            username: 'nguyenvana',
+            password: 'nguyenvana',
+            status: 'true'
         },
         {
             id: 10,
             username: '888',
-            password: 'baso8'
+            password: 'maso8',
+            status: 'true'
         },
     ]
     // Lưu dữ liệu mặc định vào localStorage

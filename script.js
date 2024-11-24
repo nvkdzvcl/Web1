@@ -679,3 +679,67 @@ document.querySelector('.btn-cart.btn--primary1').addEventListener('click', () =
     shippingModal.style.display = 'none';
     alert("Thanh toán thành công!");
 });
+
+
+// Chọn địa chỉ
+// Map các phường theo quận
+const wardsByDistrict = {
+    "district 1": ["Bến Thành","Bến Nghé","Đa Kao","Nguyễn Cư Trinh","Nguyễn Thái Bình","Tân Định","Cô Giang","Cầu Ông Lãnh","Phạm Ngũ Lão","Cầu Kho"],
+    "district 2": ["An Lợi Đông","Thảo Điền", "Cát Lái","An Phú","Bình An","Bình Khánh","Bình Trưng Đông","Bình Trưng Tây","An Khánh","Thạnh Mỹ Lợi","Thủ Thiêm"],
+    "district 3": ["Phường 1","Phường 2","Phường 3","Phường 4","Phường 5","Phường 9","Phường 10", "Phường 11","Phường 12","Phường 13","Phường 14","Võ Thị Sáu",],
+    "district 4": ["Phường 1","Phường 2","Phường 3","Phường 4", "Phường 6","Phường 8","Phường 9","Phường 10","Phường 13","Phường 14","Phường 15","Phường 16","Phường 18",],
+    "district 5": ["Phường 1","Phường 2","Phường 4","Phường 5","Phường 7","Phường 9","Phường 11","Phường 12","Phường 13","Phường 14"],
+    "district 6": ["Phường 1","Phường 2","Phường 7","Phường 8","Phường 9","Phường 10","Phường 11","Phường 12","Phường 13"],
+    "district 7": ["Bình Thuận","Phú Mỹ","Phú Thuận","Tân Hưng","Tân Kiểng","Tân Phong","Tân Phú","Tân Quy","Tân Thuận Đông","Tân Thuận Tây"],
+    "district 8": ["Xóm Củi","Hưng Phú","Bình An","Chánh Hưng","Rạch Ông"],
+    "district 9": ["Hiệp Phú","Long Bình","Long Phước","Long Thạnh Mỹ","Long Trường","Phú Hữu","Phước Bình","Phước Long A","Phước Long B","Tân Phú","Tăng Nhơn Phú A","Tăng Nhơn Phú B","Trường Thạnh"],
+    "district 10": ["Phường 1","Phường 2","Phường 4","Phường 6","Phường 8","Phường 9","Phường 10","Phường 12","Phường 13","Phường 14","Phường 15"],
+    "district 11": ["Phường 1","Phường 3","Phường 5","Phường 7","Phường 8","Phường 10","Phường 11","Phường 14","Phường 15","Phường 16"],
+    "district 12": ["An Phú Đông","Đông Hưng Thuận","Hiệp Thành","Tân Chánh Hiệp","Tân Hưng Thuận","Tân Thới Hiệp","Tân Thới Nhất","Thạnh Lộc","Thạnh Xuân","Thới An","Trung Mỹ Tây"],
+    "district TanBinh": ["Phường 1","Phường 2","Phường 3","Phường 4","Phường 5","Phường 6","Phường 7","Phường 8","Phường 9","Phường 10","Phường 11","Phường 12","Phường 13","Phường 14","Phường 15"],
+    "district BinhTan": ["An Lạc","An Lạc A","Tân Tạo","Tân Tạo A","Bình Trị Đông","Bình Trị Đông A","Bình Trị Đông B","Bình Hưng Hòa","Bình Hưng Hòa A"],
+    "district BinhThanh": ["Phường 1","Phường 2","Phường 3","Phường 5","Phường 6","Phường 7","Phường 11","Phường 12","Phường 13","Phường 14","Phường 15","Phường 17","Phường 19","Phường 21","Phường 22","Phường 24","Phường 25","Phường 26","Phường 27","Phường 28"],
+    "district GoVap": ["Phường 1","Phường 3","Phường 5","Phường 6","Phường 8","Phường 10","Phường 11","Phường 12","Phường 14","Phường 15","Phường 16","Phường 17"],
+    "district PhuNhuan": ["Phường 1","Phường 2","Phường 4","Phường 5","Phường 7","Phường 8","Phường 9","Phường 10","Phường 11","Phường 13","Phường 15",],
+    "district BinhChanh": ["Thị trấn An Lạc","Xã Qui Đức","Xã Phong Phú","Xã Đa Phước","Xã Bình Hưng","Xã Hưng Long","Xã Tân Quý Tây","Xã An Phú Tây","Xã Bình Chánh","Xã Tân Túc","Xã Tân Nhựt","Xã Tân Kiên","Xã Tân Tạo","Xã Bình Trị Đông","Xã Bình Hưng Hòa","Xã Vĩnh Lộc A","Xã Vĩnh Lộc B","Xã Lê Minh Xuân","Xã Phạm Văn Hai","Xã Bình Lợi"],
+    "district HocMon": ["Thị trấn Hóc Môn","Xã Đông Thạnh","Xã Bà Điểm","Xã Nhị Bình","Xã Tân Thới Nhì","Xã Tân Hiệp","Xã Tân Xuân","Xã Thới Tam Thôn","Xã Trung Chánh","Xã Xuân Thới Sơn","Xã Xuân Thới Thượng","Xã Xuân Thới Đông"],
+    "district CanGio": ["Xã An Thới Đông","Xã Bình Khánh","Xã Cần Thạnh","Xã Long Hòa","Xã Lý Nhơn","Xã Tam Thôn Hiệp","Xã Thạnh An"],
+    "district NhaBe": ["Thị trấn Nhà Bè","Xã Phước Kiển","Xã Phước Lộc","Xã Nhơn Đức","Xã Phú Xuân","Xã Long Thới","Xã Hiệp Phước"]
+};
+
+// Lấy các phần tử dropdown
+// Xác định dropdown cho quận và phường
+const districtDropdown = document.getElementById('district-dropdown'); // Thay ID phù hợp
+const wardDropdown = document.getElementById('ward-dropdown'); // Thay ID phù hợp
+
+// Lắng nghe sự kiện thay đổi trên dropdown quận
+districtDropdown.addEventListener('change', () => {
+    const selectedDistrict = districtDropdown.value; // Lấy giá trị quận được chọn
+    const wards = wardsByDistrict[selectedDistrict] || []; // Lấy danh sách phường theo quận
+    
+    // Xóa các tùy chọn cũ
+    wardDropdown.innerHTML = '<option value="">Chọn Phường / Xã</option>';
+    
+    // Thêm các tùy chọn mới
+    wards.forEach(ward => {
+        const option = document.createElement('option');
+        option.value = ward;
+        option.textContent = ward;
+        wardDropdown.appendChild(option);
+    });
+});
+
+districtDropdown.addEventListener('change', () => {
+    const selectedDistrict = districtDropdown.value;
+    console.log("Quận được chọn:", selectedDistrict);
+    const wards = wardsByDistrict[selectedDistrict] || [];
+    console.log("Danh sách phường:", wards);
+
+    wardDropdown.innerHTML = '<option value="">Chọn Phường / Xã</option>';
+    wards.forEach(ward => {
+        const option = document.createElement('option');
+        option.value = ward;
+        option.textContent = ward;
+        wardDropdown.appendChild(option);
+    });
+});
