@@ -73,6 +73,16 @@ if(!address){
             ward: 'Phường 13',
             street: '798, An Dương Vương',
         },
+        {
+            customerId: 8,
+            fullname: 'Nguyễn Văn Liêm',
+            email: 'liem123@gmail.com',
+            phone: '0123456479',
+            province: 'Hồ Chí Minh',
+            district: 'Quận 5',
+            ward: 'Phường 11',
+            street: '667, Nguyễn Trãi',
+        }
         
     ]
     // Lưu dữ liệu mặc định vào localStorage
