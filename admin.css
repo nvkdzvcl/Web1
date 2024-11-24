@@ -704,3 +704,146 @@ body {
     color: #333;
     text-align: right;
 }
+/* Ẩn phần chứa danh sách sản phẩm */
+.product-content {
+    display: none; /* Ẩn phần tử này mặc định */
+    flex-wrap: wrap; /* Cho phép các phần tử con trong flex container được bao bọc */
+    width: 100%; /* Chiều rộng của phần tử chiếm 100% không gian */
+}
+
+/* Phần danh sách sản phẩm */
+.product-list {
+    border: 2px solid black; /* Viền đen xung quanh danh sách sản phẩm */
+    width: 70%; /* Chiều rộng của phần này chiếm 70% chiều rộng của phần chứa */
+    float: left; /* Cho phần tử này nằm bên trái */
+    box-sizing: border-box; /* Bao gồm cả padding và border trong tổng chiều rộng */
+    background-color: white; /* Màu nền của phần danh sách sản phẩm */
+}
+
+/* Tiêu đề phần danh sách sản phẩm */
+.product-list h1 {
+    text-align: center; /* Căn giữa nội dung của tiêu đề */
+    background-color: #3b8a3e; /* Màu nền của tiêu đề */
+    color: black; /* Màu chữ của tiêu đề */
+    padding: 10px; /* Khoảng cách bên trong tiêu đề */
+    margin: 0; /* Loại bỏ margin mặc định */
+}
+
+/* Bảng hiển thị danh sách sản phẩm */
+.product-list table {
+    width: 100%; /* Bảng chiếm 100% chiều rộng phần tử chứa */
+    border-collapse: collapse; /* Gộp các viền lại cho bảng */
+    background-color: white; /* Màu nền của bảng */
+}
+
+/* Các ô tiêu đề và ô dữ liệu trong bảng sản phẩm */
+.product-list th,
+.product-list td {
+    border: 1px solid #ccc; /* Viền nhẹ cho các ô trong bảng */
+    padding: 8px; /* Khoảng cách trong các ô */
+    text-align: center; /* Căn giữa văn bản trong các ô */
+}
+
+/* Phần phân trang sản phẩm */
+.pagination-product {
+    margin-top: 20px; /* Khoảng cách trên cùng của phân trang */
+    display: flex; /* Dùng flexbox để căn chỉnh các nút phân trang */
+    justify-content: center; /* Căn giữa các nút phân trang */
+}
+
+/* Các nút phân trang */
+.pagination-btn {
+    background-color: #3b8a3e; /* Màu nền của nút phân trang */
+    color: white; /* Màu chữ của nút phân trang */
+    padding: 6px 8px; /* Khoảng cách bên trong nút */
+    border: none; /* Loại bỏ viền mặc định của nút */
+    cursor: pointer; /* Hiển thị con trỏ chuột dạng tay khi hover */
+    margin-right: 4px; /* Khoảng cách giữa các nút phân trang */
+    border: 1px solid #ccc; /* Viền nhẹ xung quanh nút phân trang */
+}
+
+/* Thay đổi màu sắc khi hover lên nút phân trang */
+.pagination-btn:hover {
+    border: 3px solid black; /* Tăng độ dày của viền khi hover lên nút */
+}
+
+/* Cột bên phải (search và add sản phẩm) */
+.right-column {
+    width: 30%; /* Chiều rộng cột chiếm 30% */
+    padding-left: 10px; /* Khoảng cách từ trái cho cột */
+    float: left; /* Cột nằm bên trái */
+}
+
+/* Phần tìm kiếm và thêm sản phẩm */
+.search,
+.add {
+    margin-bottom: 10px; /* Khoảng cách dưới cùng của các phần */
+    padding: 10px; /* Khoảng cách bên trong */
+    border: 3px solid black; /* Viền dày xung quanh các phần này */
+    background-color: white; /* Màu nền trắng */
+}
+
+/* Nút trong form tìm kiếm và thêm sản phẩm */
+.search form button,
+.add form button {
+    width: 25%; /* Đặt chiều rộng của nút là 25% của phần chứa */
+    margin: 10px auto; /* Tạo khoảng cách trên dưới và căn giữa nút */
+    display: block; /* Hiển thị nút dưới dạng block */
+}
+
+/* Tiêu đề của form tìm kiếm và thêm sản phẩm */
+.add h1,
+.search h1 {
+    text-align: center; /* Căn giữa tiêu đề */
+    background-color: #3b8a3e; /* Màu nền của tiêu đề */
+    margin-bottom: 10px; /* Khoảng cách phía dưới của tiêu đề */
+}
+
+/* Trường chọn file ảnh trong form thêm sản phẩm */
+.add input[type="file"] {
+    margin-left: 30%; /* Đẩy trường chọn file sang bên phải */
+    margin-top: 5%; /* Khoảng cách từ trên */
+}
+
+/* Nút thêm sản phẩm */
+.add form button {
+    font-size: 25px; /* Cỡ chữ của nút */
+    font-weight: 600; /* Đậm chữ nút */
+    width: 100%; /* Nút chiếm toàn bộ chiều rộng */
+    height: 50px; /* Chiều cao của nút */
+    background-color: #3b8a3e; /* Màu nền của nút */
+}
+
+/* Phần nhập giá sản phẩm */
+.price-input {
+    display: none; /* Ẩn phần nhập giá mặc định */
+}
+
+/* Hiển thị phần nhập giá khi checkbox được chọn */
+.add input[type="checkbox"]:checked + .price-input {
+    display: block; /* Hiển thị phần nhập giá khi checkbox được chọn */
+}
+
+/* Các trường nhập giá với các id riêng biệt */
+#price-s-input,
+#price-m-input,
+#price-l-input {
+    display: inline-block; /* Hiển thị theo dạng inline-block */
+    width: 100px; /* Đặt chiều rộng của các trường nhập giá */
+    padding: 5px; /* Khoảng cách bên trong */
+}
+
+/* Ảnh sản phẩm trong form thêm sản phẩm */
+.add img {
+    width: 25%; /* Chiều rộng ảnh chiếm 25% chiều rộng của phần chứa */
+    display: block; /* Hiển thị ảnh dưới dạng block */
+    margin-left: 10px; /* Khoảng cách từ trái cho ảnh */
+}
+
+/* Nhãn "productimage" trong form thêm sản phẩm */
+.add label[for="productimage"] {
+    display: flex; /* Sử dụng flexbox để căn chỉnh nhãn */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    justify-content: center; /* Căn giữa theo chiều ngang */
+    padding-right: 10px; /* Khoảng cách bên phải */
+}
