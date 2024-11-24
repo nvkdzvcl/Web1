@@ -190,15 +190,23 @@ document.addEventListener('click', (event) => {
 
 document.addEventListener('DOMContentLoaded', (event) => {
     let islogin = false;
-    // tự động đăng nhập
-    let accounts = JSON.parse(localStorage.getItem('accounts')) || [];
-     if (accounts.length > 0) {
-         let account = accounts[0]; 
-         document.getElementById('loginLink').innerText = account.email;
+   
+
+     let customers = JSON.parse(localStorage.getItem('customers')) || [];
+    
+     // Tự động đăng nhập 
+     
+    if (customers.length > 0) {
+        
+         loggedInCustomer = customers[0]; 
+         localStorage.setItem('loggedInCustomer', JSON.stringify(loggedInCustomer));
+         document.getElementById('loginLink').innerText = user.username;
          document.getElementById('login-item').classList.add('logged-in');
+         console.log(`Đã đăng nhập với tài khoản: ${user.username}`);
          islogin = true;
      }
      
+
     // Hiển thị form đăng nhập
     document.getElementById('loginLink').addEventListener('click', () => {
         if(!islogin){
@@ -327,7 +335,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     // Xư lý đăng suất
     document.getElementById('logoutButton').addEventListener('click', () => { 
-        // localStorage.removeItem('accounts');
+        
         document.getElementById('loginLink').innerText = 'Đăng nhập';
         document.getElementById('login-item').classList.remove('logged-in');
         islogin = false;
