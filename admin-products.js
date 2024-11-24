@@ -1,4 +1,5 @@
 // Lắng nghe sự kiện hiển thị sản phẩm
+let filteredProducts = [];
 document.querySelector('.view-product').addEventListener('click', () => {
     document.querySelector('.product-content').style.display = 'flex';
     document.querySelector('.order-content').style.display = 'none';
@@ -32,13 +33,84 @@ function renderProductList(products) {
             <td>${product.sizes.map(size => size.price).join(', ')}</td>
             <td>
                 <button onclick="editProduct(${product.id})">Edit</button>
-                <button onclick="deleteProduct(${product.id})">Delete</button>
                 <button onclick="editImgProduct(${product.id})">Edit img</button>
+                <button onclick="deleteProduct(${product.id})">Delete</button>
             </td>
         `;
         container.appendChild(productElement);
     });
 }
+// Hàm xóa sản phẩm
+function deleteProduct(productId) {
+    // Hiển thị hộp thoại xác nhận
+    const confirmation = confirm("Do you want to delete this product?");
+
+    // Nếu người dùng chọn "OK", tiếp tục xóa sản phẩm
+    if (confirmation) {
+        // Lấy danh sách sản phẩm từ localStorage
+        let products = getProducts();
+
+        // Tìm sản phẩm cần xóa và lọc nó ra khỏi mảng
+        products = products.filter(product => product.id !== productId);
+
+        // Lưu lại danh sách sản phẩm đã cập nhật vào localStorage
+        saveToLocalStorage(products);
+
+        // Hiển thị thông báo thành công
+        alert("Product has been successfully deleted!");
+
+        // Hiển thị lại danh sách sản phẩm sau khi xóa (có thể cần gọi paginate hoặc renderProductList)
+        if (filteredProducts.length === 0) {
+            paginate(products); // Phân trang lại nếu không có tìm kiếm
+        } else {
+            renderProductList(filteredProducts); // Hiển thị kết quả tìm kiếm (không phân trang)
+        }
+    } else {
+        // Nếu người dùng chọn "Cancel", không làm gì cả
+        alert("Product deletion was canceled.");
+    }
+}
+document.getElementById('size-all').addEventListener('change', function() {
+    const sizeS = document.getElementById('size-s');
+    const sizeM = document.getElementById('size-m');
+    const sizeL = document.getElementById('size-l');
+    
+    // Nếu "All" được chọn, vô hiệu hóa các checkbox S, M, L
+    if (this.checked) {
+        sizeS.disabled = true;
+        sizeM.disabled = true;
+        sizeL.disabled = true;
+        
+        // Nếu "All" được chọn, tự động đánh dấu tất cả các checkbox S, M, L là không chọn
+        sizeS.checked = false;
+        sizeM.checked = false;
+        sizeL.checked = false;
+    } else {
+        sizeS.disabled = false;
+        sizeM.disabled = false;
+        sizeL.disabled = false;
+    }
+});
+
+// Xử lý khi các checkbox S, M, L được thay đổi
+document.getElementById('size-s').addEventListener('change', function() {
+    if (this.checked) {
+        document.getElementById('size-all').checked = false;
+    }
+});
+
+document.getElementById('size-m').addEventListener('change', function() {
+    if (this.checked) {
+        document.getElementById('size-all').checked = false;
+    }
+});
+
+document.getElementById('size-l').addEventListener('change', function() {
+    if (this.checked) {
+        document.getElementById('size-all').checked = false;
+    }
+});
+
 
 // Hàm thay đổi ảnh sản phẩm
 function editImgProduct(productId) {
@@ -46,27 +118,21 @@ function editImgProduct(productId) {
     const product = products.find(p => p.id === productId);
 
     if (product) {
-        // Tạo một form input file để người dùng chọn ảnh mới
         const fileInput = document.createElement('input');
         fileInput.type = 'file';
         fileInput.accept = 'image/*';
 
-        // Khi người dùng chọn ảnh mới
         fileInput.addEventListener('change', function () {
             const file = fileInput.files[0];
             if (file) {
                 const newImage = URL.createObjectURL(file);
                 product.image = newImage;
 
-                // Lưu lại ảnh mới vào localStorage
                 saveToLocalStorage(products);
-
-                // Cập nhật lại giao diện
                 paginate(products);
             }
         });
 
-        // Mở hộp thoại chọn ảnh
         fileInput.click();
     } else {
         alert("Product not found.");
@@ -103,101 +169,11 @@ function handleAddProduct() {
     const newProduct = { id: newProductId, name, type, sizes: selectedSizes, image };
     products.push(newProduct);
     saveToLocalStorage(products);
-    paginate(products); // Gọi hàm phân trang sau khi thêm sản phẩm
-}
 
-// Sửa sản phẩm
-// Sửa sản phẩm
-function editProduct(productId) {
-    const products = getProducts();
-    const product = products.find(p => p.id === productId);
-
-    if (product) {
-        // Nhập thông tin mới cho sản phẩm
-        const newName = prompt("Enter new product name:", product.name);
-        const newType = prompt("Enter new product type:", product.type);
-
-        // Kiểm tra số lượng size của sản phẩm
-        const sizes = product.sizes;
-        let updatedSizes = [];
-
-        // Nếu sản phẩm có 1 size duy nhất
-        if (sizes.length === 1) {
-            // Chỉ hỏi giá cho size duy nhất
-            const size = sizes[0].size;
-            let newPrice = prompt(`Enter new price for size ${size}:`, sizes[0].price);
-
-            // Kiểm tra và cập nhật giá mới cho size
-            if (newPrice && !isNaN(newPrice)) {
-                updatedSizes = [{ size: size, price: parseInt(newPrice) }];
-            } else {
-                updatedSizes = sizes; // Không thay đổi giá nếu nhập không hợp lệ
-            }
-        } 
-        // Nếu sản phẩm có 2 size (ví dụ: S và M)
-        else if (sizes.length === 2) {
-            const newPriceS = prompt("Enter new price for size S (leave blank if no change):", sizes.find(s => s.size === 'S')?.price || "");
-            const newPriceM = prompt("Enter new price for size M (leave blank if no change):", sizes.find(s => s.size === 'M')?.price || "");
-
-            // Cập nhật lại các giá trị của sản phẩm
-            updatedSizes = sizes.map(size => {
-                if (size.size === 'S' && newPriceS !== "") {
-                    size.price = isNaN(newPriceS) ? size.price : parseInt(newPriceS);
-                }
-                if (size.size === 'M' && newPriceM !== "") {
-                    size.price = isNaN(newPriceM) ? size.price : parseInt(newPriceM);
-                }
-                return size;
-            });
-        } 
-        // Nếu sản phẩm có nhiều hơn 2 size
-        else {
-            // Nếu sản phẩm có nhiều size (S, M, L), yêu cầu nhập giá cho từng size
-            const newPriceS = prompt("Enter new price for size S (leave blank if no change):", sizes.find(s => s.size === 'S')?.price || "");
-            const newPriceM = prompt("Enter new price for size M (leave blank if no change):", sizes.find(s => s.size === 'M')?.price || "");
-            const newPriceL = prompt("Enter new price for size L (leave blank if no change):", sizes.find(s => s.size === 'L')?.price || "");
-
-            // Cập nhật lại các giá trị của sản phẩm
-            updatedSizes = sizes.map(size => {
-                if (size.size === 'S' && newPriceS !== "") {
-                    size.price = isNaN(newPriceS) ? size.price : parseInt(newPriceS);
-                }
-                if (size.size === 'M' && newPriceM !== "") {
-                    size.price = isNaN(newPriceM) ? size.price : parseInt(newPriceM);
-                }
-                if (size.size === 'L' && newPriceL !== "") {
-                    size.price = isNaN(newPriceL) ? size.price : parseInt(newPriceL);
-                }
-                return size;
-            });
-        }
-
-        if (newName && newType && updatedSizes.length > 0) {
-            // Cập nhật lại các giá trị của sản phẩm
-            product.name = newName;
-            product.type = newType;
-            product.sizes = updatedSizes;
-
-            // Lưu lại danh sách sản phẩm đã được sửa đổi vào localStorage
-            saveToLocalStorage(products);
-
-            // Hiển thị lại danh sách sản phẩm mới với phân trang
-            paginate(products); // Gọi hàm phân trang lại sau khi sửa sản phẩm
-        } else {
-            alert("Please enter valid data.");
-        }
+    if (filteredProducts.length === 0) {
+        paginate(products); // Phân trang nếu không có tìm kiếm
     } else {
-        alert("Product not found.");
-    }
-}
-
-// Xóa sản phẩm
-function deleteProduct(productId) {
-    if (confirm("Are you sure you want to delete this product?")) {
-        let products = getProducts();
-        products = products.filter(product => product.id !== productId);
-        saveToLocalStorage(products);
-        paginate(products); // Gọi hàm phân trang lại sau khi xóa sản phẩm
+        renderProductList(filteredProducts); // Hiển thị kết quả tìm kiếm (không phân trang)
     }
 }
 
@@ -207,54 +183,29 @@ function searchProduct() {
     const size = document.getElementById('searchproductsize').value;
     const type = document.getElementById('searchproductype').value;
 
-    let filteredProducts = getProducts();
+    filteredProducts = getProducts();
 
     if (name) filteredProducts = filteredProducts.filter(p => p.name.toLowerCase().includes(name));
     if (size !== "all") filteredProducts = filteredProducts.filter(p => p.sizes.some(s => s.size.toLowerCase() === size.toLowerCase()));
     if (type !== "all") filteredProducts = filteredProducts.filter(p => p.type.toLowerCase() === type.toLowerCase());
 
-    paginate(filteredProducts); // Gọi hàm phân trang cho kết quả tìm kiếm
+    renderProductList(filteredProducts); // Render tất cả các sản phẩm tìm được (không phân trang)
 }
 
-// Lắng nghe sự kiện tìm kiếm
-document.getElementById('searchproductname').addEventListener('input', searchProduct);
-document.getElementById('searchproductsize').addEventListener('change', searchProduct);
-document.getElementById('searchproductype').addEventListener('change', searchProduct);
+// Lắng nghe sự kiện nhấn nút tìm kiếm
+document.querySelector('.search button').addEventListener('click', searchProduct);
 
-// Lắng nghe sự kiện thêm sản phẩm
-document.querySelector('.add form button').addEventListener('click', handleAddProduct);
-
-// Lắng nghe sự kiện chọn "All" cho size và điều chỉnh trạng thái các size khác
-document.getElementById('size-all').addEventListener('change', function () {
-    const allSelected = this.checked;
-    document.getElementById('size-s').disabled = allSelected;
-    document.getElementById('size-m').disabled = allSelected;
-    document.getElementById('size-l').disabled = allSelected;
-    if (allSelected) {
-        document.getElementById('size-s').checked = true;
-        document.getElementById('size-m').checked = true;
-        document.getElementById('size-l').checked = true;
-    }
-});
-
-// Khi chọn một size, bỏ chọn "All"
-document.querySelectorAll('input[name="size"]').forEach(function (checkbox) {
-    checkbox.addEventListener('change', function () {
-        if (document.getElementById('size-all').checked) {
-            document.getElementById('size-all').checked = false;
-        }
-    });
-});
-
-// Hàm phân trang: Chia danh sách sản phẩm thành các trang
+// Hàm phân trang
 let currentPage = 1;
-const productsPerPage = 10; // Mỗi trang sẽ hiển thị tối đa 10 sản phẩm
+const productsPerPage = 10;
 
 function paginate(products) {
-    const totalPages = Math.ceil(products.length / productsPerPage);
+    const productsToPaginate = filteredProducts.length > 0 ? filteredProducts : products;
+
+    const totalPages = Math.ceil(productsToPaginate.length / productsPerPage);
     const startIndex = (currentPage - 1) * productsPerPage;
     const endIndex = startIndex + productsPerPage;
-    const currentProducts = products.slice(startIndex, endIndex);
+    const currentProducts = productsToPaginate.slice(startIndex, endIndex);
 
     renderProductList(currentProducts);
 
@@ -265,22 +216,21 @@ function paginate(products) {
 
 // Hàm xử lý thay đổi trang khi nhấn vào nút "Prev" hoặc "Next"
 function changePage(direction) {
-    const products = getProducts();
+    const products = filteredProducts.length > 0 ? filteredProducts : getProducts();
     const totalPages = Math.ceil(products.length / productsPerPage);
 
-    // Thay đổi trang hiện tại theo hướng "Prev" hoặc "Next"
     if (direction === 'next' && currentPage < totalPages) {
         currentPage++;
     } else if (direction === 'prev' && currentPage > 1) {
         currentPage--;
     }
 
-    paginate(products); // Hiển thị lại trang mới
+    paginate(products);
 }
 
 // Lắng nghe sự kiện phân trang
 document.getElementById('prev-page').addEventListener('click', () => changePage('prev'));
 document.getElementById('next-page').addEventListener('click', () => changePage('next'));
 
-// Đầu tiên, hiển thị trang đầu tiên
+// Ban đầu, hiển thị trang đầu tiên với danh sách tất cả sản phẩm
 paginate(getProducts());
