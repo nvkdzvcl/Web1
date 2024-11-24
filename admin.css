@@ -764,7 +764,7 @@ body {
 
 /* Thay đổi màu sắc khi hover lên nút phân trang */
 .pagination-btn:hover {
-    border: 3px solid black; /* Tăng độ dày của viền khi hover lên nút */
+    background-color: black; /* Đổi màu nền */
 }
 
 /* Cột bên phải (search và add sản phẩm) */
@@ -786,6 +786,7 @@ body {
 /* Nút trong form tìm kiếm và thêm sản phẩm */
 .search form button,
 .add form button {
+    cursor: pointer;
     width: 25%; /* Đặt chiều rộng của nút là 25% của phần chứa */
     margin: 10px auto; /* Tạo khoảng cách trên dưới và căn giữa nút */
     display: block; /* Hiển thị nút dưới dạng block */
