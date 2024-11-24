@@ -309,7 +309,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
         customers.push({
             id: customers.length + 1, // Tự động tăng ID
             username: username,
-            password: password
+            password: password,
+            status: 'true'
         });
     
         // Lưu dữ liệu mới vào localStorage
@@ -579,63 +580,102 @@ document.querySelector('.btn-cart.back').addEventListener('click', () => {
 });
 
 
+
 document.querySelector('.btn-cart.btn--primary1').addEventListener('click', () => {
     const cartTableBody = document.querySelector('#cart tbody');
-    // const paidProductList = document.getElementById('paidProductList');
-    const paidProductList = document.querySelector('#paidProductList table');
 
-
-    // Kiểm tra xem có sản phẩm trong giỏ hàng hay không
+    // Kiểm tra giỏ hàng trống
     if (cartTableBody.rows.length === 0) {
         alert("Giỏ hàng trống. Vui lòng thêm sản phẩm trước khi thanh toán.");
         return;
     }
 
-    // Lấy danh sách sản phẩm từ giỏ hàng
+    // kiểm tra nhập vào
+    const customerName = document.getElementById('customerName').value.trim();
+    const customerAddress = document.getElementById('customerAddress').value.trim();
+    const customerPhone = document.getElementById('customerPhone').value.trim();
+
+    if (!customerName || !customerAddress || !customerPhone) {
+        alert("Vui lòng nhập đầy đủ thông tin khách hàng (Tên, Địa chỉ và Số điện thoại).");
+        return;
+    }
+
+    // Kiểm tra định dạng số điện thoại
+    const phonePattern = /^[0-9]{10}$/;
+    if (!phonePattern.test(customerPhone)) {
+        alert("Số điện thoại không hợp lệ. Vui lòng nhập 10 chữ số.");
+        return;
+    }
+
+
+    // Lấy giỏ hàng từ localStorage
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const paidProducts = [];
+
+    // Lấy danh sách đơn hàng hiện tại từ localStorage
+    let orders = JSON.parse(localStorage.getItem('orders')) || [];
+
+    // Lấy loại thanh toán từ select
+    const paymentTypeElement = document.getElementById('paymentSelect');
+    const paymentTypeValue = paymentTypeElement.value;
+
+    // Đổi tên hiển thị loại thanh toán
+    let paymentTypeText = '';
+    switch(paymentTypeValue) {
+        case 'cash': paymentTypeText = 'Tiền mặt'; break;
+        case 'bank-transfer': paymentTypeText = 'Chuyển khoản'; break;
+        case 'card': paymentTypeText = 'Thẻ'; break;
+    }
+
+    // Tạo đơn hàng mới
+    const newOrder = {
+        id: orders.length + 1,
+        customerId: 1, // Giả sử ID khách hàng cố định
+        status: 'Chưa liên hệ',
+        date: new Date().toISOString().split('T')[0],
+        PaymentType: paymentTypeText,
+        orderItems: []
+    };
 
     // Lặp qua các sản phẩm trong giỏ hàng
     Array.from(cartTableBody.rows).forEach(row => {
-        const productName = row.cells[2].innerText; // Tên sản phẩm
-        const productPrice = row.cells[3].innerText; // Giá sản phẩm
-        const productImage = row.cells[1].querySelector('img').src; // Hình ảnh sản phẩm
+        const productId = row.getAttribute('data-product-id'); // Giả sử có thuộc tính data-product-id
+        const productName = row.cells[2].innerText;
+        const productPrice = row.cells[3].innerText;
         const productQuantity = row.cells[4].innerText;
+        const productImage = row.cells[1].querySelector('img').src;
 
-        // Tạo đối tượng sản phẩm đã thanh toán
-        const paidProduct = {
-            name: productName,
-            price: productPrice,
-            image: productImage,
-            quantity: productQuantity
-        };
+        // Thêm vào orderItems
+        newOrder.orderItems.push({
+            productId: parseInt(productId),
+            sizes: [
+                { size: 'M', quantity: parseInt(productQuantity) }
+            ]
+        });
 
-        // Thêm sản phẩm vào danh sách đã thanh toán
-        paidProducts.push(paidProduct);
-
-        // Tạo một phần tử mới cho sản phẩm đã thanh toán
+        // Tạo hàng mới cho danh sách đã thanh toán
         const paidProductItem = document.createElement('tr');
-        paidProductItem.innerHTML = ` 
-                        <td><img src="${productImage}" alt=""></td>
-                        <td>${productName}</td>
-                        <td>${productPrice}</td>
-                        <td>${productQuantity}</td>
-                        <td>Chưa sử lí</td>`;
-        
-        // Thêm sản phẩm vào danh sách đã thanh toán
-        paidProductList.appendChild(paidProductItem);
+        paidProductItem.innerHTML = `
+            <td><img src="${productImage}" alt="" width="50"></td>
+            <td>${productName}</td>
+            <td>${productPrice}</td>
+            <td>${productQuantity}</td>
+            <td>${paymentTypeText}</td>
+        `;
+
+        // Thêm vào bảng sản phẩm đã thanh toán
+        document.querySelector('#paidProductList table').appendChild(paidProductItem);
     });
 
-    // Cập nhật localStorage: xóa giỏ hàng và lưu danh sách sản phẩm đã thanh toán
+    // Thêm đơn hàng vào danh sách orders và cập nhật localStorage
+    orders.push(newOrder);
+    localStorage.setItem('orders', JSON.stringify(orders));
     localStorage.setItem('cart', JSON.stringify([])); // Xóa giỏ hàng
-    localStorage.setItem('paidProducts', JSON.stringify(paidProducts)); // Lưu sản phẩm đã thanh toán
 
-    // Xóa tất cả sản phẩm trong giỏ hàng
+    // Xóa giỏ hàng trên giao diện
     cartTableBody.innerHTML = '';
 
+    // Đóng modal và thông báo
     const shippingModal = document.querySelector('.ship-modal');
-    shippingModal.style.display = 'none'; 
-
-    // Thông báo thành công
+    shippingModal.style.display = 'none';
     alert("Thanh toán thành công!");
 });

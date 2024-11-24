@@ -1321,7 +1321,7 @@ margin: 5px 0;
 
 }
 
-#name{
+#customerName{
     width: 100%;
 }
 .form-row {
@@ -1335,7 +1335,7 @@ margin: 5px 0;
     margin-left: 5px;
 }
 
-#address{
+#customerAddress{
     width: 100%;
 }
 .dropdows{
