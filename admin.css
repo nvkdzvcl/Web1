@@ -848,3 +848,68 @@ body {
     justify-content: center; /* Căn giữa theo chiều ngang */
     padding-right: 10px; /* Khoảng cách bên phải */
 }
+@media (max-width: 1020px) {
+    /* Reduce the left menu width by 10% */
+    .leftmenu {
+        width: 63px; /* 10% less than 70px */
+    }
+
+    .leftmenu:hover {
+        width: 225px; /* Adjust based on reduced width */
+    }
+
+    .content {
+        margin-left: 63px; /* Adjust content margin accordingly */
+    }
+}
+
+/* Tablet devices (768px and below) */
+
+
+/* Mobile devices (500px and below) */
+@media (max-width: 750px) {
+    /* Hide the left menu and header completely */
+    #header {
+        display: none;
+    }
+
+
+    /* Content takes full width and height */
+    .content {
+        width: 100%; /* Full width */
+        height: 100vh; 
+        margin-left: 10px;
+        padding: 10px;
+        background-size: cover;
+    }
+
+    .product-content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .product-list {
+        width: 100%;
+    }
+
+    .right-column {
+        width: 100%;
+    }
+
+
+}
+@media (max-width: 600px) {
+    /* Hide all other elements */
+    .right-column, .leftmenu{
+        display: none;
+    }
+
+    /* Only show product-list */
+    .product-list {
+        display: block;
+        width: 100%; /* Ensure product list takes full width */
+    }
+}
+
+
+
