@@ -189,22 +189,18 @@ document.addEventListener('click', (event) => {
 //  js cho form đăng nhập đăng kí
 
 document.addEventListener('DOMContentLoaded', (event) => {
-    let islogin = false;
-   
+    let islogin = false; // Đảm bảo biến được khai báo trước khi sử dụng
 
-     let customers = JSON.parse(localStorage.getItem('customers')) || [];
-    
-     // Tự động đăng nhập 
-     
+    // Tự động đăng nhập
+    let customers = JSON.parse(localStorage.getItem('customers')) || [];
     if (customers.length > 0) {
-        
-         loggedInCustomer = customers[0]; 
-         localStorage.setItem('loggedInCustomer', JSON.stringify(loggedInCustomer));
-         document.getElementById('loginLink').innerText = user.username;
-         document.getElementById('login-item').classList.add('logged-in');
-         console.log(`Đã đăng nhập với tài khoản: ${user.username}`);
-         islogin = true;
-     }
+        let loggedInCustomer = customers[0]; 
+        localStorage.setItem('loggedInCustomer', JSON.stringify(loggedInCustomer));
+        document.getElementById('loginLink').innerText = loggedInCustomer.username;
+        document.getElementById('login-item').classList.add('logged-in');
+        console.log(`Đã đăng nhập với tài khoản: ${loggedInCustomer.username}`);
+        islogin = true;
+    }
      
 
     // Hiển thị form đăng nhập
@@ -244,7 +240,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     document.querySelector('.btn--primary2').addEventListener('click', () => {
         let usernameInput = document.querySelector('.login .name'); 
         let passwordInput = document.querySelector('.login .pass');
-    
         let username = usernameInput.value.trim(); 
         let password = passwordInput.value.trim();
     
@@ -423,7 +418,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Add to cart functionality
             addToCartBtn.onclick = () => {
-                if (!islogin) {
+                const isLoggedIn = JSON.parse(localStorage.getItem('isLoggedIn')) || false;
+            
+                if (!isLoggedIn) {
                     alert('Bạn cần phải đăng nhập');
                     return;
                 }
@@ -431,18 +428,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 const cart = JSON.parse(localStorage.getItem('cart')) || [];
                 const selectedSize = modalProductSize.value;
                 const price = selectedSize === 'M' ? productPriceM : productPriceL;
-                const quantity = parseInt(quantityInput.value); // Lấy số lượng từ input
+                const quantity = parseInt(quantityInput.value);
             
-                // Kiểm tra sản phẩm đã tồn tại trong giỏ hàng chưa
                 const existingItemIndex = cart.findIndex(
                     item => item.name === productName && item.size === selectedSize
                 );
             
                 if (existingItemIndex >= 0) {
-                    // Nếu sản phẩm đã tồn tại, tăng số lượng
                     cart[existingItemIndex].quantity += quantity;
                 } else {
-                    // Nếu sản phẩm chưa tồn tại, thêm mới
                     cart.push({
                         name: productName,
                         size: selectedSize,
@@ -456,6 +450,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Sản phẩm đã được thêm vào giỏ hàng');
                 productModal.style.display = 'none';
             };
+            
             
         });
    
