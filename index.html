@@ -604,18 +604,14 @@
                             <div class="auth-form__group">
                                 <input type="text" class="auth-form__input name" placeholder="Tên đăng nhập">
                             </div>
-                            <div class="auth-form__group">
-                                <input type="number" class="auth-form__input number" placeholder="Số điện thoại">
-                            </div>
+                           
                             <div class="auth-form__group">
                                 <input type="password" class="auth-form__input pass" placeholder="Mật khẩu của bạn">
                             </div>
                             <div class="auth-form__group">
                                 <input type="password" class="auth-form__input pass2" placeholder="Nhập lại Mật Khẩu">
                             </div>
-                            <div class="auth-form__group">
-                                <input type="text" class="auth-form__input address" placeholder="Địa chỉ">
-                            </div>
+                           
                         </div>
                         
                         <div class="auth-form__aside">
@@ -739,12 +735,7 @@
                     </tr>
                 </table>  
             </div>
-            <div class="shipaddress">
-                <h2>Địa chỉ giao hàng</h2>
-                <input type="text" id="addressInput" placeholder="Nhập địa chỉ giao hàng" />
-                <button id="setDefaultAddress">Đặt làm địa chỉ mặc định</button>
-                <p id="defaultAddressDisplay">Địa chỉ mặc định: Chưa có</p>
-            </div>
+           
 
             <div class="payment">
                 <h2>Phương thức thanh toán</h2>
@@ -757,11 +748,69 @@
             </div>
             
             <div id="paidProductList">
+                <h2>Sản phẩm đã thanh toán</h2>
                 <table></table>
             </div>
         </div>
     </section>
 
+    <section id="shipping">
+        <div class="ship-modal">
+            <!-- lớp phủ -->
+            <div class="ship-modal__overlay">
+            </div>
+
+            <div class="ship-modal__body">
+                <div class="container">
+                    <h2>Thông tin giao hàng</h2>
+                    <input id="name" type="text" placeholder="Họ và tên"><br>
+                   <div class="form-row">
+                    <input id="email" type="email" placeholder="Email">
+                    <input id="sdt" type="text" placeholder="Số điện thoại"><br>
+                   </div>
+                    <input id="address" type="text" placeholder="Địa chỉ"><br>
+                   <div class="dropdows">
+                    <select>
+                        <option value="">chọn Tỉnh/thành phố</option>
+                        <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+                    </select>
+                    <select>
+                        <option value="">Chọn quận / huyện</option>
+                        <option value="quận 1">Quận 1</option>
+                        <option value="quận 2">Quận 2</option>
+                        <option value="quận 3">Quận 3</option>
+                        <option value="quận 4">Quận 4</option>
+                        <option value="quận 5">Quận 5</option>
+                        <option value="quận 6">Quận 6</option>
+                        <option value="quận 6">Quận 7</option>
+                        <option value="quận 6">Quận 8</option>
+                        <option value="quận 6">Quận 9</option>
+                        <option value="quận 6">Quận 10</option>
+
+                    </select>
+                    <select>
+                        <option value="">Chọn phường / xã</option>
+                        <option value="phường 1">Phường 1</option>
+                        <option value="phường 2">Phường 2</option>
+                        <option value="phường 3">Phường 3</option>
+                        <option value="phường 4">Phường 4</option>
+                        <option value="phường 5">Phường 5</option>
+                        <option value="phường 6">Phường 6</option>
+                        <option value="phường 6">Phường 7</option>
+                        <option value="phường 6">Phường 8</option>
+                        <option value="phường 6">Phường 9</option>
+                        <option value="phường 6">Phường 10</option>
+                    </select>
+                   </div>
+                   <div class="formbtn">
+                        <button class="btn-cart back ">Giỏ hàng</button>
+                        <button class="btn-cart btn--primary1">Thanh Toán</button>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
      <!-- Chi tiết sản phầm -->
      <div id="productModal" class="modal">
         <div class="modal__overlay"></div>
