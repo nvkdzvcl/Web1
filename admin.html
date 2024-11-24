@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang quản trị</title>
-    <link rel="stylesheet" href="admin.css"> 
+    <link rel="stylesheet" href="admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <script src="products.js"></script>
     <script src="orders.js"></script>
     <script src="customers.js"></script>
     <script src="address.js"></script>
 </head>
+
 <body>
 
     <!-- Phần Header -->
@@ -33,10 +35,6 @@
         <hr>
         <ul>
             <li>
-                <i class="fa-solid fa-house"></i> 
-                <a href="index.html">Trang Chủ</a>
-            </li>
-            <li>
                 <i class="fa-solid fa-martini-glass-citrus"></i>
                 <a href="#">Sản Phẩm</a>
             </li>
@@ -54,7 +52,7 @@
             </li>
             <li>
                 <i class="fa-solid fa-door-open"></i>
-                <a href="index.html">Đăng xuất</a>
+                <a href="admin_login.html">Đăng xuất</a>
             </li>
         </ul>
     </div>
@@ -94,7 +92,7 @@
                     <div class="date-filter">
                         <label for="start-date">Từ ngày:</label>
                         <input type="date" id="start-date">
-    
+
                         <label for="end-date">Đến ngày:</label>
                         <input type="date" id="end-date">
                     </div>
@@ -123,7 +121,7 @@
                             <option value="Bình Tân">Bình Tân</option>
                             <option value="Thủ Đức">Thủ Đức</option>
                         </select>
-                        
+
                     </div>
                     <!-- Nút áp dụng tìm kiếm -->
                     <button class="apply-filter-btn">Áp dụng</button>
@@ -148,9 +146,9 @@
             <div class="order-detail">
                 <!-- Chi tiết đơn hàng nằm ở đây -->
                 <div class="order-header">
-                    
+
                 </div>
-            
+
                 <div class="order-items">
                     <h3>Chi tiết sản phẩm</h3>
                     <table>
@@ -165,18 +163,18 @@
                             </tr>
                         </thead>
                         <tbody id="order-items-tbody">
-                            
+
                             <!-- Ví dụ một sản phẩm có nhiều size -->
-                            
-                            
-                            
+
+
+
                         </tbody>
                     </table>
                     <div class="order-detail-status-main">
-                        
+
                     </div>
                     <div class="order-summary">
-                        
+
                     </div>
                 </div>
             </div>
@@ -194,7 +192,7 @@
                 <button class="btn-accept-filter">Áp dụng</button>
             </div>
             <div class="statistic-main">
-                
+
                 <div class="statistic-item">
                     <p>Mặt hàng</p>
                     <button class="statistic-type-btn statistic-btn">Xem thống kê</button>
@@ -222,11 +220,11 @@
                             </tr>
                         </tfoot>
                     </table>
-                    
+
                 </div>
                 <div class="statistic-type-detail">
                     <!-- Chi tiết mặt hàng nằm trong đây -->
-                    
+
                 </div>
 
                 <!-- Khách hàng -->
@@ -240,13 +238,14 @@
                             <th>Tổng tiền đã mua</th>
                         </thead>
                         <tbody>
-                            
+
                         </tbody>
-                        
+
                     </table>
                     <div class="statistic-pagination"></div>
-                    
-                    <div class="statistic-item-title title-top-customers">Top khách hàng phát sinh doanh thu nhiều nhất</div>
+
+                    <div class="statistic-item-title title-top-customers">Top khách hàng phát sinh doanh thu nhiều nhất
+                    </div>
                     <table class="statistic-table statistic-table-top-customers">
                         <thead>
                             <th>Mã khách hàng</th>
@@ -255,10 +254,10 @@
                             <th>Tổng tiền đã mua</th>
                         </thead>
                         <tbody>
-                            
+
                         </tbody>
                     </table>
-                    
+
                     <div class="customer-detail">
                         <!-- chi tiết khách hàng -->
                         <div class="customer-header">
@@ -280,11 +279,11 @@
                                     </tr>
                                 </thead>
                                 <tbody class="customer-items-tbody">
-                                    
+
                                     <!-- Ví dụ một sản phẩm có nhiều size -->
-                                    
-                                    
-                                    
+
+
+
                                 </tbody>
                             </table>
                             <div class="customer-summary">
@@ -299,11 +298,125 @@
 
 
             </div>
-        </div> 
+        </div>
 
-        
+        <div class="product-content">
+            <!-- Danh sách sản phẩm bên trái chiếm 70% chiều rộng -->
+            <div class="product-list">
+                <h1 class="product-title">Danh sách sản phẩm</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Ảnh</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Loại</th>
+                            <th>Size</th>
+                            <th>Giá</th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+                    <tbody class="product-detail">
+                        <!-- Nội dung sẽ được điền vào đây -->
+                    </tbody>
+                </table>
+
+                <!-- Phân trang -->
+                <div class="pagination-product">
+                    <button id="prev-page" class="pagination-btn" onclick="changePage(-1)">Prev</button>
+                    <button id="next-page" class="pagination-btn" onclick="changePage(1)">Next</button>
+                </div>
+            </div>
+
+            <!-- Cột bên phải với search ở trên và add ở dưới -->
+            <div class="right-column">
+                <!-- Phần tìm kiếm sản phẩm ở trên -->
+                <div class="search">
+                    <h1>Tìm kiếm sản phẩm</h1>
+                    <form>
+                        <label for="searchproductname">Tên sản phẩm</label>
+                        <input type="text" id="searchproductname">
+                        <br><br>
+                        <label for="searchbysize">Size</label>
+                        <select id="searchproductsize">
+                            <option value="all" selected>All</option>
+                            <option value="s">S</option>
+                            <option value="m">M</option>
+                            <option value="l">L</option>
+                        </select>
+                        <label for="searchbytype">Type</label>
+                        <select id="searchproductype">
+                            <option value="all" selected>All</option>
+                            <option value="Milktea">Milktea</option>
+                            <option value="FreshFruitTea">FreshFruitTea</option>
+                            <option value="Ice">Ice</option>
+                        </select>
+                        <button type="button">Tìm kiếm</button>
+                    </form>
+                </div>
+
+                <!-- Phần thêm sản phẩm ở dưới -->
+                <div class="add">
+                    <h1>Thêm sản phẩm</h1>
+                    <form>
+                        <label for="productname">Tên sản phẩm</label>
+                        <input type="text" id="productname"><br>
+
+                        <label for="size">Size:</label><br>
+                        <input type="checkbox" id="size-all" name="size" value="all" checked>All
+
+                        <div class="price-input">
+                            <label for="price-s">Giá cho S :</label>
+                            <input type="text" id="price-s-input"><br><br>
+                            <label for="price-m">Giá cho M:</label>
+                            <input type="text" id="price-m-input"><br><br>
+                            <label for="price-l">Giá cho L :</label>
+                            <input type="text" id="price-l-input">
+                        </div>
+
+                        <br>
+                        <input type="checkbox" id="size-s" name="size" value="s">S
+                        <div class="price-input">
+                            <label for="price-s">Giá cho S:</label>
+                            <input type="text" id="price-s-input">
+                        </div>
+                        <br>
+                        <input type="checkbox" id="size-m" name="size" value="m">M
+                        <div class="price-input">
+                            <label for="price-m">Giá cho M:</label>
+                            <input type="text" id="price-m-input">
+                        </div>
+                        <br>
+                        <input type="checkbox" id="size-l" name="size" value="l">L
+                        <div class="price-input">
+                            <label for="price-l">Giá cho L:</label>
+                            <input type="text" id="price-l-input">
+                        </div>
+                        <br>
+                        <label for="searchbysize">Chọn loại :</label>
+                        <select id="Loai">
+                            <option value="Milktea" selected>Milktea</option>
+                            <option value="FreshFruitTea">FreshFruitTea</option>
+                            <option value="Ice">Ice</option>
+                        </select>
+
+                        <br><br>
+                        <label for="productimage">
+                            <span>Ảnh</span> <img src="./image/temp2.jpg" alt="Hình ảnh sản phẩm">
+                        </label>
+                        <input type="file" id="productimage">
+                        <br><br>
+
+                        <button type="button">Thêm</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="admin-orders.js"></script>
     <script src="admin-statistic.js"></script>
+    <script src="admin-products.js"></script>
 </body>
+
 </html>
