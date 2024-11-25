@@ -1,3 +1,9 @@
+// Format tiền việt
+function formatCurrencyVND(amount) {
+    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
+}
+
+
 // thong ke
 function filterOrdersByDate(orders){
     const startDate = document.querySelector('#start-date-filter').value;
