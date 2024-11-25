@@ -26,8 +26,8 @@ document.querySelector('.view-customers').addEventListener('click',()=>{
                 <td>regular</td>
                 <td>${status}</td>
                 <td>
-                    <button>Edit</button>
-                    <button>Delete</button>
+                    <button>Edit-customer</button>
+                    <button>Delete-customer</button>
                 </td>
             </tr>
             `;
@@ -64,8 +64,8 @@ document.querySelector('.view-customers').addEventListener('click',()=>{
                 <td>regular</td>
                 <td>${status}</td>
                 <td>
-                    <button>Edit</button>
-                    <button>Delete</button>
+                    <button>Edit-customer</button>
+                    <button>Delete-customer</button>
                 </td>
             </tr>
             `;
@@ -238,7 +238,7 @@ document.getElementById('button-close').addEventListener('click',()=>{
 let customerId; 
 
 document.addEventListener('click', (e) => {
-    if (e.target && e.target.tagName === 'BUTTON' && e.target.textContent === 'Edit') {
+    if (e.target && e.target.tagName === 'BUTTON' && e.target.textContent === 'Edit-customer') {
         const row = e.target.closest('tr'); 
         
         customerId = row.querySelector('td:first-child').textContent; 
@@ -272,7 +272,7 @@ document.addEventListener('click', (e) => {
 
 
 document.addEventListener('click',(e)=>{
-    if(e.target && e.target.tagName === 'BUTTON' && e.target.textContent === 'Delete'){
+    if(e.target && e.target.tagName === 'BUTTON' && e.target.textContent === 'Delete-customer'){
         console.log('hello'); 
         const row = e.target.closest('tr');
         const customerId = parseInt(row.querySelector('td:first-child').textContent);   
