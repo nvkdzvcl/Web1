@@ -55,7 +55,10 @@ body {
     position: absolute;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+}
+.userInfo a{
+    position: relative;
+    margin-right: 200px;
 }
 
 /* Left menu */
