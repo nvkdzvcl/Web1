@@ -408,6 +408,28 @@
                     </form>
                 </div>
             </div>
+            <div id="editModal">
+                <div class="modal-content">
+                    <form>
+                        <input type="hidden" id="editProductId" />
+                        <label for="editProductName">Product Name:</label>
+                        <input type="text" id="editProductName" required />
+
+                        <!-- Container for size fields -->
+                        <div id="size-fields-container">
+                            <!-- Dynamic size fields will be inserted here -->
+                        </div>
+
+                        <button type="button" onclick="addSizeField()">Add Size</button>
+
+                        <label for="editProductImage">Product Image:</label>
+                        <input type="file" id="editProductImage" accept="image/*" />
+
+                        <button type="button" onclick="updateProduct()">Update Product</button>
+                        <button type="button" onclick="closeModal()">Close</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
     <script src="admin-orders.js"></script>
