@@ -20,7 +20,13 @@
         <section id="header">
             <!-- Nội dung Header căn phải -->
             <ul id="navbar">
-                <li><a href="#"><i class="fa-solid fa-rocket"></i> Admin</a></li>
+                <li class="userInfo"><a href="#"><i class="fa-solid fa-rocket"></i> Admin
+                        <ul>
+                            <li id="usernameItem">Username: </li>
+                            <li id="emailItem">Email: </li>
+                        </ul>
+                    </a>
+                </li>
             </ul>
         </section>
     </div>
@@ -52,7 +58,7 @@
             </li>
             <li>
                 <i class="fa-solid fa-door-open"></i>
-                <a href="admin_login.html">Đăng xuất</a>
+                <a href="admin_login.html" class="logoutLink">Đăng xuất</a>
             </li>
         </ul>
     </div>
