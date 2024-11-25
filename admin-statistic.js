@@ -289,6 +289,10 @@ function showCustomerDetail(customerId) {
     `;
 
     document.querySelector('.customer-detail').style.display = 'block';
+    document.querySelector('.customer-detail').scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+    });
 }
 
 function closeCustomerDetail() {
