@@ -400,7 +400,7 @@ footer .copyright {
     gap: 10px;
 }
 
-#pagination a {
+#pagination button {
     text-decoration: none;
     background-color: #088178;
     padding: 15px 20px;
@@ -409,7 +409,7 @@ footer .copyright {
     font-weight: 600;
 }
 
-#pagination a i {
+#pagination button i {
     font-size: 16px;
     font-weight: 600;
 }
@@ -643,8 +643,10 @@ footer .copyright {
     }
 
     #lg-bag {
-        display: none;
+        display: block;
     }
+
+
 
     #hero {
         height: 70vh;
