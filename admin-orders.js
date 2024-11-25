@@ -119,6 +119,9 @@ function displayPagination(totalOrders) {
             currentPageOrder = i;
             displayOrders(currentPageOrder);
         });
+        if(i === currentPageOrder) {
+            pageBtn.className = 'active-pagination-btn';
+        }
         pagination.appendChild(pageBtn);
     }
 }

@@ -220,6 +220,9 @@ function displayStatisticCustomerPagination(totalCustomer) {
             currentPageStatistic = i;
             displayStatisticCustomer();
         });
+        if(i === currentPageStatistic) {
+            pageBtn.className = 'active-pagination-btn';
+        }
         pagination.appendChild(pageBtn);
     }
 }

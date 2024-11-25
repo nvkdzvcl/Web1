@@ -315,8 +315,15 @@ body {
     border: none;
     cursor: pointer;
     margin-right: 4px;
-    display: flex;
-    flex-wrap: wrap;
+}
+
+.active-pagination-btn {
+    background-color: #78ac7a ;
+    color: white;
+    padding: 6px 8px;
+    border: none;
+    cursor: pointer;
+    margin-right: 4px;
 }
 
 /* Thống kê */
