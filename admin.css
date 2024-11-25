@@ -854,6 +854,84 @@ body {
     justify-content: center; /* Căn giữa theo chiều ngang */
     padding-right: 10px; /* Khoảng cách bên phải */
 }
+/* FORM EDIT CUA TINH NANG SAN PHAM */
+/* Modal content container */
+.modal-content {
+    background-color: white; /* Màu nền trắng cho modal */
+    padding: 20px; /* Khoảng cách giữa nội dung và viền */
+    border-radius: 10px; /* Bo góc cho modal */
+    width: 80%; /* Chiều rộng modal là 80% của màn hình */
+    max-width: 500px; /* Chiều rộng tối đa của modal */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Tạo hiệu ứng bóng đổ nhẹ cho modal */
+    overflow-y: auto; /* Cho phép cuộn dọc nếu nội dung vượt quá chiều cao */
+    border: 3px solid red; /* Đường viền màu đỏ */
+}
+
+/* Form Elements inside modal */
+.modal-content form {
+    display: flex; /* Sử dụng flexbox cho form */
+    flex-direction: column; /* Sắp xếp các phần tử theo chiều dọc */
+}
+
+/* Labels for input fields */
+.modal-content label {
+    font-size: 1rem; /* Kích thước chữ cho label */
+    margin-bottom: 5px; /* Khoảng cách dưới các label */
+}
+
+/* Input Fields */
+.modal-content input[type="text"], /* Định dạng cho trường nhập liệu text */
+.modal-content input[type="file"] { /* Định dạng cho trường nhập liệu file */
+    padding: 8px; /* Khoảng cách giữa nội dung và viền input */
+    margin-bottom: 15px; /* Khoảng cách dưới các input */
+    border: 1px solid #ddd; /* Đường viền màu xám nhạt */
+    border-radius: 5px; /* Bo góc cho input */
+    font-size: 1rem; /* Kích thước chữ trong input */
+}
+
+/* Container for dynamic size fields */
+#size-fields-container {
+    margin-bottom: 15px; /* Khoảng cách dưới các trường size */
+}
+
+/* Button Styles */
+.modal-content button[type="button"] {
+    background-color: #007bff; /* Màu nền xanh cho nút */
+    color: white; /* Màu chữ trắng */
+    border: none; /* Không có viền */
+    padding: 10px 15px; /* Khoảng cách bên trong nút */
+    font-size: 1rem; /* Kích thước chữ trong nút */
+    border-radius: 5px; /* Bo góc cho nút */
+    cursor: pointer; /* Con trỏ thay đổi khi di chuột vào nút */
+    margin-bottom: 10px; /* Khoảng cách dưới các nút */
+    transition: background-color 0.3s; /* Hiệu ứng chuyển màu nền khi hover */
+}
+
+/* Button Hover Effects */
+.modal-content button[type="button"]:hover {
+    background-color: #0056b3; /* Màu nền khi hover (di chuột vào) */
+}
+
+/* Close Button (delete or cancel) */
+.modal-content button[type="button"]:nth-child(3) {
+    background-color: #dc3545; /* Màu nền đỏ cho nút xóa */
+}
+
+.modal-content button[type="button"]:nth-child(3):hover {
+    background-color: #c82333; /* Màu nền đỏ đậm khi hover */
+}
+
+/* Modal Close Button (X) at top right corner */
+.close-modal {
+    position: absolute; /* Đặt vị trí tuyệt đối cho nút đóng */
+    top: 10px; /* Đặt khoảng cách từ trên cùng */
+    right: 10px; /* Đặt khoảng cách từ bên phải */
+    font-size: 1.5rem; /* Kích thước chữ lớn cho nút đóng */
+    font-weight: bold; /* Chữ đậm */
+    color: #333; /* Màu chữ xám đậm */
+    cursor: pointer; /* Con trỏ thay đổi khi di chuột vào */
+}
+
 @media (max-width: 1020px) {
     /* Reduce the left menu width by 10% */
     .leftmenu {
@@ -917,6 +995,9 @@ body {
     /* Hide the left menu and header completely */
     #header {
         display: none;
+    }
+    .modal-content {
+        width: 90%;
     }
 
 
