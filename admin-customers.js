@@ -81,63 +81,50 @@ document.querySelector('.view-customers').addEventListener('click',()=>{
         tableBody.innerHTML = html;    
     }
 
-
+    function getStatusThroughId(id){
+        // console.log(id); 
+        const storeData = JSON.parse(localStorage.getItem('customers')); 
+        const find1 = storeData.find(customers => parseInt(customers.id) === parseInt(id));
+        return find1.status; 
+    }
 
 
 
 document.getElementById('timkiem').addEventListener('click', ()=>{
-    
     const username = document.getElementById('searchcustomername').value; 
-    
-    const storeData = localStorage.getItem('customers'); 
+    const storeData = JSON.parse(localStorage.getItem('address')); 
     const tableBody = document.querySelector('.customers--detail'); 
     tableBody.innerHTML = ''; 
+    
+    // console.log(storeData); 
 
-
-    if(storeData){
-        const customer = JSON.parse(storeData); 
-        const find = customer.find(customer => customer.username === username); 
-        if(find){
-            // console.log(find); 
-            // console.log(find.id); 
-            const storeData2 = localStorage.getItem('address'); 
-            const customer2 = JSON.parse(storeData2); 
-            const find2 = customer2.find(customer => customer.customerId === find.id); 
-            if(find2){
-                console.log(find2); 
-                
-                const newRow = `
+    const find = storeData.find(customers => customers.fullname == username)
+    
+    if(find){
+        const newRow = `
                     <tr>
-                        <td>${find2.customerId}</td> 
-                        <td>${find2.fullname}</td>
-                        <td>${find2.phone}</td> 
-                        <td>${find2.email}</td>
+                        <td>${find.customerId}</td> 
+                        <td>${find.fullname}</td>
+                        <td>${find.phone}</td> 
+                        <td>${find.email}</td>
                         <td>regular</td>
-                        <td>${find.status === "true" ? "Active" : "Inactive"}</td>
+                        <td>${ getStatusThroughId(find.customerId) === "true" ? "Active" : "Inactive"}</td>
                         <td>
-                            <button>Edit</button>
-                            <button>Delete</button>
+                            <button>Edit-customer</button>
+                            <button>Delete-customer</button>
                         </td>
                     </tr>
                 `; 
-                // console.log(newRow); 
-                // console.log(tableBody); 
-                tableBody.innerHTML += newRow; 
-            }   
-            
-        }
-        else{
-            alert('not found'); 
-        }
+            tableBody.innerHTML += newRow; 
     }
-    
     else{
-        alert('customer data not found in localStorage'); 
+        alert('not found'); 
     }
 
-
-    
     document.getElementById('searchcustomername').value = '';  
+
+
+
     
 }); 
 
