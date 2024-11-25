@@ -39,7 +39,6 @@ body {
 #navbar li a:hover {
     color: #4CAF50; /* Màu chữ khi hover vào liên kết */
 }
-}
 .userInfo li{
     display: none;
 
