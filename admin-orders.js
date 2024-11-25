@@ -5,6 +5,7 @@ function formatCurrencyVND(amount) {
 
 // Đơn hàng
 // Trang đơn hàng
+// Thêm sự kiện hiển thị trang đơn hàng
 document.querySelector('.view-order').addEventListener('click', () => {
     document.querySelector('.order-content').style.display = 'flex';
     document.querySelector('.statistic-content').style.display ='none';
@@ -15,10 +16,13 @@ document.querySelector('.view-order').addEventListener('click', () => {
 
 
 // In danh sách đơn hàng và phân trang
+// Trang hiện tại, mặc định là 1
 let currentPageOrder = 1;
+// Số lượng sản phẩm trong 1 trang
 let itemOrderPerPage = 9;
 
 function displayOrders(currentPageOrder) {
+    // Thẻ chứa các sản phẩm
     const orderList = document.querySelector('.order-list');
     orderList.innerHTML = ''; // Xóa danh sách cũ trước khi hiển thị lại
 
@@ -31,7 +35,8 @@ function displayOrders(currentPageOrder) {
     // Lấy danh sách địa chỉ
     let address = JSON.parse(localStorage.getItem('address')) || [];
 
-    // Lọc sản đơn hàng
+    // Lọc danh sách đơn hàng
+    // lấy dữ liệu thông tin cần lọc
     const customerIdFilter = parseInt(document.getElementById('customer-id').value);    // Nếu mã khách hàng là "" thì customerIdFilter là NaN
     const statusFilter = document.getElementById('status-filter-select').value;
     const startDate = document.getElementById('start-date').value;
@@ -40,16 +45,19 @@ function displayOrders(currentPageOrder) {
 
 
     // Kiểm tra mã khách hàng
+    // lọc khi thông tin trong ô tìm kiếm nếu có
     if (!isNaN(customerIdFilter)) {
         orders = orders.filter(order => order.customerId === customerIdFilter);
     }
 
     // Kiểm tra trạng thái
+    // lọc theo trạng thái được chọn, mặc định là all
     if(statusFilter !== 'all'){
         orders = orders.filter(order => order.status === statusFilter);
     }
 
     // Kiểm tra khoảng thời gian
+    // lọc đơn hàng trong khoảng thời gian
     if(startDate){
         orders = orders.filter(order => new Date(order.date) >= new Date(startDate));
     }
@@ -68,11 +76,13 @@ function displayOrders(currentPageOrder) {
         });
     }
     
-    
+    // Chỉ số bắt đầu và kết thúc của sản phẩm hiện tại được hiển thị trong trang
     let startIndex = (currentPageOrder - 1) * itemOrderPerPage;
     let endIndex = Math.min(startIndex + itemOrderPerPage, orders.length);
     
+    // In ra danh sách các sản phẩm
     for (let i = startIndex; i < endIndex; i++) {
+        // Tính tổng giá tiền của 1 đơn hàng
         let totalCost = 0;
         orders[i].orderItems.forEach(orderItem => {
             let product = products.find(product => product.id === orderItem.productId);
@@ -87,8 +97,8 @@ function displayOrders(currentPageOrder) {
             }
         });
 
-
-        let order = `
+        // Thêm sản phẩm vào thẻ chứa
+        orderList.innerHTML += `
             <tr class="order-item" onclick="showOrderDetail(${orders[i].id})">
                 <td>${orders[i].id}</td>
                 <td>${orders[i].customerId}</td>
@@ -96,25 +106,28 @@ function displayOrders(currentPageOrder) {
                 <td>${orders[i].status}</td>
                 <td>${formatCurrencyVND(totalCost)}</td>
             </tr>
-        `;
-
-        orderList.innerHTML += order;
+        `;;
     }
 
+    // Thực hiện phân trang
     displayPagination(orders.length);
 }
 
 // Hiển thị phân trang
 function displayPagination(totalOrders) {
+    // Thẻ chứa các nút phân trang
     const pagination = document.querySelector('.pagination-order');
     pagination.innerHTML = '';
 
+    // Tính tổng số trang
     let totalPages = Math.ceil(totalOrders / itemOrderPerPage);
     
+    // Tạo nút phân trang
     for (let i = 1; i <= totalPages; i++) {
         let pageBtn = document.createElement('button');
         pageBtn.textContent = i;
         pageBtn.classList.add('pagination-btn');
+        // Thêm sự kiện cho nút phân trang, hiển thị trang thứ i khi click
         pageBtn.addEventListener('click', () => {
             currentPageOrder = i;
             displayOrders(currentPageOrder);
@@ -122,6 +135,7 @@ function displayPagination(totalOrders) {
         if(i === currentPageOrder) {
             pageBtn.className = 'active-pagination-btn';
         }
+        // Thêm nút phân trang vào thẻ chứa nó
         pagination.appendChild(pageBtn);
     }
 }
@@ -131,12 +145,15 @@ displayOrders(currentPageOrder);
 
 // Hàm để hiển thị chi tiết đơn hàng khi click
 function showOrderDetail(orderId) {
+    // Lấy các thông tin cần xử lý
     let orders = JSON.parse(localStorage.getItem('orders')) || [];
     const products = JSON.parse(localStorage.getItem('products')) || [];
     const address = JSON.parse(localStorage.getItem('address')) || [];
 
+    // Tìm đúng đơn hàng với thông tin cần in
     order = orders.find(o => o.id === orderId);
 
+    // Tạo đối tượng lưu dữ liệu của chi tiết đơn hàng
     let orderDetails = {
         customerId: order.customerId,
         date: order.date,
@@ -144,10 +161,14 @@ function showOrderDetail(orderId) {
         prods: []
     };
 
+    // Tính tổng tiền của tất cả sản phẩm
     let totalCost = 0;
+
+
     order.orderItems.forEach(orderItem => {
         let product = products.find(p => p.id === orderItem.productId);
         if(product) {
+            // Mảng chứa size, số lượng và giá của 1 sản phẩm
             let sizes = [];
             orderItem.sizes.forEach(size => {
                 let pSize = product.sizes.find(pSize => pSize.size === size.size);
@@ -160,8 +181,10 @@ function showOrderDetail(orderId) {
                 }
             });
             
+            // Tính tổng tiền của 1 sản phẩm
             let prodCost = sizes.reduce((sum, size) => sum + size.price * size.quantity, 0);
 
+            // Đẩy thông tin vào mảng các sản phẩm
             orderDetails.prods.push({
                 productId: product.id,
                 name: product.name,
@@ -170,10 +193,9 @@ function showOrderDetail(orderId) {
             });
             totalCost += prodCost;
         }
-        
     });
 
-    // dia chi
+    // lấy địa chỉ của khách hàng
     const add = address.find(a => a.customerId === order.customerId);
 
     // In ra chi tiet don hang
@@ -257,15 +279,15 @@ function showOrderDetail(orderId) {
     });
 }
 
+// Thêm sự kiện cho nút tắt chi tiết sản phẩm
 function closeOrderDetail() {
     document.querySelector('.order-detail').style.display = 'none';
     
 }
 
 
-// Thêm sự kiện cho áp dụng
+// Thêm sự kiện cho áp dụng, lọc và in ra danh sách đơn hàng theo lựa chọn lọc
 const orderFilterButton = document.querySelector('.apply-filter-btn');
-
 orderFilterButton.addEventListener('click', () => {
     
     const startDate = document.getElementById('start-date');
