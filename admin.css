@@ -192,6 +192,7 @@ body {
 }
 
 #status-filter-select{
+    width: 100%;
     cursor: pointer;
     margin-top: 6px;
 }
@@ -261,6 +262,11 @@ body {
 
 .order-table tbody tr {
     font-size: 15px; /* Kích thước chữ trong bảng */
+}
+
+.order-table th:nth-child(1), .order-table td:nth-child(1),
+.order-table th:nth-child(2), .order-table td:nth-child(2) {
+     width: 15%;
 }
 
 .order-item {
@@ -861,6 +867,46 @@ body {
     .content {
         margin-left: 63px; /* Adjust content margin accordingly */
     }
+
+    /* order */
+    .order-content {
+        font-size: 12px;
+    }
+
+    .apply-filter-btn {
+        margin: auto -14px;
+    }
+
+    .order-detail {
+        width: 90%;
+    }
+
+    /* Statistic */
+    .filter-date {
+        display: flex;
+        margin-top: 30px;
+        padding: 0 220px;
+        flex-direction: column;
+    }
+
+    .btn-accept-filter {
+        width: 83px;
+        height: 27px;
+    }
+
+    #start-date-filter,
+    #end-date-filter {
+        margin-bottom: 12px;
+        width: 110px;
+    }
+
+    .statistic-item {
+        margin: 60px 0 50px 35px;
+    }
+
+    .customer-detail {
+        width: 90%;
+    }
 }
 
 /* Tablet devices (768px and below) */
@@ -878,13 +924,12 @@ body {
     .content {
         width: 100%; /* Full width */
         height: 100vh; 
-        margin-left: 10px;
-        padding: 10px;
+        margin-left: 42px;
+        
         background-size: cover;
     }
 
     .product-content {
-        display: flex;
         flex-direction: column;
     }
 
@@ -896,19 +941,122 @@ body {
         width: 100%;
     }
 
+    /* order */
+    .order-content {
+        margin: 20px 8px;
+        padding: 24px 24px 24px 12px;
+        min-height: 628px;
+    }
+
+    #district-filter {
+        width: 100%;
+    }
+
+    .apply-filter-btn {
+        width: 95px;
+    }
+    
+    .customer-id-filter {
+        margin: 36px 0 24px 0;
+        padding-bottom: 20px;
+
+    }
+
+    .status-filter {
+        margin: 24px 0 24px 0;
+        padding-bottom: 20px;
+    }
+
+    .date-filter {
+        margin: 24px 0 6px 0;
+    }
+
+    .address-filter {
+        border-top: 1px solid rgba(0, 0, 0, .09);
+        padding-top: 20px;
+        margin-bottom: 24px;
+    }
+
+    .order-detail {
+        margin: 50px auto;
+    }
+    
+    .wrap-orders {
+        min-height: 504px;
+    }
+
+    .order-table th:nth-child(1), .order-table td:nth-child(1),
+    .order-table th:nth-child(2), .order-table td:nth-child(2) {
+        width: 12%;
+    }
+    
+
+    /* Statistic */
+    .filter-date{
+        padding: 0 105px;
+    }
+
+    .statistic-table th:nth-child(1), .statistic-table td:nth-child(1),
+    .statistic-table th:nth-child(3), .statistic-table td:nth-child(3) {
+        width: 12%;
+    }
+
+    .statistic-table th {
+        font-size: 15px;
+        font-weight: 500;
+    }
+
+    .statistic-table-type th:nth-child(2),
+    .statistic-table-type td:nth-child(2) {
+        width: 20%;
+    }
+
+    .statistic-table-type th:nth-child(1), 
+    .statistic-table-type td:nth-child(1){
+        width: 30%;
+    }
+
+    .statistic-table-type th:nth-child(3), 
+    .statistic-table-type td:nth-child(3){
+        width: auto;
+    }
+
 
 }
 @media (max-width: 600px) {
-    /* Hide all other elements */
-    .right-column, .leftmenu{
-        display: none;
+    .content {
+        margin-left: 44px;
     }
 
-    /* Only show product-list */
-    .product-list {
-        display: block;
-        width: 100%; /* Ensure product list takes full width */
+    /* order */
+    .order-content {
+        margin: 20px 0px;
     }
+
+    .address-filter {
+        margin-bottom: 38px;
+    }
+
+    .order-detail {
+        width: 100%;
+    }
+
+
+    /* statistic */
+    .filter-date {
+        padding: 0;
+        margin: 30px auto 0 auto;
+    }
+
+    .statistic-table th:nth-child(1), .statistic-table td:nth-child(1),
+    .statistic-table th:nth-child(3), .statistic-table td:nth-child(3) {
+        width: 55px;
+    }
+
+    .statistic-content {
+        margin: 10px 10px;
+    }
+
 }
 
 
