@@ -248,10 +248,15 @@ function showOrderDetail(orderId) {
 
     // hien thi chi tiet don hang
     document.querySelector('.order-detail').style.display = 'block';
+    document.querySelector('.order-detail').scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+    });
 }
 
 function closeOrderDetail() {
     document.querySelector('.order-detail').style.display = 'none';
+    
 }
 
 

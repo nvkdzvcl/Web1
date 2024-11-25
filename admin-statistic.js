@@ -1,3 +1,9 @@
+// Format tiền việt
+function formatCurrencyVND(amount) {
+    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
+}
+
+
 // thong ke
 
 function filterOrdersByDate(orders){
@@ -284,6 +290,10 @@ function showCustomerDetail(customerId) {
     `;
 
     document.querySelector('.customer-detail').style.display = 'block';
+    document.querySelector('.customer-detail').scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+    });
 }
 
 function closeCustomerDetail() {

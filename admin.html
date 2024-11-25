@@ -20,7 +20,13 @@
         <section id="header">
             <!-- Nội dung Header căn phải -->
             <ul id="navbar">
-                <li><a href="#"><i class="fa-solid fa-rocket"></i> Admin</a></li>
+                <li class="userInfo"><a href="#"><i class="fa-solid fa-rocket"></i> Admin
+                        <ul>
+                            <li id="usernameItem">Username: </li>
+                            <li id="emailItem">Email: </li>
+                        </ul>
+                    </a>
+                </li>
             </ul>
         </section>
     </div>
@@ -52,7 +58,7 @@
             </li>
             <li>
                 <i class="fa-solid fa-door-open"></i>
-                <a href="admin_login.html">Đăng xuất</a>
+                <a href="admin_login.html" class="logoutLink">Đăng xuất</a>
             </li>
         </ul>
     </div>
@@ -222,10 +228,6 @@
                     </table>
 
                 </div>
-                <div class="statistic-type-detail">
-                    <!-- Chi tiết mặt hàng nằm trong đây -->
-
-                </div>
 
                 <!-- Khách hàng -->
                 <div class="statistic-customer">
@@ -363,7 +365,7 @@
                         <input type="text" id="productname"><br>
 
                         <label for="size">Size:</label><br>
-                        <input type="checkbox" id="size-all" name="size" value="all" checked>All
+                        <input type="checkbox" id="size-all" name="size" value="all" >All
 
                         <div class="price-input">
                             <label for="price-s">Giá cho S :</label>
@@ -407,8 +409,30 @@
                         <input type="file" id="productimage">
                         <br><br>
 
-                        <button type="button">Thêm</button>
+                        <button type="button" onclick="handleAddProduct()">Thêm</button>
 
+                    </form>
+                </div>
+            </div>
+            <div id="editModal">
+                <div class="modal-content">
+                    <form>
+                        <input type="hidden" id="editProductId" />
+                        <label for="editProductName">Product Name:</label>
+                        <input type="text" id="editProductName" required />
+
+                        <!-- Container for size fields -->
+                        <div id="size-fields-container">
+                            <!-- Dynamic size fields will be inserted here -->
+                        </div>
+
+                        <button type="button" onclick="addSizeField()">Add Size</button>
+
+                        <label for="editProductImage">Product Image:</label>
+                        <input type="file" id="editProductImage" accept="image/*" />
+
+                        <button type="button" onclick="updateProduct()">Update Product</button>
+                        <button type="button" onclick="closeModal()">Close</button>
                     </form>
                 </div>
             </div>
@@ -602,7 +626,11 @@
     <script src="admin-orders.js"></script>
     <script src="admin-statistic.js"></script>
     <script src="admin-products.js"></script>
+<<<<<<< HEAD
     <script src = "admin-customers.js"></script>
+=======
+<!--     <script src="admin_info.js"></script> -->
+>>>>>>> refs/remotes/origin/main
 </body>
 
 </html>

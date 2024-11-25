@@ -6,6 +6,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <title>Trang chủ</title>
     <link rel="stylesheet" href="style.css">
+    <script src="products.js"></script>
+    <script src="orders.js"></script>
+    <script src="customers.js"></script>
+    <script src="address.js"></script>
 </head>
 <body>
     <section id="header">
@@ -13,6 +17,8 @@
 
         <div id="search-bar">
             <input type="text" id="search-input" placeholder="Tìm kiếm sản phẩm...">
+            <input type="number" id="min-price" placeholder="Giá thấp nhất" min="0">
+            <input type="number" id="max-price" placeholder="Giá cao nhất" min="0">
             <button id="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
             <div id="search-suggestions" class="suggestions"></div>
         </div>
@@ -21,7 +27,7 @@
         <div >
             <ul id="navbar" class="logged-in">
                 <li><a class="active" href="index.html">Tất cả</a></li>
-                <li><a href="#">Milktea</a></li>
+                <li><a href="#">MilkTea</a></li>
                 <li><a href="#">FreshFruitTea</a></li>
                 <li><a href="#">Ice</a></li>
                 <li id="login-item" >
@@ -35,7 +41,7 @@
 
 
         <div id="mobile">
-            <a href="cart.html"><i class="fa-solid fa-basket-shopping"></i></a>
+            <!-- <a href="#"><i class="fa-solid fa-basket-shopping"></i></a> -->
             <i id="bar" class="fas fa-outdent"></i>
         </div>
     </section>
@@ -51,7 +57,7 @@
     <section id="product1" class="section-p1">
         <h2>Sản phẩm nổi bật</h2>
         <div class="pro-container">
-            <div class="pro" data-category="MilkTea">
+            <!-- <div class="pro" data-category="MilkTea">
                 <img src="image/products/Milktea/Tra-Sua-BoBa-Cheese.png" alt="">
                 <div class="des">
                     <span>MilkTea</span>
@@ -179,7 +185,7 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro" data-category="Milktea">
+            <div class="pro" data-category="MilkTea">
                 <img src="image/products/Milktea/Tra-Sua-Ba-Anh-Em.jpg" alt="">
                 <div class="des">
                     <span>MilkTea</span>
@@ -195,7 +201,7 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro" data-category="Milktea">
+            <div class="pro" data-category="MilkTea">
                 <img src="image/products/Milktea/Tra-Sua-Dau-Tay.jpg" alt="">
                 <div class="des">
                     <span>MilkTea</span>
@@ -211,7 +217,7 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro" data-category="Milktea">
+            <div class="pro" data-category="MilkTea">
                 <img src="image/products/Milktea/Tra-Sua-O-Long.jpg" alt="">
                 <div class="des">
                     <span>MilkTea</span>
@@ -227,7 +233,7 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro" data-category="Milktea">
+            <div class="pro" data-category="MilkTea">
                 <img src="image/products/Milktea/Tra-Sua-Okinawa.png" alt="">
                 <div class="des">
                     <span>MilkTea</span>
@@ -243,7 +249,7 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro" data-category="Milktea">
+            <div class="pro" data-category="MilkTea">
                 <img src="image/products/Milktea/Tra-Sua-Pho-Mai-Tuoi.png" alt="">
                 <div class="des">
                     <span>MilkTea</span>
@@ -259,7 +265,7 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro" data-category="Milktea">
+            <div class="pro" data-category="MilkTea">
                 <img src="image/products/Milktea/Tra-Sua-Socola.jpg" alt="">
                 <div class="des">
                     <span>MilkTea</span>
@@ -275,7 +281,7 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro" data-category="Milktea">
+            <div class="pro" data-category="MilkTea">
                 <img src="image/products/Milktea/Tra-Sua-Tran-Chau-Duong-Den.jpg" alt="">
                 <div class="des">
                     <span>MilkTea</span>
@@ -291,7 +297,7 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro" data-category="Milktea">
+            <div class="pro" data-category="MilkTea">
                 <img src="image/products/Milktea/Tra-Sua-Tran-Chau-Hoang-Gia.jpg" alt="">
                 <div class="des">
                     <span>MilkTea</span>
@@ -307,7 +313,7 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro" data-category="Milktea">
+            <div class="pro" data-category="MilkTea">
                 <img src="image/products/Milktea/Tra-Sua-Tran-Chau-Soi.jpg" alt="">
                 <div class="des">
                     <span>MilkTea</span>
@@ -323,7 +329,7 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro" data-category="Milktea">
+            <div class="pro" data-category="MilkTea">
                 <img src="image/products/Milktea/Tra-Sua.jpg" alt="">
                 <div class="des">
                     <span>MilkTea</span>
@@ -339,7 +345,7 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro" data-category="Milktea">
+            <div class="pro" data-category="MilkTea">
                 <img src="image/products/Milktea/Tra-Xanh-Sua-Vi-Nhai.jpg" alt="">
                 <div class="des">
                     <span>MilkTea</span>
@@ -355,7 +361,7 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro" data-category="Milktea">
+            <div class="pro" data-category="MilkTea">
                 <img src="image/products/Milktea/Nguoi-Ban-Xanh-Sua-Nhai-Khong-Lo.jpg" alt="">
                 <div class="des">
                     <span>MilkTea</span>
@@ -371,7 +377,7 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro" data-category="Milktea">
+            <div class="pro" data-category="MilkTea">
                 <img src="image/products/Milktea/O-Long-Sua-Tuoi-Tran-Chau-Ngu-Coc.jpg" alt="">
                 <div class="des">
                     <span>MilkTea</span>
@@ -387,7 +393,7 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro" data-category="Milktea">
+            <div class="pro" data-category="MilkTea">
                 <img src="image/products/Milktea/Sua-Tuoi-Tran-Chau-Duong-Ho-Khong-Lo.jpg" alt="">
                 <div class="des">
                     <span>MilkTea</span>
@@ -403,7 +409,7 @@
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
             </div>
-            <div class="pro" data-category="Milktea">
+            <div class="pro" data-category="MilkTea">
                 <img src="image/products/Milktea/Tiger-Sugar.jpg" alt="">
                 <div class="des">
                     <span>MilkTea</span>
@@ -514,34 +520,21 @@
                     <h4>35.000 </h4>
                 </div>
                 <a href="#"><i class="fa-solid fa-cart-shopping cart"></i></a>
-            </div>
+            </div> -->
         </div>
     </section>
 
     <section id="pagination" class="section-p1">
-        <a href="#">1</a>
-        <a href="#">2</a>
-        <a href="#">3</a>
-        <a href="#">4</a>
-        <a href="#"><i class="fa-solid fa-arrow-right"></i></a>
+        <button href="#">1</button>
+        <button href="#">2</button>
+        <button href="#">3</button>
+        <button href="#">4</button>
+        <button href="#"><i class="fa-solid fa-arrow-right"></i></button>
     </section>
 
-    <section id="banner" class="section-m1">
-        <h4>HOT</h4>
-        <h2>Giảm giá lên đến <span>50%</span> Cho tất cả</h2>
-        <button class="normal">Explore More</button>
-    </section>
+    
 
-    <section id="newsletter" class="section-p1 section-m1">
-        <div class="newstext">
-            <h4>Sign Up For NewLetters</h4>
-            <p>Get E-mail updates about out lastest shop and <span>special offers.</span></p>
-        </div>
-        <div class="form">
-            <input type="text" placeholder="Your Email Address">
-            <button class="normal">Sign Up</button>
-        </div>
-    </section>
+    
 
     <footer class="section-p1">
         <div class="col">
@@ -769,7 +762,7 @@
                     <input id="customerPhone" type="text" placeholder="Số điện thoại"><br>
                    </div>
                     <input id="customerAddress" type="text" placeholder="Địa chỉ"><br>
-                   <div class="dropdows">
+                   <div class="dropdowns">
                     <select>
                         <option value="">chọn Tỉnh/thành phố</option>
                         <option value="Hồ Chí Minh">Hồ Chí Minh</option>
@@ -824,7 +817,7 @@
                     <img id="modalProductImage" src="" alt="Product Image">
                 </div>
                 <div class="product-info">
-                    <h2 id="modalProductName"></h2>
+                    <h3 id="modalProductName"></h3>
                     <p>Price: <span id="modalProductPrice"></span> </p>
                     <!-- Số lượng sản phẩm -->
                     <label for="quantity">Quantity:</label>

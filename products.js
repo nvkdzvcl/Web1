@@ -88,8 +88,8 @@ if (!products) {
             id: 9,
             name: 'Cà Phê Kem Trân Châu Hoàng Kim',
             sizes: [
-                { size: 'M', price: 35000 },
-                { size: 'L', price: 43000 }
+                { size: 'M', price: 15000 },
+                { size: 'L', price: 20000 }
             ],
             type: 'Ice',
             image: 'image/products/Ice/Ca-Phe-Kem-Tran-Chan-Hoang-Kim.jpg'
@@ -98,8 +98,8 @@ if (!products) {
             id: 10,
             name: 'Kem Ly Vani Dâu',
             sizes: [
-                { size: 'M', price: 35000 },
-                { size: 'L', price: 43000 }
+                { size: 'M', price: 15000 },
+                { size: 'L', price: 20000 }
             ],
             type: 'Ice',
             image: 'image/products/Ice/Kem-Ly-Vani-Dau.jpg'
@@ -108,8 +108,8 @@ if (!products) {
             id: 11,
             name: 'Kem Trà Sữa Trân Châu Hoàng Kim',
             sizes: [
-                { size: 'M', price: 35000 },
-                { size: 'L', price: 43000 }
+                { size: 'M', price: 15000 },
+                { size: 'L', price: 20000 }
             ],
             type: 'Ice',
             image: 'image/products/Ice/Kem-Tra-Sua-Tran-Chau-Hoang-Kim.png'
@@ -118,8 +118,8 @@ if (!products) {
             id: 12,
             name: 'Kem Trân Châu Hoàng Kim',
             sizes: [
-                { size: 'M', price: 35000 },
-                { size: 'L', price: 43000 }
+                { size: 'M', price: 15000 },
+                { size: 'L', price: 20000 }
             ],
             type: 'Ice',
             image: 'image/products/Ice/Kem-Tran-Chau-Hoang-Kim.jpg'
@@ -128,8 +128,8 @@ if (!products) {
             id: 13,
             name: 'Kem Vani Trà Sữa Trân Châu Hoàng Kim',
             sizes: [
-                { size: 'M', price: 35000 },
-                { size: 'L', price: 43000 }
+                { size: 'M', price: 15000 },
+                { size: 'L', price: 20000 }
             ],
             type: 'Ice',
             image: 'image/products/Ice/Kem-Vani-Tra-Sua-Tran-Chau-Hoang-Kim.png'

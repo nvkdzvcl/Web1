@@ -39,6 +39,27 @@ body {
 #navbar li a:hover {
     color: #4CAF50; /* Màu chữ khi hover vào liên kết */
 }
+.userInfo li{
+    display: none;
+
+}
+.userInfo a:hover li {
+    color:black;
+    display: block;
+    border: solid 3px black;
+    background-color: white;
+    
+}
+.userInfo { position: relative; }
+.userInfo ul{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+}
+.userInfo a{
+    position: relative;
+    margin-right: 200px;
+}
 
 /* Left menu */
 .leftmenu {
@@ -192,6 +213,7 @@ body {
 }
 
 #status-filter-select{
+    width: 100%;
     cursor: pointer;
     margin-top: 6px;
 }
@@ -261,6 +283,11 @@ body {
 
 .order-table tbody tr {
     font-size: 15px; /* Kích thước chữ trong bảng */
+}
+
+.order-table th:nth-child(1), .order-table td:nth-child(1),
+.order-table th:nth-child(2), .order-table td:nth-child(2) {
+     width: 15%;
 }
 
 .order-item {
@@ -850,6 +877,7 @@ body {
     justify-content: center; /* Căn giữa theo chiều ngang */
     padding-right: 10px; /* Khoảng cách bên phải */
 }
+<<<<<<< HEAD
 
 
 
@@ -1058,4 +1086,303 @@ body {
     }
 }
 
+=======
+/* FORM EDIT CUA TINH NANG SAN PHAM */
+/* Modal content container */
+#editModal {
+    display: none; /* Initially hidden */
+    position: fixed;
+    top: 10%;
+    left: 35%;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    
+}
+.modal-content {
+    background-color: white; /* Màu nền trắng cho modal */
+    padding: 20px; /* Khoảng cách giữa nội dung và viền */
+    border-radius: 10px; /* Bo góc cho modal */
+    width: 80%; /* Chiều rộng modal là 80% của màn hình */
+    max-width: 500px; /* Chiều rộng tối đa của modal */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Tạo hiệu ứng bóng đổ nhẹ cho modal */
+    overflow-y: auto; /* Cho phép cuộn dọc nếu nội dung vượt quá chiều cao */
+    border: 3px solid red; /* Đường viền màu đỏ */
+}
+
+/* Form Elements inside modal */
+.modal-content form {
+    display: flex; /* Sử dụng flexbox cho form */
+    flex-direction: column; /* Sắp xếp các phần tử theo chiều dọc */
+}
+
+/* Labels for input fields */
+.modal-content label {
+    font-size: 1rem; /* Kích thước chữ cho label */
+    margin-bottom: 5px; /* Khoảng cách dưới các label */
+}
+
+/* Input Fields */
+.modal-content input[type="text"], /* Định dạng cho trường nhập liệu text */
+.modal-content input[type="file"] { /* Định dạng cho trường nhập liệu file */
+    padding: 8px; /* Khoảng cách giữa nội dung và viền input */
+    margin-bottom: 15px; /* Khoảng cách dưới các input */
+    border: 1px solid #ddd; /* Đường viền màu xám nhạt */
+    border-radius: 5px; /* Bo góc cho input */
+    font-size: 1rem; /* Kích thước chữ trong input */
+}
+
+/* Container for dynamic size fields */
+#size-fields-container {
+    margin-bottom: 15px; /* Khoảng cách dưới các trường size */
+}
+
+/* Button Styles */
+.modal-content button[type="button"] {
+    background-color: #007bff; /* Màu nền xanh cho nút */
+    color: white; /* Màu chữ trắng */
+    border: none; /* Không có viền */
+    padding: 10px 15px; /* Khoảng cách bên trong nút */
+    font-size: 1rem; /* Kích thước chữ trong nút */
+    border-radius: 5px; /* Bo góc cho nút */
+    cursor: pointer; /* Con trỏ thay đổi khi di chuột vào nút */
+    margin-bottom: 10px; /* Khoảng cách dưới các nút */
+    transition: background-color 0.3s; /* Hiệu ứng chuyển màu nền khi hover */
+}
+
+/* Button Hover Effects */
+.modal-content button[type="button"]:hover {
+    background-color: #0056b3; /* Màu nền khi hover (di chuột vào) */
+}
+
+/* Close Button (delete or cancel) */
+.modal-content button[type="button"]:nth-child(3) {
+    background-color: #dc3545; /* Màu nền đỏ cho nút xóa */
+}
+
+.modal-content button[type="button"]:nth-child(3):hover {
+    background-color: #c82333; /* Màu nền đỏ đậm khi hover */
+}
+
+/* Modal Close Button (X) at top right corner */
+.close-modal {
+    position: absolute; /* Đặt vị trí tuyệt đối cho nút đóng */
+    top: 10px; /* Đặt khoảng cách từ trên cùng */
+    right: 10px; /* Đặt khoảng cách từ bên phải */
+    font-size: 1.5rem; /* Kích thước chữ lớn cho nút đóng */
+    font-weight: bold; /* Chữ đậm */
+    color: #333; /* Màu chữ xám đậm */
+    cursor: pointer; /* Con trỏ thay đổi khi di chuột vào */
+}
+
+@media (max-width: 1020px) {
+    /* Reduce the left menu width by 10% */
+    .leftmenu {
+        width: 63px; /* 10% less than 70px */
+    }
+
+    .leftmenu:hover {
+        width: 225px; /* Adjust based on reduced width */
+    }
+
+    .content {
+        margin-left: 63px; /* Adjust content margin accordingly */
+    }
+
+    /* order */
+    .order-content {
+        font-size: 12px;
+    }
+
+    .apply-filter-btn {
+        margin: auto -14px;
+    }
+
+    .order-detail {
+        width: 90%;
+    }
+
+    /* Statistic */
+    .filter-date {
+        display: flex;
+        margin-top: 30px;
+        padding: 0 220px;
+        flex-direction: column;
+    }
+
+    .btn-accept-filter {
+        width: 83px;
+        height: 27px;
+    }
+
+    #start-date-filter,
+    #end-date-filter {
+        margin-bottom: 12px;
+        width: 110px;
+    }
+
+    .statistic-item {
+        margin: 60px 0 50px 35px;
+    }
+
+    .customer-detail {
+        width: 90%;
+    }
+}
+
+/* Tablet devices (768px and below) */
+
+
+/* Mobile devices (500px and below) */
+@media (max-width: 750px) {
+    /* Hide the left menu and header completely */
+    #header {
+        display: none;
+    }
+    .modal-content {
+        width: 90%;
+    }
+
+
+    /* Content takes full width and height */
+    .content {
+        width: 100%; /* Full width */
+        height: 100vh; 
+        margin-left: 42px;
+        
+        background-size: cover;
+    }
+
+    .product-content {
+        flex-direction: column;
+    }
+
+    .product-list {
+        width: 100%;
+    }
+
+    .right-column {
+        width: 100%;
+    }
+
+    /* order */
+    .order-content {
+        margin: 20px 8px;
+        padding: 24px 24px 24px 12px;
+        min-height: 628px;
+    }
+
+    #district-filter {
+        width: 100%;
+    }
+
+    .apply-filter-btn {
+        width: 95px;
+    }
+    
+    .customer-id-filter {
+        margin: 36px 0 24px 0;
+        padding-bottom: 20px;
+
+    }
+
+    .status-filter {
+        margin: 24px 0 24px 0;
+        padding-bottom: 20px;
+    }
+
+    .date-filter {
+        margin: 24px 0 6px 0;
+    }
+
+    .address-filter {
+        border-top: 1px solid rgba(0, 0, 0, .09);
+        padding-top: 20px;
+        margin-bottom: 24px;
+    }
+
+    .order-detail {
+        margin: 50px auto;
+    }
+    
+    .wrap-orders {
+        min-height: 504px;
+    }
+
+    .order-table th:nth-child(1), .order-table td:nth-child(1),
+    .order-table th:nth-child(2), .order-table td:nth-child(2) {
+        width: 12%;
+    }
+    
+
+    /* Statistic */
+    .filter-date{
+        padding: 0 105px;
+    }
+
+    .statistic-table th:nth-child(1), .statistic-table td:nth-child(1),
+    .statistic-table th:nth-child(3), .statistic-table td:nth-child(3) {
+        width: 12%;
+    }
+
+    .statistic-table th {
+        font-size: 15px;
+        font-weight: 500;
+    }
+
+    .statistic-table-type th:nth-child(2),
+    .statistic-table-type td:nth-child(2) {
+        width: 20%;
+    }
+
+    .statistic-table-type th:nth-child(1), 
+    .statistic-table-type td:nth-child(1){
+        width: 30%;
+    }
+
+    .statistic-table-type th:nth-child(3), 
+    .statistic-table-type td:nth-child(3){
+        width: auto;
+    }
+
+
+}
+@media (max-width: 600px) {
+    .content {
+        margin-left: 44px;
+    }
+
+    /* order */
+    .order-content {
+        margin: 20px 0px;
+    }
+
+    .address-filter {
+        margin-bottom: 38px;
+    }
+
+    .order-detail {
+        width: 100%;
+    }
+
+
+    /* statistic */
+    .filter-date {
+        padding: 0;
+        margin: 30px auto 0 auto;
+    }
+
+    .statistic-table th:nth-child(1), .statistic-table td:nth-child(1),
+    .statistic-table th:nth-child(3), .statistic-table td:nth-child(3) {
+        width: 55px;
+    }
+
+    .statistic-content {
+        margin: 10px 10px;
+    }
+
+}
+
+
+>>>>>>> refs/remotes/origin/main
 
