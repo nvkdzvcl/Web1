@@ -44,7 +44,7 @@
             </li>
             <li>
                 <i class="fa-solid fa-users"></i>
-                <a href="#">Khách Hàng</a>
+                <a href="#" class = "view-customers">Khách Hàng</a>
             </li>
             <li>
                 <i class="fa-solid fa-chart-simple"></i>
@@ -413,10 +413,196 @@
                 </div>
             </div>
         </div>
+        
+        <!-- Customer  -->
+
+
+        <div class="customer-content">
+            <div class="customer-list">
+                
+
+                <table>
+                    <h1 class="customer-title">Danh sách khách hàng</h1>
+                    <thead>
+                        <tr>
+                            <th>Mã khách hàng</th>
+                            <th>Tên khách hàng</th>
+                            <th>Số điện thoại</th>
+                            <th>Email</th>
+                            <th>Hạng mức khách hàng</th>
+                            <th>Trạng thái khách hàng</th>
+                            <th>Edit</th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="customers--detail">
+                        
+                        
+                    </tbody>
+
+
+                </table>
+                
+
+                <!-- phan trang -->
+                <!-- <div class="pagination-customer">
+                    <button id="prev-page" class="pagination-btn" onclick="changePage(-1)">Prev</button>
+                    <button id="next-page" class="pagination-btn" onclick="changePage(1)">Next</button>
+                </div>
+                 -->
+
+             </div>
+
+            <div class="right-column">
+                <!-- Phần tìm kiếm sản phẩm ở trên -->
+                <div class="search">
+                    <h1>Tìm kiếm khách hàng</h1>
+                    <form>
+                        <label for="searchcustomername">Tên khách hàng</label>
+                        <input type="text" id="searchcustomername">
+                        <br><br>
+
+                        <button type="button" id = "timkiem">Tìm kiếm</button>
+
+                    </form>
+                </div>
+
+                <!-- Phần thêm sản phẩm ở dưới -->
+                <div class="add">
+                    <h1>Thêm khách hàng</h1>
+                    <form>
+                        <!-- <div class="code--customer">
+                            <label for="customer--code">Mã khách hàng</label>
+                            <input type="text" id="customer--code">
+                        </div> -->
+                       
+                        <div class="name-customer">
+                            <label for="customer--name">Tên khách hàng</label>
+                            <input type="text" id="customer--name">
+    
+                        </div>
+                        
+
+                        <div class="phone-customer">
+                            <label for="customer--phone">Số điện thoại khách hàng</label>
+                            <input type="text" id="customer--phone">
+    
+                        </div>
+                        
+                        <div class="email-customer">
+                            <label for="customer--email">Email khách hàng</label>
+                            <input type="text" id="customer--email">
+                        </div>
+                       
+                        <div class="ranking-customer">
+                            <label for="customer--ranking">Hạng mức</label>
+                            <select id="customer--ranking" name="ranking">
+                            <option value="gold">Vàng</option>
+                            <option value="silver">Bạc</option>
+                            <option value="bronze">Đồng</option>
+                        </select>
+                        </div>
+                        
+
+
+                        <div class="status-customer">
+                            <label for="customer--status">Trạng thái khách hàng</label>
+                            <select id="customer--status" name="status">
+                                <option value="active">Active</option>
+                                <option value="inactive">Inactive</option>
+                            </select>
+                        </div>
+
+                        <div class="district-customer">
+                            <label for="customer--district">Quận</label>
+                            <input type="text" id = "customer--district"> 
+                        </div>
+                      
+                        <div class="province-customer">
+                            <label for="customer--province">Thành phố/tỉnh</label>
+                            <input type="text" id = "customer--province"> 
+                            
+                        </div>
+                        
+                        <div class="ward-customer">
+                            <label for="customer--ward">Phường</label>
+                            <input type="text" id = "customer--ward"> 
+                            
+                        </div>
+
+                        <div class="street-customer">
+                            <label for="customer--street">Đường</label>
+                            <input type="text" id = "customer--street"> 
+                        
+                            
+                          
+                        </div>
+                      
+                    </form>
+                    <button type="button" id = "add--customer">Thêm</button>
+                </div>
+            </div> 
+        </div>
+
+
+
+        <div class="modal" id = "modal">
+            
+            <div class="modal-body">
+                <div class="modal-header">
+                    <h1>Chỉnh Sửa</h1>
+                    <a href="#" id="button-close">
+                        X
+                    </a>
+                </div>
+                
+                <div class="main-content">
+                    <form action="">
+                        <label for="change-name">Thay đổi tên</label>
+                        <input type="text" name="changeName" id="change-name">
+                        <br>
+                        <label for="change-name">Thay đổi số điện thoại</label>
+                        <input type="text" name="changePhone" id="change-phone">
+                        <br>
+                        <label for="change-email">Thay đổi email</label>
+                        <input type="email" name="changeEmail" id="change-email">
+                        <br>
+                        <label for="change-ranking">Thay đổi hạng mức</label>
+                        <input type="text" name="changeRanking" id="change-ranking">
+                        <br>
+                        <label for="change-status">Thay đổi trạng thái</label>
+                        <select id="change-status">
+                            <option value="true">Active</option>
+                            <option value="false">Inactive</option>
+                        </select> 
+
+                        <br>
+                        <label for="change-city">Thay đổi thành phố</label>
+                        <input type="text" name="changeCity" id = "change-city">
+                        <br>
+                        <label for="change-street">Thay đổi đường</label>
+                        <input type="text" name="changeStreet" id = "change-street">
+                        <br>
+                        <label for="change-ward">Thay đổi phường</label>
+                        <input type="text" name="changeWard" id = "change-ward">
+                       
+
+                    </form>
+                    <button id = "submit">submit</button>
+                </div>
+            </div>
+            
+            <div class="overlay">
+               
+            </div>
+        </div>
+        
+
     </div>
     <script src="admin-orders.js"></script>
     <script src="admin-statistic.js"></script>
     <script src="admin-products.js"></script>
+    <script src = "admin-customers.js"></script>
 </body>
 
 </html>

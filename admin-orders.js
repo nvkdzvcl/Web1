@@ -9,6 +9,8 @@ document.querySelector('.view-order').addEventListener('click', () => {
     document.querySelector('.order-content').style.display = 'flex';
     document.querySelector('.statistic-content').style.display ='none';
     document.querySelector('.product-content').style.display = 'none' ;
+    document.querySelector('.customer-content').style.display = 'none'; 
+
 });
 
 

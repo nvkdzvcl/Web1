@@ -3,6 +3,7 @@ document.querySelector('.view-product').addEventListener('click', () => {
     document.querySelector('.product-content').style.display = 'flex';
     document.querySelector('.order-content').style.display = 'none';
     document.querySelector('.statistic-content').style.display = 'none';
+    document.querySelector('.customer-content').style.display = 'none'; 
 });
 
 // Lấy danh sách sản phẩm từ localStorage
