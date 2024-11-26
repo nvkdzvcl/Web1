@@ -92,31 +92,38 @@ document.querySelector('.view-customers').addEventListener('click',()=>{
 
 
 document.getElementById('timkiem').addEventListener('click', ()=>{
-    const username = document.getElementById('searchcustomername').value; 
+    const username = document.getElementById('searchcustomername').value;
+    if(username === ''){
+        alert('Vui lòng nhập thông tin tìm kiếm'); 
+        return; 
+    } 
     const storeData = JSON.parse(localStorage.getItem('address')); 
     const tableBody = document.querySelector('.customers--detail'); 
     tableBody.innerHTML = ''; 
     
     // console.log(storeData); 
 
-    const find = storeData.find(customers => customers.fullname == username)
-    console.log(getStatusThroughId(find.customerId)); 
+    const find = storeData.filter(customers => customers.fullname.includes(username)); 
+    // console.log(getStatusThroughId(find.customerId)); 
+    // console.log(find); 
     if(find){
-        const newRow = `
-                    <tr>
-                        <td>${find.customerId}</td> 
-                        <td>${find.fullname}</td>
-                        <td>${find.phone}</td> 
-                        <td>${find.email}</td>
-                        <td>regular</td>
-                        <td>${ getStatusThroughId(find.customerId) === "true" ? "Active" : "Inactive"}</td>
-                        <td>
-                            <button>Edit-customer</button>
-                            <button>Delete-customer</button>
-                        </td>
-                    </tr>
-                `; 
-            tableBody.innerHTML += newRow; 
+        find.forEach(find=>{
+            const newRow = `
+            <tr>
+                <td>${find.customerId}</td> 
+                <td>${find.fullname}</td>
+                <td>${find.phone}</td> 
+                <td>${find.email}</td>
+                <td>regular</td>
+                <td>${ getStatusThroughId(find.customerId) === "true" ? "Active" : "Inactive"}</td>
+                <td>
+                    <button>Edit-customer</button>
+                    <button>Delete-customer</button>
+                </td>
+            </tr>
+        `; 
+         tableBody.innerHTML += newRow; 
+        })
     }
 
     
@@ -149,6 +156,11 @@ document.getElementById('add--customer').addEventListener('click',()=>{
     const province = document.getElementById('customer--province').value.trim(); 
     const street = document.getElementById('customer--street').value.trim(); 
     const ward = document.getElementById('customer--ward').value.trim(); 
+
+    if(username === '' || password === '' || nameCustomers === '' || phoneCustomers === '' || emailCustomers === '' || statusCustomers === '' || district === '' || province === '' || street === '' ||ward===''){
+        alert('Vui lòng nhập đủ thông tin'); 
+        return; 
+    }
 
     // const storeData1 = localStorage.getItem('address');   
     // const storeData2 = localStorage.getItem('customers'); 
@@ -226,7 +238,8 @@ document.getElementById('add--customer').addEventListener('click',()=>{
   
     // });
     
-    
+    document.getElementById('username--name').value = ''; 
+    document.getElementById('password--name').value = ''; 
     document.getElementById('customer--name').value =''; 
     document.getElementById('customer--phone').value =''; 
     document.getElementById('customer--email').value =''; 

@@ -945,6 +945,9 @@ body {
     .customer-content{
         flex-direction: column;
     }
+    .right-column{
+        margin-top: 20px; 
+    }
 
 }
 
@@ -1390,3 +1393,19 @@ body {
 
 
 
+
+
+@media (max-width: 768px) {
+    .customer-list, .right-column {
+        width: 100%;
+        display: block; /* Stack elements on smaller screens */
+    }
+    
+    .right-column {
+        margin-top: 20px; /* Space between stacked elements */
+    }
+    
+    .form-control {
+        width: 100%; /* Make input fields full width */
+    }
+}
