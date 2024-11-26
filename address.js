@@ -82,6 +82,26 @@ if(!address){
             district: 'Quận 5',
             ward: 'Phường 11',
             street: '667, Nguyễn Trãi',
+        },
+        {
+            customerId: 9,
+            fullname: 'Nguyễn Văn ki',
+            email: 'liem123@gmail.com',
+            phone: '0123456479',
+            province: 'Hồ Chí Minh',
+            district: 'Quận 5',
+            ward: 'Phường 11',
+            street: '667, Nguyễn Trãi',
+        },
+        {
+            customerId: 10,
+            fullname: 'Nguyễn Văn i',
+            email: 'liem123@gmail.com',
+            phone: '0123456479',
+            province: 'Hồ Chí Minh',
+            district: 'Quận 5',
+            ward: 'Phường 11',
+            street: '667, Nguyễn Trãi',
         }
         
     ]
