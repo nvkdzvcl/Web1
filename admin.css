@@ -1254,7 +1254,7 @@ body {
 
     /* Content takes full width and height */
     .content {
-        width: 100%; /* Full width */
+        overflow-x: auto;
         height: 100vh; 
         margin-left: 42px;
         
@@ -1355,12 +1355,20 @@ body {
 
 
 }
+
+
+/* 
+.customer-list, .right-column {
+    width: 100%;
+    display: block; 
+} */
+
+/* 
 @media (max-width: 600px) {
     .content {
         margin-left: 44px;
     }
 
-    /* order */
     .order-content {
         margin: 20px 0px;
     }
@@ -1374,7 +1382,6 @@ body {
     }
 
 
-    /* statistic */
     .filter-date {
         padding: 0;
         margin: 30px auto 0 auto;
@@ -1388,24 +1395,55 @@ body {
     .statistic-content {
         margin: 10px 10px;
     }
+    .tableOfCustomer{
+        font-size: 10px;
+    }
+} */
 
-}
 
-
-
+/* 
 
 
 @media (max-width: 768px) {
     .customer-list, .right-column {
         width: 100%;
-        display: block; /* Stack elements on smaller screens */
+        display: block; 
     }
     
     .right-column {
-        margin-top: 20px; /* Space between stacked elements */
+        margin-top: 20px; 
     }
     
     .form-control {
-        width: 100%; /* Make input fields full width */
+        width: 100%;
     }
+}  */
+
+
+.add div{
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+@media screen and (max-width: 1240px) {
+    .ranking{
+        display: none;
+    }    
+    .email{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 650px){
+    .ranking{
+        display: none;
+    }    
+    .email{
+        display: none;
+    }
+    .status{
+        display: none; 
+    }   
 }

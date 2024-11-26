@@ -22,9 +22,9 @@ document.querySelector('.view-customers').addEventListener('click',()=>{
                 <td>${customers2.customerId}</td> 
                 <td>${customers2.fullname}</td>
                 <td>${customers2.phone}</td> 
-                <td>${customers2.email}</td>
-                <td>regular</td>
-                <td>${status}</td>
+                <td class = "email">${customers2.email}</td>
+                <td class = "ranking">regular</td>
+                <td class = "status">${status}</td>
                 <td>
                     <button>Edit-customer</button>
                     <button>Delete-customer</button>
@@ -60,9 +60,9 @@ document.querySelector('.view-customers').addEventListener('click',()=>{
                 <td>${customers2.customerId}</td> 
                 <td>${customers2.fullname}</td>
                 <td>${customers2.phone}</td> 
-                <td>${customers2.email}</td>
-                <td>regular</td>
-                <td>${getStatusThroughId(customers2.customerId) === "true" ? "Active" : "Inactive"}</td>
+                <td class = "email">${customers2.email}</td>
+                <td class = "ranking">regular</td>
+                <td class = "status">${getStatusThroughId(customers2.customerId) === "true" ? "Active" : "Inactive"}</td>
                 <td>
                     <button>Edit-customer</button>
                     <button>Delete-customer</button>
@@ -113,9 +113,9 @@ document.getElementById('timkiem').addEventListener('click', ()=>{
                 <td>${find.customerId}</td> 
                 <td>${find.fullname}</td>
                 <td>${find.phone}</td> 
-                <td>${find.email}</td>
-                <td>regular</td>
-                <td>${ getStatusThroughId(find.customerId) === "true" ? "Active" : "Inactive"}</td>
+                <td class = "email">${find.email}</td>
+                <td class = "ranking">regular</td>
+                <td class = "status">${ getStatusThroughId(find.customerId) === "true" ? "Active" : "Inactive"}</td>
                 <td>
                     <button>Edit-customer</button>
                     <button>Delete-customer</button>
@@ -390,3 +390,6 @@ function clearForm() {
     document.getElementById("change-street").value = '';
     document.getElementById("change-ward").value = '';
 }
+
+
+
