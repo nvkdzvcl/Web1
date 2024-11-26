@@ -46,23 +46,23 @@ document.querySelector('.view-customers').addEventListener('click',()=>{
 
     function display(){
         const storeData2 = localStorage.getItem('address'); 
-        const storeData1 = localStorage.getItem('customers'); 
+        // const storeData1 = localStorage.getItem('customers'); 
         const customer2 = JSON.parse(storeData2); 
-        const customer1 = JSON.parse(storeData1); 
-    
+        // const customer1 = JSON.parse(storeData1); 
+
         var html = ""; 
-    
+        
         customer2.forEach(customers2 => {
-            const status = customer1.find(customers1 => customers1.id === customers2.customerId && customers1.status === "true") ? "Active" : "Inactive";
-            
+            console.log(getStatusThroughId(customers2.customerId)); 
             const newRow = `
+            
             <tr>
                 <td>${customers2.customerId}</td> 
                 <td>${customers2.fullname}</td>
                 <td>${customers2.phone}</td> 
                 <td>${customers2.email}</td>
                 <td>regular</td>
-                <td>${status}</td>
+                <td>${getStatusThroughId(customers2.customerId) === "true" ? "Active" : "Inactive"}</td>
                 <td>
                     <button>Edit-customer</button>
                     <button>Delete-customer</button>
@@ -71,10 +71,11 @@ document.querySelector('.view-customers').addEventListener('click',()=>{
             `;
             
             html += newRow; 
-      
-           
+            
       
         });
+
+        
         
         const tableBody = document.querySelector('.customers--detail'); 
         // console.log(tableBody); 
@@ -82,11 +83,11 @@ document.querySelector('.view-customers').addEventListener('click',()=>{
     }
 
     function getStatusThroughId(id){
-        // console.log(id); 
         const storeData = JSON.parse(localStorage.getItem('customers')); 
         const find1 = storeData.find(customers => parseInt(customers.id) === parseInt(id));
         return find1.status; 
-    }
+    }   
+
 
 
 
@@ -99,7 +100,7 @@ document.getElementById('timkiem').addEventListener('click', ()=>{
     // console.log(storeData); 
 
     const find = storeData.find(customers => customers.fullname == username)
-    
+    console.log(getStatusThroughId(find.customerId)); 
     if(find){
         const newRow = `
                     <tr>
@@ -117,6 +118,8 @@ document.getElementById('timkiem').addEventListener('click', ()=>{
                 `; 
             tableBody.innerHTML += newRow; 
     }
+
+    
     else{
         alert('not found'); 
     }
@@ -131,11 +134,16 @@ document.getElementById('timkiem').addEventListener('click', ()=>{
 // them khach hang 
 document.getElementById('add--customer').addEventListener('click',()=>{
     // const codeCustomers =  document.getElementById('customer--code').value.trim(); 
+    const username = document.getElementById('username--name').value.trim(); 
+    const password = document.getElementById('password--name').value.trim(); 
+    // console.log(username); 
+    // console.log(password); 
     const nameCustomers = document.getElementById('customer--name').value.trim(); 
     const phoneCustomers = document.getElementById('customer--phone').value.trim(); 
     const emailCustomers = document.getElementById('customer--email').value.trim(); 
     // const rankingCustomers = document.getElementById('customer--ranking').value; 
-    // const statusCustomers = document.getElementById('customer--status').value; 
+    const statusCustomers = document.getElementById('customer--status').value; 
+    // console.log(statusCustomers); 
 
     const district = document.getElementById('customer--district').value.trim(); 
     const province = document.getElementById('customer--province').value.trim(); 
@@ -145,11 +153,14 @@ document.getElementById('add--customer').addEventListener('click',()=>{
     // const storeData1 = localStorage.getItem('address');   
     // const storeData2 = localStorage.getItem('customers'); 
     const customers = JSON.parse(localStorage.getItem('address'));
+    const customers2 = JSON.parse(localStorage.getItem('customers')); 
     const lastCustomerId = parseInt(customers.at(-1).customerId); 
+    const lastCustomerId2 = parseInt(customers2.at(-1).id); 
+
     // console.log(lastCustomerId); 
     
     // lastCustomerId++; 
-    console.log(lastCustomerId); 
+    // console.log(lastCustomerId); 
     let newcustomer = {
         customerId:lastCustomerId+1,
         district:district, 
@@ -161,6 +172,18 @@ document.getElementById('add--customer').addEventListener('click',()=>{
         ward:ward   
     }; 
 
+    let updatestatus = (statusCustomers === "active" ? "true" : "false"); 
+    console.log(updatestatus); 
+    let newcustomer2 = {
+        id: lastCustomerId2+1, 
+        password: password, 
+        status: updatestatus, 
+        username: username 
+    }
+
+    // console.log(newcustomer2); 
+
+
     // console.log(newcustomer); 
     // const customerString = JSON.stringify(newcustomer);
     // console.log(customerString); 
@@ -170,35 +193,38 @@ document.getElementById('add--customer').addEventListener('click',()=>{
     let storeData2 = JSON.parse(localStorage.getItem('customers')); 
     // console.log(storeData1); 
     storeData1.push(newcustomer); 
+    storeData2.push(newcustomer2); 
     // console.log(JSON.stringify(storeData1));
      
 
     localStorage.setItem('address',JSON.stringify(storeData1));
+    localStorage.setItem('customers',JSON.stringify(storeData2)); 
 
     const tableBody = document.querySelector('.customers--detail'); 
 
     tableBody.innerHTML = ''; 
 
 
-    storeData1.forEach(customers2 => {
-        const status = storeData2.find(customers1 => customers1.id === customers2.customerId && customers1.status === "true") ? "Active" : "Inactive";
-        
-        const newRow = `
-        <tr>
-            <td>${customers2.customerId}</td> 
-            <td>${customers2.fullname}</td>
-            <td>${customers2.phone}</td> 
-            <td>${customers2.email}</td>
-            <td>regular</td>
-            <td>${status}</td>
-        </tr>
-        `;
+    // storeData1.forEach(customers2 => {
+        // const status = storeData2.find(customers1 => customers1.id === customers2.customerId && customers1.status === "true") ? "Active" : "Inactive";
+        // console.log(status.status); 
+        // const newRow = `
+        // <tr>
+        //     <td>${customers2.customerId}</td> 
+        //     <td>${customers2.fullname}</td>
+        //     <td>${customers2.phone}</td> 
+        //     <td>${customers2.email}</td>
+        //     <td>regular</td>
+        //     <td>${getStatusThroughId(customers2.customerId) === "true" ? "Active" : "Inactive"}</td>
+
+        // </tr>
+        // `;
         
   
         // console.log(tableBody); 
-        tableBody.innerHTML += newRow;    
+        // tableBody.innerHTML += newRow;    
   
-    });
+    // });
     
     
     document.getElementById('customer--name').value =''; 
@@ -247,7 +273,7 @@ document.addEventListener('click', (e) => {
         document.getElementById('change-phone').value = customerData.phone;
         document.getElementById('change-email').value = customerData.email;
         document.getElementById('change-ranking').value = customerData.ranking; 
-        // document.getElementById('change-status').value = customerData.status;  
+        document.getElementById('change-status').value = customerData.status;  
         document.getElementById('change-city').value = addressdata[customerId].province; 
         document.getElementById('change-street').value = addressdata[customerId].street; 
         document.getElementById('change-ward').value = addressdata[customerId].ward; 
@@ -263,10 +289,11 @@ document.addEventListener('click',(e)=>{
         console.log('hello'); 
         const row = e.target.closest('tr');
         const customerId = parseInt(row.querySelector('td:first-child').textContent);   
+        console.log(customerId); 
         const storeData1 = JSON.parse(localStorage.getItem('customers')); 
         const storeData2 = JSON.parse(localStorage.getItem('address')); 
         const updatedCustomers = storeData1.filter(cus => parseInt(cus.id) !== customerId);
-       
+        
         
         const updatedAddresses = storeData2.filter(cus => parseInt(cus.customerId) !== customerId);
 
