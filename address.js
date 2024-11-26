@@ -20,8 +20,8 @@ if(!address){
             phone: '0123456888',
             province: 'Hồ Chí Minh',
             district: 'Quận 1',
-            ward: 'Phường 11',
-            street: '8/9, Tân Hóa',
+            ward: 'Bến Nghé',
+            street: '13, Nguyễn Du',
         },
         {
             customerId: 3,
