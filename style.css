@@ -97,6 +97,7 @@ body {
     color: #088178;
 }
 
+
 #navbar li a.active::after,
 #navbar li a:hover::after {
     content: "";
@@ -1115,26 +1116,136 @@ footer .copyright {
 
 /* sản phẩm đã thanh toán */
 
-#paidProductList{
+#orderList{
     width: 100%;
     text-align: center;
+    display: none;
 }
-#paidProductList h2{
+#orderList h2{
     font-size: 30px;
     padding: 10px 0;
 }
 
-#paidProductList{
+#orderList{
     /* giúp bảng trượt được */
     overflow-x: auto;
     margin-top: 20px;
 }
-#paidProductList table{
+#orderList table{
     width: 100%;
     border-collapse: collapse;
     table-layout: fixed;
     white-space: nowrap;
-    
+    border-collapse: collapse; 
+}
+
+#orderList th, 
+#orderList td {
+    border: 1px solid #ccc; /* Viền của các ô bảng */
+    padding: 8px; /* Khoảng cách trong mỗi ô */
+    text-align: center;
+    text-wrap: wrap;
+}
+
+/* Chi tiết đơn hàng */
+.order-detail {
+    width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+    display: none;
+}
+
+.order-header {
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    position: relative;
+}
+
+.order-header h2 {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.order-header p {
+    font-size: 16px;
+    color: #555;
+    margin: 5px 0;
+}
+
+.order-header strong {
+    color: #333;
+}
+
+.btn-close-order-detail {
+    height: 32px;
+    border: none;
+    background-color: #f9f9f9;
+    right: 0;
+    top: -11px;
+    font-size: 34px;
+    transform: rotate(45deg);
+    cursor: pointer;
+    position: absolute;
+}
+
+.btn-close-order-detail:hover {
+    color: #555;
+}
+
+
+.btn-close-order-detail:active {
+    color: #3b8a3e;
+}
+
+.order-items {
+    margin-top: 20px;
+}
+
+.order-items h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.order-items table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.order-items th, .order-items td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.order-items th {
+    background-color: #f1f1f1;
+}
+
+.order-items td {
+    font-size: 16px;
+}
+
+.order-summary{
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 2px solid #ddd;
+}
+
+.order-summary p{
+    font-size: 18px;
+    color: #333;
+    margin: 5px 0;
+}
+
+.order-summary strong{
+    color: #333;
 }
 
 #paidProductList table img{
@@ -1368,4 +1479,28 @@ margin: 5px 0;
 .btn-cart.btn--primary1{
     color: var(--white-color);
     background-color: var(--primary-color);
+}
+
+/* Thông tin tài khoản */
+/* mặc định ẩn thông tin tài khoản */
+ .account-info {
+    display: none;
+    margin-top: 10px;
+    padding: 10px;
+    padding-left: 0px;
+    border: 2px solid #000;
+    background-color: whitesmoke;
+    list-style-type: none;
+}
+
+
+#login-item.logged-in:hover .account-info {
+    display: block;
+}
+
+
+/* khoảng cách giữa các mục */
+.account-info li {
+    margin-bottom: 5px;
+    
 }
