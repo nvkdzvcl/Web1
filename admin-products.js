@@ -89,6 +89,7 @@ function handleAddProduct() {
     const priceM = parseInt(document.getElementById('price-m-input').value, 10);
     const priceL = parseInt(document.getElementById('price-l-input').value, 10);
 
+    // Kiểm tra nếu checkbox size nào được chọn nhưng giá trị nhập vào không hợp lệ
     if (document.getElementById('size-s').checked && isNaN(priceS)) {
         alert("Please enter a valid price for size S.");
         return;
@@ -111,21 +112,21 @@ function handleAddProduct() {
     const newProductId = lastProductId + 1;
 
     const selectedSizes = [];
-    if (document.getElementById('size-all').checked) {
-        selectedSizes.push({ size: 'S', price: priceS }, { size: 'M', price: priceM }, { size: 'L', price: priceL });
-    } else {
-        if (document.getElementById('size-s').checked) selectedSizes.push({ size: 'S', price: priceS });
-        if (document.getElementById('size-m').checked) selectedSizes.push({ size: 'M', price: priceM });
-        if (document.getElementById('size-l').checked) selectedSizes.push({ size: 'L', price: priceL });
-    }
+    // Kiểm tra các checkbox size đã được chọn
+    if (document.getElementById('size-s').checked) selectedSizes.push({ size: 'S', price: priceS });
+    if (document.getElementById('size-m').checked) selectedSizes.push({ size: 'M', price: priceM });
+    if (document.getElementById('size-l').checked) selectedSizes.push({ size: 'L', price: priceL });
 
+    // Kiểm tra xem người dùng đã chọn ít nhất một size chưa
     if (selectedSizes.length === 0) {
         alert("Please select at least one size.");
         return;
     }
 
+    // Tạo sản phẩm mới
     const newProduct = { id: newProductId, name, type, sizes: selectedSizes, image };
 
+    // Lưu sản phẩm vào localStorage và render lại danh sách sản phẩm
     products.push(newProduct);
     saveToLocalStorage(products);
     renderProductList(products);
