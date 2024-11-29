@@ -1447,3 +1447,19 @@ body {
         display: none; 
     }   
 }
+
+
+@media screen and (max-width: 542px){
+    .ranking{
+        display: none;
+    }    
+    .email{
+        display: none;
+    }
+    .status{
+        display: none; 
+    }
+    .sdt{
+        display: none; 
+    }      
+}
