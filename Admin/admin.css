@@ -1446,6 +1446,31 @@ body {
     .status{
         display: none; 
     }   
+    .product-item td button{
+        visibility: collapse;
+    }
+    .fa-solid , .fa-solid {
+        visibility:visible;
+        font-size: 15px;
+        padding: 5px;
+        margin-left: -5px;
+        margin-top: 5px;
+        border: solid 3px black;
+        border-radius: 10px;
+    }
+    .fa-solid:hover , .fa-solid:hover {
+        background-color: red;
+        color:white;
+    }
+    .leftmenu{
+        display: none;
+    }
+    .content{
+        margin-left: -5px;
+    }
+    .product-item td {
+        font-size: 12px;
+    }
 }
 
 
